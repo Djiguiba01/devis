@@ -1,0 +1,501 @@
+:root{
+    --orange:#FF5F49;
+    --green:#3f0dca;
+    --black:#444;
+    --light-color: #777;
+    --box-shadow: .5rem .5rem 0 rgba(22, 160, 133, .2);
+    --text-shadow: .4rem .4rem 0 rgba(0, 0, 0, .2);
+    --border:.2rem solid var(--green);
+}
+
+*{
+    box-sizing: border-box;
+}
+
+body{
+    /* background: url(image-services/11.jpg); */
+    background-size: cover;
+    font-family: arial;
+    color: #333;
+    font-size: 13px;
+    margin: 0;
+}
+Input {
+    Width : 100% ;
+    Padding : 12px ;
+    Border-radius : 10px ;
+  }
+  select{
+    Border-radius : 10px ;
+    border: 1px solid #333;
+    border: none;
+    border-bottom: 1px solid #333;
+    /* display: block; */
+    width: 50%;
+    height: 30px;
+    margin-bottom: 25px;
+    cursor: pointer;
+  }
+ 
+  
+input, select, button{
+    font-family: arial;
+    color: #333;
+    font-size: 14px;
+}
+h3,h4{
+    margin: 0;
+}
+img{
+    max-width: 100%;
+}
+:focus{
+    outline: none;
+}
+.wrapper{
+    min-height: 100vh;
+    background-size: cover;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+ .inner{
+    padding: 20px;
+    background: #FFF;
+    max-width: 850px;
+    margin: auto;
+    display: flex;
+} 
+.inner .image-holder{
+    width: 50%;
+}
+.inner form{
+    width: 50%;
+    padding-top: 36px;
+    padding-left: 45px;
+    padding-right: 45px;
+}
+.inner h3{
+    text-transform: uppercase;
+    font-size: 25px;
+    text-align: center;
+    margin-bottom: 28px;
+}
+.form-group{
+    display: flex;
+}
+.form-group input{
+    width: 50%;
+}
+.form-group input:first-child{
+    margin-right: 25px;
+}
+.form-wrapper{
+    position: relative;
+}
+.form-control{
+    border: 1px solid #333;
+    border: none;
+    border-bottom: 1px solid #333;
+    display: block;
+    width: 100%;
+    height: 30px;
+    padding-right: 0;
+    margin-bottom: 25px;
+}
+select{
+    cursor: pointer;
+    color: gray;
+}
+select option[value=""][disabled]{
+    display: none;
+}
+
+/* Button::::::::::::::::::::::::::::: */
+button{
+    margin-left: 30%;
+}
+
+#telecharger{
+    border: none;
+    width: 164px;
+    height: 51px;
+    margin-top: 20px;
+    margin-bottom: 50px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: #fff;
+    box-shadow: var(--box-shadow);
+    border-radius: .5rem;
+    font-weight: bold;
+    font-size: 15px;
+    color: var(--green);
+
+ 
+        /* margin-left: 62px; */
+        padding-top: 11px;
+        border-top: 2px solid;
+}
+#telecharger:hover{
+    background: var(--green);
+    color: #fff;
+}
+
+.btn{
+    display: inline-block;
+    margin-top: 1rem;
+    /* padding: .2rem; */
+    padding-left: 1rem;
+    border: #fff;
+    border-radius: .5rem;
+    box-shadow: var(--box-shadow);
+    color: var(--green);
+    cursor: pointer;
+    font-size: 1.5rem;
+    background: #fff;
+    text-decoration: none; 
+    margin-left: 35%;
+    width: 65%;
+    padding-bottom: 8px;
+}
+.btn span{
+    padding: .7rem 1rem;
+    border-radius: .5rem;
+    background: var(--green);
+    counter-reset: #fff;
+    margin-left: .5rem;
+}
+.btn:hover{
+    background: var(--green);
+    color: #FFF;
+}
+.btn:hover span{
+    color: var(--green);
+    background: #FFF;
+    margin-left: 1rem;
+}
+
+
+
+/* Responsivité:::::::::::::::::::::::::::::: */
+@media(max-width: 767px){
+
+    .inner{
+        display: block;
+    }
+    .inner .image-holder{
+        width: 100%;
+    }
+    .inner form{
+        width: 100%;
+        padding: 5px 0 30px;
+    }
+    .btn{
+        width: 45%;
+    }
+}
+
+/* :::::::::::::::CSS AFFICHAGE DU FORMULAIRE:::::::::::::::::: */
+/* Entête::::::: */
+.entetepdf{
+    display: flex;
+    justify-content: space-between;
+}
+.gauche, .droite{
+    width: 20%;
+    margin-left: 2%;
+    margin-right: 2%;
+}
+.gauche img{
+    width: 80%;
+}
+.droite img{
+    width: 80%;
+}
+.milieu{
+    padding-top: 4%;
+}
+.telepdf .entetepdf .milieu h3{
+    font-size: 40px;
+    padding-bottom: 1%;
+}
+.telepdf .entetepdf .milieu h4, p{
+    padding-left: 4%;
+}
+.telepdf .entetepdf .milieu h4{
+    font-size: 16px;
+}
+.MainOeuvre {
+    margin-left: 60%;
+    font-size: 10px;
+}
+.tva {
+    margin-left: 60%;
+    font-size: 10px;
+}
+.montantTTC {
+    margin-left: 60%;
+    font-size: 10px;
+}
+.montantHT{
+    margin-left: 60%;
+    font-size: 10px;
+}
+@media (max-width:991px){
+    
+    .gauche img {
+        width: 92%;
+    }
+    .droite img {
+        width: 92%;
+    }
+    .telepdf .entetepdf .milieu h3 {
+        font-size: 36px;
+    }
+    .btn{
+        font-size: 1.3rem;
+    }
+}
+@media (max-width:768px){
+    .telepdf .entetepdf .milieu h3 {
+        font-size: 30px;
+    }
+    .gauche img {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .droite img {
+        width: 100%;
+        padding-top: 20px;
+    }
+    .telepdf .entetepdf .milieu h4 {
+        font-size: 14px;
+    }
+    .telepdf .entetepdf .milieu h4, p {
+        padding-left: 0%;
+    }
+    .milieu {
+        padding-top: 5%;
+    }
+}
+@media (max-width:660px){
+    .gauche, .droite {
+    width: 35%;
+   }
+    .gauche img {
+        width: 100%;
+        height: 13rem;
+    }
+    .droite img {
+        width: 100%;
+        height: 13rem;
+    }
+    .milieu {
+        padding-top: 9%;
+        padding-left: 0.6rem;
+        padding-right: 0.6rem;
+    }
+    .telepdf .entetepdf .milieu h3 {
+        font-size: 20px;
+    }
+
+
+
+}
+@media (max-width:515px){
+    .wrapper{
+        margin-top: -15%;
+    }
+    .btn{
+        margin-left: 14%;
+    }
+    .MainOeuvre{
+            margin-left: 45%;
+    }
+    .montantTTC{
+        margin-left: 45%;
+}
+.tva {
+    margin-left: 45%;
+}
+.montantHT{
+    margin-left: 45%;
+}
+/* ::::::::::numfact::::::::: */
+.numfact{
+    font-size: 1rem;
+}
+/* :::Gérant::: */
+.gerantdestinat .gauchedest, .droitegerant{
+    font-size: 15px;
+}
+
+
+}
+
+@media (max-width:300px){
+    .resultat{
+        width: 96%;
+    }
+}
+
+
+@media (max-width:460px){
+    .btn{
+        width: 50%;
+    }
+    /* .btn span {
+        margin-left: 1px;
+        margin-bottom: 6px;
+        font-size: 5px;
+        padding-top: 18px;
+    } */
+    /* :::::::::: */
+.btn span{
+    display: none;
+}
+.btn {
+    width: 54%;
+    margin-left: 62px;
+    padding-top: 11px;
+    border-top: 2px solid;
+    font-size: 30px;
+    position: relative;
+    font-weight: bold;
+}
+}
+@media (max-width:350px){
+     #deleteBtn {
+        /* font-size: 20px; */
+        margin: 7%;
+        padding: 5px;
+        width: 45%;
+    }
+ 
+}
+
+@media (max-width:380px){
+    /* ::::::::::numfact::::::::: */
+.numfact{
+    font-size: 0.9rem;
+}
+/* ::::::::::::: */
+    .gauche, .droite {
+    width: 35%;
+   }
+   .telepdf .entetepdf .milieu h3 {
+    font-size: 16px;
+}
+.milieu {
+    padding-top: 17%;
+}
+.telepdf .entetepdf .milieu h4 {
+    font-size: 12px;
+}
+.telepdf .entetepdf .milieu h4, p {
+    line-height: 1;
+}
+.MainOeuvre{
+    margin-left: 38%;
+}
+.montantTTC{
+    margin-left: 38%;
+}
+.tva {
+    margin-left: 38%;
+}
+.montantHT{
+    margin-left: 38%;
+}
+
+}
+
+@media (max-width: 460px){
+.btn {
+    width: 56%;
+    margin-left: 60px;
+    font-size: 25px;
+}
+}
+
+
+/* Tableau:::: */
+.container{
+Border-radius : 5px ;
+Background-color : blanchedalmond ;
+Padding : 20px ;
+Margin-left : auto ;
+Margin-right : auto ;
+Display : block ;
+}
+
+table, td, th {
+Border : 1px solid black ;
+}
+
+table {
+Border-collapse : collapse ;
+Width : 95% ;
+margin-left: 2.5%;
+margin-right: 2.5%;
+}
+
+th {
+Height : 50px ;
+}
+
+/* ::::::::: */
+.numdoitobjet{
+    margin-bottom: 2%;
+    line-height: 1.5rem;
+}
+
+.numdoitobjet .doit, .objet{
+    font-weight: bold;
+    font-size: 15px;
+}
+.numdoitobjet span{
+    font-weight: normal;
+}
+.gerantdestinat{
+    display: flex;
+    justify-content: space-between;
+    margin-top: 5%;
+    margin-left: 6%;
+    margin-right: 6%;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.page2 {
+    page-break-before: always;
+}
+
+  #popup{
+    justify-content: center;
+  }
+  #editBtn, #deleteBtn {
+    font-weight: bold;
+    margin: 12%;
+    margin-top: -2%;
+    padding: 13px;
+    width: 25%;
+    box-shadow: var(--box-shadow);
+    border-radius: 8px;
+    cursor: pointer;
+}
+ #deleteBtn:hover {
+    color: #fff;
+    background-color: #3f0dca;
+}
+#editBtn:hover {
+    color: #fff;
+    background-color: #3f0dca;
+}
+
+    /* ::::::::Pop Suppression Modification::::::::::: */
+   

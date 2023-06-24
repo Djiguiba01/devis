@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tableau</title>
+
+      <!-- ::CSS::::::: -->
+    <link rel="stylesheet" href="servicepages.css">
+
+    <!-- ::::::cdn icon:::::::: -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- ::::PDF::::::::: -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+
+    <style>
+        table {
+          margin-bottom: 20px;
+          width: 96%;
+          margin-left: 2%;
+          margin-right: 2%;
+        }
+        th, td {
+          padding: 10px 10px;
+          border: 1px solid black;
+        }
+
+        /* ::::::::::: */
+        #montdescrip{
+          font-weight: bold;
+          font-size: 13px;
+        }
+      </style>
+</head>
+<body>
+
+
+    
+    <body>
+
+        <!-- ::::::::FORMULAIRE::::::::::: -->
+  <div class="wrapper">
+
+    <div class="inner">
+
+      <div class="image-holder">
+        <img src="image-services/logo1.png" alt="img">
+         <!-- ::::::::::: -->
+         <div class="form-group">
+          <p style="margin-left: 2%; font-weight: bold; font-size: 17px;">Modification :</p>
+          <input type="number" min="1" placeholder="Numéro à modifier" class="form-control" id="idmodif" style="margin-left: 15%;" >
+        </div>
+
+        
+      <div class="rienpop" style="display: none;">
+        Le numéro saisi n'existe pas dans le tableau.
+      </div>
+        
+      </div>
+
+      <form action="">
+
+        <h3>Devis Plomberie</h3>
+
+        <div class="form-group">
+          <input type="text" placeholder="Nom destinateur" class="form-control" id="destinateur">
+          <input type="text" placeholder="Object" class="form-control" id="objet">
+        </div>
+
+        <div class="form-group">
+          <input type="text" placeholder="N°: facture" class="form-control" id="numfacture">
+          <input type="number" min="1" placeholder="Main Œuvres" class="form-control" id="oeuvres">
+          <input type="text" placeholder="N°:" class="form-control" id="idt" style="display: none;">
+        </div>
+
+
+        <div class="form-wrapper">
+          <input type="text" maxlength="60" placeholder="Désignation" class="form-control" id="designation" >
+        </div>
+
+        <div class="form-wrapper">
+          <input type="number" min="1" placeholder="Quantité" class="form-control" id="quantite" onchange="calculateMontant()">
+        </div>
+
+
+        <div class="form-wrapper">
+          <input type="number" min="1" placeholder="Prix Unitaire" class="form-control" id="prixUnitaire" onchange="calculateMontant()">
+        </div>
+
+        <div class="form-wrapper" style="display: none;">
+          <input type="number" placeholder="Montant" class="form-control" id="montant">
+        </div>
+
+     
+      <a href="#Devis" class="btn" style="text-decoration: none;" value="Add" type="button" onclick="addRow()">
+        AJOUTER 
+        <span class="fas fa-chevron-right"></span>
+      </a>
+      </form>
+      
+
+    </div>
+
+    
+  </div>
+
+ <!-- :::::::::POPUP::::::::::: -->
+ <div id="popup" style="display: none;">
+    <button id="deleteBtn">Supprimer</button>
+    <button id="editBtn" onclick="modifierLigne()">Modifier</button>
+</div>
+            <!-- :::::::::::::::TABLEAUX::::::::::::::: -->
+
+      <div class="telepdf" id="capture" style="padding-bottom: 3%;">
+
+        
+         <table id="t1" >
+
+            <div class="traitcontainer">
+
+  <div class="entetepdf">
+
+    <div class="gauche">
+      <img src="image-services/logo.png" alt="img">
+    </div>
+
+    <div class="milieu">
+      <h3>IKA PLOMBIER SARL</h3>
+      <h4>RCC : MA BKO.2016.B9400, NIF / 086139811A</h4>
+      <p> Halles de Bamako, Bloc Adrar des Ifogas, Magasin 481-482</p>
+      <p> <em style="font-weight: bold;">Email:</em> bbarou19860@gmail.com <em style="font-weight: bold;">Tel:</em> 74 24 00 74</p>
+    </div>
+
+    <div class="droite">
+      <img src="image-services/logo.png" alt="img">
+    </div>
+
+  </div>
+  <hr style="border: 1px solid #3f0dca; margin-top: 1.5%; margin-bottom: 3%; margin-left: 2%; margin-right: 2%;">
+
+  <!-- ::::::::::FACTURE::::::::::: -->
+  <div class="numdoitobjet" style="margin-left: 10%; margin-right: 10%;">
+    <h2 class="numfact">FACTURE PRO-FORMAT N° <span></span></h2>
+    <div class="doit">DOIT : <span></span></div>
+    <div class="objet">OBJET : <span></span></div>
+  </div>
+
+
+ </div>
+
+         <!-- :::::::::::::::TABLEAU 1::::::::::::::: -->
+            <thead>
+              <tr>
+                <th>N° </th>
+                <th>Désignation</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+
+        <!-- :::::::::::::::::TABLEAU 2:::::::::::::::::: -->
+          <table id="t2" style="display: none; margin-top: 1%;">
+
+            <thead>
+              <tr>
+                <th>N° </th>
+                <th>Désignation</th>
+                <th>Quantité</th>
+                <th>Prix Unitaire</th>
+                <th>Montant</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+
+  <!-- ::::::::::::::::::::TABLEAU SOMME CALCUL::::::::::::::::::::::: -->
+  <table class="resultat" >
+    <thead>
+      <tr>
+         <!-- <th> </th>
+        <th></th> -->
+        
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td id="montdescrip">Montant HT </td>
+        <td class="montantHT" style="font-weight: bold; font-size: 15px; text-align: right;"></td>
+      </tr>
+
+      <tr>
+        <td id="montdescrip">Main D'œuvres </td>
+        <td class="MainOeuvre" style="font-weight: bold; font-size: 15px; text-align: right;"></td>
+      </tr>
+
+      <tr>
+        <td id="montdescrip">TVA 18% </td>
+        <td class="tva" style="font-weight: bold; font-size: 15px; text-align: right;"></td>
+      </tr>
+
+      <tr id="montdescrip">
+        <td>Montant TTC </td>
+        <td class="montantTTC" style="font-weight: bold; font-size: 15px; text-align: right;"></td>
+      </tr>
+     
+    </tbody>
+  </table>
+  
+  <!-- ::::::::::::::::::::FIN SOMME CALCUL::::::::::::::::::::::: -->
+
+          <!-- ::::::::::::::::::::::Pied de page:::::::::::::::::::::: -->
+
+          <!-- <div class="montantHT" >
+            <h2 >Montant HT : <span></span></h2>
+          </div>
+
+          <div  >
+            <h2 >Main D'œuvres : <span> </span> fcfa</h2>
+          </div>
+
+          <div class="tva" >
+            <h2 >TVA 18% : <span></span></h2>
+          </div>
+          
+          <div class="montantTTC" >
+            <h2 >Montant TTC : <span></span></h2>
+          </div> -->
+
+          
+          <div class="gerantdestinat">
+            <div class="gauchedest">Pour accord</div>
+            <div class="droitegerant">Le Gérant <p></p></div>
+          </div>
+          <!-- ::::::::::::::::::::::Fin Pied de page:::::::::::::::::::::: -->
+
+
+      </div>
+
+
+      <!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
+      <button type="button" id="telecharger" onclick="downloadPDF()">Télécharger PDF</button>
+
+
+<!-- ::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<!-- :::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::::: -->
+
+<script src="servicepages.js"></script>   
+    
+</body>
+</html>
