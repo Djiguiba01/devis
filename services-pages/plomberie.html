@@ -91,7 +91,7 @@
             </select>
 
             <!-- :::::::::::::::::TYPES SERVICES::::::::::::: -->
-          <select name="" id="selectype" style="width: 47%; margin-left: 6%;">
+          <select name="" id="selectype" style="width: 47%; margin-left: 6%; display: none;">
             <option value="" disabled selected>Type</option>
             <option value="Batiment">Bâtiment</option>
             <option value="Champs">Champs</option>
@@ -102,7 +102,7 @@
 
        <!-- :::::::AFFICHE SERVICES BATIMENT::::::::::::: -->
        <div class="form-group" >
-        <select name="" id="selectprobleme" style="width: 47%; ">
+        <select name="" id="selectprobleme" style="width: 47%; display: none;">
             <option value="" disabled selected>Problème</option>
             <option value="Toillette">Toillette</option>
             <option value="Cuisine">Cuisine</option>
@@ -182,16 +182,45 @@
             </tr>
         </thead> -->
 
-         <!-- ::::::::TABLEAU SERVICE INSTALLATION::::::: -->
-         <tbody id="tableaufroid">
+         <!-- ::::::::TABLEAU PROBLEME TOILLETTE(Bâtiment)::::::: -->
+         <tbody id="tableautoillette" style="display: none;">
             <tr>
-                <td data-label="Service"  >?</td>
-                <td data-label="Type"  >?</td>
-                <td data-label="Problème"  >?</td>
+                <td data-label="Service"  >Installation</td>
+                <td data-label="Type"  >Bâtiment</td>
+                <td data-label="Problème">Toillette</td>
                 <td data-label="Montant"  >?</td>
             </tr>
+         </tbody>
 
-    </tbody>
+         <!-- ::::::::TABLEAU PROBLEME CUISINE(Bâtiment)::::::: -->
+         <tbody id="tableaucuisine" style="display: none;">
+          <tr>
+              <td data-label="Service"  >Installation</td>
+              <td data-label="Type"  >Bâtiment</td>
+              <td data-label="Problème">Cuisine</td>
+              <td data-label="Montant"  >?</td>
+          </tr>
+       </tbody>
+
+       <!-- ::::::::TABLEAU PROBLEME CHÄTEAU(Bâtiment)::::::: -->
+       <tbody id="tableauchateau" style="display: none;">
+        <tr>
+            <td data-label="Service"  >Installation</td>
+            <td data-label="Type"  >Bâtiment</td>
+            <td data-label="Problème">Château</td>
+            <td data-label="Montant"  >?</td>
+        </tr>
+     </tbody>
+
+     <!-- ::::::::TABLEAU ENTRETIEN ::::::::::: -->
+     <tbody id="tableauentretien" style="display: none;">
+      <tr>
+          <td data-label="Service"  >Entretient</td>
+          <td data-label="Type"  >?</td>
+          <td data-label="Problème">???</td>
+          <td data-label="Montant"  >?</td>
+      </tr>
+   </tbody>
 
 
 
@@ -250,6 +279,7 @@
   }
 }
 afficherContenu();
+
 
 
 // ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
@@ -346,6 +376,92 @@ function afficherNumero() {
   });
 }
 afficherNumero();
+
+
+
+
+
+
+// :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
+
+function afficherSelectType() {
+  
+  var selectService = document.getElementById("selectservice");
+  var selectType = document.getElementById("selectype");
+  var selectProbleme = document.getElementById('selectprobleme');
+  var tableToilette = document.getElementById('tableautoillette');
+  var tableentretien = document.getElementById('tableauentretien');
+
+
+   // AFFICHER SI SELECT SERVICE EST ENTRETIEN :::::::::::::::
+   selectService.addEventListener("change", function() {
+    var selectedOption = selectService.value;
+    
+    if (selectedOption === "Entretien") {
+      tableentretien.style.display = "block";
+      tableauchateau.style.display = 'none';
+      tableToilette.style.display = 'none';
+      tableaucuisine.style.display = 'none';
+    } else {
+      tableentretien.style.display = "none";
+    }
+  });
+
+
+  // AFFICHER SI SELECT SERVICE EST INSTALLATION :::::::::::::::
+  selectService.addEventListener("change", function() {
+    var selectedOption = selectService.value;
+    
+    if (selectedOption === "Installation") {
+      selectType.style.display = "block";
+    } else {
+      selectType.style.display = "none";
+    }
+  });
+
+  // AFFICHER SI SELECT TYPE EST BATIMENT :::::::::::::::
+  selectType.addEventListener('change', function() {
+      var selectedOption = selectType.value;
+
+      if (selectedOption === 'Batiment') {
+        selectProbleme.style.display = 'block';
+      } else {
+        selectProbleme.style.display = 'none';
+      }
+    });
+
+     // AFFICHER LES TABLEAUX EN FONCTION DE SELECT PROBLEME(Batiment):::::::::::::::
+    selectProbleme.addEventListener('change', function() {
+    var selectedOption = selectProbleme.value;
+
+    if (selectedOption === 'Toillette') {
+      tableToilette.style.display = 'block';
+      tableaucuisine.style.display = 'none';
+      tableauchateau.style.display = 'none';
+    }else if(selectedOption === 'Cuisine') {
+      tableaucuisine.style.display = 'block';
+      tableToilette.style.display = 'none';
+      tableauchateau.style.display = 'none';
+    }else if(selectedOption === 'Chateau') {
+      tableauchateau.style.display = 'block';
+      tableToilette.style.display = 'none';
+      tableaucuisine.style.display = 'none';
+    } else {
+      tableauchateau.style.display = 'none';
+      tableToilette.style.display = 'none';
+      tableaucuisine.style.display = 'none';
+    }
+  });
+  
+}
+afficherSelectType();
+
+
+
+
+
+
+
 
 
 
