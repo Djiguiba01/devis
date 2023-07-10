@@ -109,11 +109,59 @@
             <option value="Chateau">Château</option>
           </select>
 
-         <!-- <select name="" id="?????" style="width: 47%; margin-left: 6%;">
-          <option value="" disabled selected>???</option>
-          <option value="Standart">???</option>
-        </select>  -->
+          <!-- TYPE TOILLETTE ::::::::::::: -->
+         <select name="" id="typetoillette" style="width: 47%; margin-left: 6%; display: none;">
+          <option value="" disabled selected>Type Décoration</option>
+          <option value="Standart">Standart</option>
+          <option value="Luxe">Luxe</option>
+        </select> 
+
+
+
+
+        <!-- <div class="form-group">
+          <input type="number" min="1" placeholder="Surface du toît" class="form-control" id="surface">
+
+            <select name="" id="selectProduit">
+              <option value="" disabled selected>Type Produit</option>
+              <option value="Goudron Toillettes">Goudron Toillettes</option>
+              <option value="Etancheité sur mur">Etancheité sur mur</option>
+              <option value="Passalite Toît">Passalite Toît</option>
+            </select>
+        </div> -->
+
+
+        <!-- TYPE CUISINE ::::::::::::: -->
+        <select name="" id="typecuisine" style="width: 47%; margin-left: 6%; display: none;">
+          <option value="" disabled selected>Type Décoration</option>
+          <option value="Standart">Standart</option>
+          <option value="Standart">Luxe</option>
+        </select> 
     </div>
+
+             <!-- :::::TYPE TOILLETTE STANDART::::::::::::: -->
+            <div class="form-group">
+
+              <input type="number" min="1" placeholder="Nombre Toillette" class="form-control" id="nombretoilette" style="display: none;">
+  
+              <select name="" id="typedecoration" style="width: 47%; margin-left: 6%; display: none; ">
+                <option value="" disabled selected>Type Décoration</option>
+                <option value="SansChauffage">Sans Chauffage</option>
+                <option value="AvecChauffage">Avec Chauffage</option>
+              </select>
+            </div>
+
+            <!-- :::::TYPE CUISINE STANDART::::::::::::: -->
+            <div class="form-group">
+
+              <input type="number" min="1" placeholder="Nombre Cuisine" class="form-control" id="nombrecuisine" style="display: none;">
+  
+              <select name="" id="typedecorationCuisine" style="width: 47%; margin-left: 6%; display: none; ">
+                <option value="" disabled selected>Type Décoration</option>
+                <option value="SansChauffage">Sans Chauffage</option>
+                <option value="AvecChauffage">Avec Chauffage</option>
+              </select>
+            </div>
 
         
 
@@ -150,6 +198,7 @@
             <p>Mali</p>
             <p>Halles de Bamako </p>
         </div>
+        
 
         <div class="container2">
             <h4>Envoyé à</h4>
@@ -261,27 +310,7 @@
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>
-
-  // ::::::FONCTION QUI AFFICHE TOUT LE CONTENU S'IL Y'A UN EVENNEMENT DANS 1 DES INPUTS::::::::
-  function afficherContenu() {
-  var sectioncorps = document.getElementById('sectioncorps');
-  var telecharger = document.getElementById('telecharger');
-
-  // Événement pour les éléments d'entrée
-  var inputs = document.querySelectorAll('input');
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('input', function() {
-    // // Appel de la fonction pour mettre à jour le montant dans le tableau
-    // multiplierNombre();
-      sectioncorps.style.display = 'block';
-      telecharger.style.display = 'block';
-    });
-  }
-}
-afficherContenu();
-
-
-
+  
 // ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
 function afficherDevis() {
   var selectService = document.getElementById('selectservice');
@@ -297,9 +326,9 @@ function afficherDevis() {
     var selectedOption = selectService.value;
 
     if (selectedOption === 'Climatisation') {
-      devisText.textContent = 'Devis ? AAA';
+      devisText.textContent = 'Devis Climatisation';
     } else if (selectedOption === 'Froid') {
-      devisText.textContent = 'Devis ? BBB';
+      devisText.textContent = 'Devis Froid';
     } else {
       devisText.textContent = 'Devis ?';
     }
@@ -319,6 +348,25 @@ function afficherDevis() {
 afficherDevis();
 
 
+
+
+  // ::::::FONCTION QUI AFFICHE TOUT LE CONTENU S'IL Y'A UN EVENNEMENT DANS 1 DES INPUTS::::::::
+  function afficherContenu() {
+  var sectioncorps = document.getElementById('sectioncorps');
+  var telecharger = document.getElementById('telecharger');
+
+  // Événement pour les éléments d'entrée
+  var inputs = document.querySelectorAll('input');
+  for (var i = 0; i < inputs.length; i++) {
+    inputs[i].addEventListener('input', function() {
+    // // Appel de la fonction pour mettre à jour le montant dans le tableau
+    // multiplierNombre();
+      sectioncorps.style.display = 'block';
+      telecharger.style.display = 'block';
+    });
+  }
+}
+afficherContenu();
 
 
 
@@ -379,9 +427,6 @@ afficherNumero();
 
 
 
-
-
-
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
 function afficherSelectType() {
@@ -392,6 +437,11 @@ function afficherSelectType() {
   var tableToilette = document.getElementById('tableautoillette');
   var tableentretien = document.getElementById('tableauentretien');
 
+  var typeToillette = document.getElementById('typetoillette');
+  var typedecoration = document.getElementById('typedecoration');
+  var typeCuisine = document.getElementById('typecuisine');
+
+
 
    // AFFICHER SI SELECT SERVICE EST ENTRETIEN :::::::::::::::
    selectService.addEventListener("change", function() {
@@ -400,12 +450,17 @@ function afficherSelectType() {
     if (selectedOption === "Entretien") {
       tableentretien.style.display = "block";
       tableauchateau.style.display = 'none';
+      selectProbleme.style.display = 'none';
       tableToilette.style.display = 'none';
       tableaucuisine.style.display = 'none';
+      typeToillette.style.display = 'none';
+      typeCuisine.style.display = 'none';
     } else {
       tableentretien.style.display = "none";
+      
     }
   });
+
 
 
   // AFFICHER SI SELECT SERVICE EST INSTALLATION :::::::::::::::
@@ -425,10 +480,12 @@ function afficherSelectType() {
 
       if (selectedOption === 'Batiment') {
         selectProbleme.style.display = 'block';
+        
       } else {
         selectProbleme.style.display = 'none';
       }
     });
+    
 
      // AFFICHER LES TABLEAUX EN FONCTION DE SELECT PROBLEME(Batiment):::::::::::::::
     selectProbleme.addEventListener('change', function() {
@@ -436,27 +493,149 @@ function afficherSelectType() {
 
     if (selectedOption === 'Toillette') {
       tableToilette.style.display = 'block';
+      typeToillette.style.display = 'block';
+      typeCuisine.style.display = 'none';
       tableaucuisine.style.display = 'none';
       tableauchateau.style.display = 'none';
+      
     }else if(selectedOption === 'Cuisine') {
       tableaucuisine.style.display = 'block';
+      typeCuisine.style.display = 'block';
+      typeToillette.style.display = 'none';
       tableToilette.style.display = 'none';
       tableauchateau.style.display = 'none';
+      
     }else if(selectedOption === 'Chateau') {
       tableauchateau.style.display = 'block';
       tableToilette.style.display = 'none';
       tableaucuisine.style.display = 'none';
+      typeToillette.style.display = 'none';
+      typeCuisine.style.display = 'none';
     } else {
       tableauchateau.style.display = 'none';
       tableToilette.style.display = 'none';
       tableaucuisine.style.display = 'none';
+      typeToillette.style.display = 'none';
+      typeCuisine.style.display = 'none';
     }
   });
+
+// AFFICHAGE TYPE DECORATION:::::::::::::::::
+
+
   
 }
 afficherSelectType();
 
 
+  
+// <!-- :::::FONCTION QUI AFFICHE CHAMPS TYPE TOILLETTE STANDART::::::::::::: -->
+function afficherTypedecoration() {
+    var typetoilletteSelect = document.getElementById("typetoillette");
+    var typedecorationElement = document.getElementById("typedecoration");
+    var nombretoiletteElement = document.getElementById("nombretoilette");
+    
+    var typecuisineSelect = document.getElementById("typecuisine");
+    var typedecorationCuisineElement = document.getElementById("typedecorationCuisine");
+    var nombrecuisineElement = document.getElementById("nombrecuisine");
+
+
+// TOILETTE::::::::::::::::::
+    typetoilletteSelect.addEventListener("change", function() {
+      if (typetoilletteSelect.value === "Standart") {
+        nombretoiletteElement.style.display = "block";
+        typedecorationElement.style.display = "block";
+      } 
+       else {
+        typedecorationElement.style.display = "none";
+      }
+    });
+    // CUISINE::::::::::::::::::
+    typecuisineSelect.addEventListener("change", function() {
+      if (typecuisineSelect.value === "Standart") {
+        typedecorationCuisineElement.style.display = "block";
+        nombrecuisineElement.style.display = "block";
+      } 
+       else {
+        typedecorationCuisineElement.style.display = "none";
+        // nombrecuisineElement.style.display = "none";
+      }
+    });
+  }
+  afficherTypedecoration();
+
+  // Afficher le montant Toilette::::::::::::
+  function multiplierNombre() {
+  var selectDecoration = document.getElementById("typedecoration");
+  var nombreToilette = document.getElementById("nombretoilette");
+  var montantElement = document.querySelector("#tableautoillette td[data-label='Montant']");
+
+  function updateMontant() {
+    var selectedOption = selectDecoration.value;
+    var montant;
+
+    if (nombreToilette.value === "") {
+      // Afficher le message d'erreur dans une boîte de dialogue modale
+      alert("Nombre de toilette ?");
+      montantElement.textContent = "?";
+      return;
+    }
+    if (selectedOption === "SansChauffage") {
+      montant = parseInt(nombreToilette.value) * 80000;
+    } else if (selectedOption === "AvecChauffage") {
+      montant = parseInt(nombreToilette.value) * 175000;
+    } else {
+      montant = 0;
+    }
+    montantElement.textContent = formatNumber(montant);
+  }
+  selectDecoration.addEventListener("change", updateMontant);
+  nombreToilette.addEventListener("input", updateMontant);
+}
+// Fonction pour formater le nombre avec un espacement de 3 chiffres à partir de la droite et ajouter " FCFA"
+function formatNumber(number) {
+  var formattedNumber = number.toLocaleString("fr-FR");
+  return formattedNumber + " FCFA";
+}
+multiplierNombre();
+
+
+  // Afficher le montant Toilette::::::::::::
+  function cuisineMontant() {
+  var selectDecoration = document.getElementById("typedecorationCuisine");
+  var nombrecuisine = document.getElementById("nombrecuisine");
+  var montantElement = document.querySelector("#tableaucuisine td[data-label='Montant']");
+
+  function calculateMontant() {
+    var selectedOption = selectDecoration.value;
+    var montant;
+
+    if (nombrecuisine.value === "") {
+      // Afficher le message d'erreur dans une boîte de dialogue modale
+      alert("Nombre de cuisine");
+      montantElement.textContent = "?";
+      return;
+    }
+    if (selectedOption === "SansChauffage") {
+      montant = parseInt(nombrecuisine.value) * 30000 ;
+    } else if (selectedOption === "AvecChauffage") {
+      montant = parseInt(nombrecuisine.value) * 105000 ;
+    } else {
+      montant = 0;
+    }
+    montantElement.textContent = formatNumber(montant);
+  }
+
+  selectDecoration.addEventListener("change", calculateMontant);
+  nombrecuisine.addEventListener("input", calculateMontant);
+}
+// Fonction pour formater le nombre avec un espacement de 3 chiffres à partir de la droite et ajouter " FCFA"
+function formatNumber(number) {
+  var formattedNumber = number.toLocaleString("fr-FR");
+  return formattedNumber + " FCFA";
+}
+// Appel de la fonction pour activer le comportement
+cuisineMontant();
 
 
 
