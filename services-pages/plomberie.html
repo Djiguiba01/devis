@@ -121,12 +121,22 @@
             <option value="Chateau">Château</option>
           </select>
 
-          <!-- TYPE TOILLETTE ::::::::::::: -->
+         <!-- TYPE TOILLETTE ::::::::::::: -->
          <select name="" id="typetoillette" style="width: 47%; margin-left: 6%; display: none;">
           <option value="" disabled selected>Type Décoration</option>
           <option value="Standart">Standart</option>
           <option value="Luxe">Luxe</option>
-        </select> 
+        </select>
+        
+        <!-- :::TYPE CHATEAU :::::::::::::::: -->
+        <select name="" id="typechateau" style="width: 47%; margin-left: 6%; display: none;">
+          <option value="" disabled selected>Niveau Maison</option>
+          <option value="Batiment">Bâtiment</option>
+          <option value="Etage1">Etage 1</option>
+          <option value="Etage2">Etage 2</option>
+          <option value="Etage3">Etage 3</option>
+          <option value="Etage4">Etage 4</option>
+        </select>
 
 
 
@@ -248,7 +258,7 @@
             <tr>
                 <td data-label="Service"  >Installation</td>
                 <!-- <td data-label="Type"  >Bâtiment</td> -->
-                <td data-label="Problème">Toillette</td>
+                <td data-label="Nombre"> ?</td>
                 <td data-label="Montant"  >?</td>
             </tr>
          </tbody>
@@ -257,8 +267,8 @@
          <tbody id="tableaucuisine" style="display: none;">
           <tr>
               <td data-label="Service"  >Installation</td>
-              <td data-label="Type"  >Bâtiment</td>
-              <td data-label="Problème">Cuisine</td>
+              <!-- <td data-label="Type"  >Bâtiment</td> -->
+              <td data-label="Nombre"> ?</td>
               <td data-label="Montant"  >?</td>
           </tr>
        </tbody>
@@ -272,6 +282,7 @@
             <td data-label="Montant"  >?</td>
         </tr>
      </tbody>
+
 
      <!-- ::::::::TABLEAU ENTRETIEN ::::::::::: -->
      <tbody id="tableauentretien" style="display: none;">
@@ -323,9 +334,10 @@
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>  
   
+
 // ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
 function afficherTexteDevis() {
-  var selectType = document.getElementById('selectype');
+  var selectType = document.getElementById('selectprobleme');
   var selectService = document.getElementById('selectservice');
   var header = document.querySelector('.header');
   var texteDevis = document.createElement('h3');
@@ -339,12 +351,12 @@ function afficherTexteDevis() {
 
     if (selectedOptionService === 'Entretien') {
       texteDevis.textContent = 'Devis Entretien';
-    } else if (selectedOptionType === 'Batiment') {
-      texteDevis.textContent = 'Devis Bâtiment';
-    } else if (selectedOptionType === 'Champs') {
-      texteDevis.textContent = 'Devis Champs';
-    } else if (selectedOptionType === 'Usine') {
-      texteDevis.textContent = 'Devis Usine';
+    } else if (selectedOptionType === 'Toillette') {
+      texteDevis.textContent = 'Devis Toillette';
+    } else if (selectedOptionType === 'Cuisine') {
+      texteDevis.textContent = 'Devis Cuisine';
+    } else if (selectedOptionType === 'Chateau') {
+      texteDevis.textContent = 'Devis Château';
     } else {
       texteDevis.textContent = 'Devis ?';
     }
@@ -443,6 +455,31 @@ function afficherNumero() {
 afficherNumero();
 
 
+  // AFFICHE NOMBRE TOILETTE::::::::::::::
+  function afficherNombreToilette() {
+  var inputNombreToilette = document.getElementById('nombretoilette');
+  var celluleProbleme = document.querySelector('#tableautoillette td[data-label="Nombre"]');
+
+  inputNombreToilette.addEventListener('input', function() {
+    var nombreToilette = inputNombreToilette.value;
+    celluleProbleme.textContent = nombreToilette + ' Toilette(s)';
+  });
+}
+afficherNombreToilette();
+
+// AFFICHE NOMBRE CUISINE::::::::::::::
+function afficherNombreCuisine() {
+  var nombrecuisineInput = document.getElementById("nombrecuisine");
+  var celluleNombreCuisine = document.querySelector("#tableaucuisine td[data-label='Nombre']");
+  
+  nombrecuisineInput.addEventListener("input", function() {
+    var nombreCuisine = nombrecuisineInput.value;
+    celluleNombreCuisine.textContent = nombreCuisine + ' Cuisine(s)';
+  });
+}
+afficherNombreCuisine();
+
+
 
 // :::::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -514,6 +551,7 @@ function afficherSelectType() {
       typeCuisine.style.display = 'none';
       tableaucuisine.style.display = 'none';
       tableauchateau.style.display = 'none';
+      typechateau.style.display = 'none';
       
     }else if(selectedOption === 'Cuisine') {
       tableaucuisine.style.display = 'block';
@@ -521,8 +559,10 @@ function afficherSelectType() {
       typeToillette.style.display = 'none';
       tableToilette.style.display = 'none';
       tableauchateau.style.display = 'none';
+      typechateau.style.display = 'none';
       
     }else if(selectedOption === 'Chateau') {
+      typechateau.style.display = 'block';
       tableauchateau.style.display = 'block';
       tableToilette.style.display = 'none';
       tableaucuisine.style.display = 'none';
@@ -534,6 +574,7 @@ function afficherSelectType() {
       tableaucuisine.style.display = 'none';
       typeToillette.style.display = 'none';
       typeCuisine.style.display = 'none';
+      typechateau.style.display = 'none';
     }
   });
 
@@ -602,7 +643,7 @@ function afficherTypedecoration() {
     } else if (selectedOption === "AvecChauffage") {
       montant = parseInt(nombreToilette.value) * 175000;
     } else {
-      montant = 0;
+      montant = "?";
     }
     montantElement.textContent = formatNumber(montant);
   }
@@ -612,7 +653,7 @@ function afficherTypedecoration() {
 // Fonction pour formater le nombre avec un espacement de 3 chiffres à partir de la droite et ajouter " FCFA"
 function formatNumber(number) {
   var formattedNumber = number.toLocaleString("fr-FR");
-  return formattedNumber + " FCFA";
+  return formattedNumber + " fcfa";
 }
 multiplierNombre();
 
@@ -638,7 +679,7 @@ multiplierNombre();
     } else if (selectedOption === "AvecChauffage") {
       montant = parseInt(nombrecuisine.value) * 105000 ;
     } else {
-      montant = 0;
+      montant = "?";
     }
     montantElement.textContent = formatNumber(montant);
   }
@@ -648,7 +689,7 @@ multiplierNombre();
 // Fonction pour formater le nombre avec un espacement de 3 chiffres à partir de la droite et ajouter " FCFA"
 function formatNumber(number) {
   var formattedNumber = number.toLocaleString("fr-FR");
-  return formattedNumber + " FCFA";
+  return formattedNumber + " fcfa";
 }
 // Appel de la fonction pour activer le comportement
 cuisineMontant();
