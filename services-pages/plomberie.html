@@ -332,8 +332,7 @@
 
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
-<script>  
-  
+<script>    
 
 // ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
 function afficherTexteDevis() {
@@ -515,8 +514,6 @@ function afficherSelectType() {
     }
   });
 
-
-
   // AFFICHER SI SELECT SERVICE EST INSTALLATION :::::::::::::::
   selectService.addEventListener("change", function() {
     var selectedOption = selectService.value;
@@ -577,11 +574,6 @@ function afficherSelectType() {
       typechateau.style.display = 'none';
     }
   });
-
-// AFFICHAGE TYPE DECORATION:::::::::::::::::
-
-
-  
 }
 afficherSelectType();
 
@@ -694,6 +686,42 @@ function formatNumber(number) {
 // Appel de la fonction pour activer le comportement
 cuisineMontant();
 
+
+
+
+// CALCULE MONTANT CHATEAU:::::::::::::::::
+
+function calculerMontantChateau() {
+  var selectChateau = document.getElementById("typechateau");
+  var montantElement = document.querySelector("#tableauchateau td[data-label='Montant']");
+
+  function updateMontant() {
+    var selectedOption = selectChateau.value;
+    var montant;
+
+    if (selectedOption === "Batiment") {
+      montant = 383250;
+    } else if (selectedOption === "Etage1") {
+      montant = 383250 + 10000;
+    } else if (selectedOption === "Etage2") {
+      montant = 383250 + 10000 + 10000;
+    } else if (selectedOption === "Etage3") {
+      montant = 383250 + 10000 + 10000 + 10000;
+    } else if (selectedOption === "Etage4") {
+      montant = 383250 + 10000 + 10000 + 10000 + 10000;
+    } else {
+      montant = "?";
+    }
+    montantElement.textContent = formatNumber(montant);
+  }
+  // Fonction pour formater le montant avec des espaces pour les milliers et ajouter " FCFA"
+  function formatNumber(number) {
+    var formattedNumber = number.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+    return formattedNumber + " fcfa";
+  }
+  selectChateau.addEventListener("change", updateMontant);
+}
+calculerMontantChateau();
 
 
 
