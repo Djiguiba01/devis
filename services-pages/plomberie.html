@@ -48,6 +48,18 @@
 	}
 }
 
+/* :::::LOGO::::::: */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo {
+  margin-left: auto;
+}
+
+
    </style>
 </head>
 
@@ -185,8 +197,8 @@
   <section id="sectioncorps" style="display: none; margin-bottom: 4%;">
 
     <div class="header">
-        <h3>Devis Plomberie</h3>
-        <!-- <img src="image-services/logo.png" alt="sss"> -->
+        <h3>Devis ?</h3>
+        <img src="image-services/logo.png" alt="sss">
     </div>
 
     <hr style="border: 1px solid #3f0dca; margin-top: 3%; margin-bottom: 3%;">
@@ -235,7 +247,7 @@
          <tbody id="tableautoillette" style="display: none;">
             <tr>
                 <td data-label="Service"  >Installation</td>
-                <td data-label="Type"  >Bâtiment</td>
+                <!-- <td data-label="Type"  >Bâtiment</td> -->
                 <td data-label="Problème">Toillette</td>
                 <td data-label="Montant"  >?</td>
             </tr>
@@ -309,44 +321,49 @@
 
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
-<script>
+<script>  
   
 // ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
-function afficherDevis() {
+function afficherTexteDevis() {
+  var selectType = document.getElementById('selectype');
   var selectService = document.getElementById('selectservice');
   var header = document.querySelector('.header');
-  var devisText = document.createElement('h3');
+  var texteDevis = document.createElement('h3');
+  var logo = document.createElement('img');
+  logo.src = 'image-services/logo.png';
+  logo.style.float = 'right';
 
-  // Ajoute une image à l'élément header
-  var image = document.createElement('img');
-  image.src = 'image-services/logo.png';
-  header.appendChild(image);
+  var updateHeader = function() {
+    var selectedOptionType = selectType.value;
+    var selectedOptionService = selectService.value;
 
-  selectService.addEventListener('change', function() {
-    var selectedOption = selectService.value;
-
-    if (selectedOption === 'Climatisation') {
-      devisText.textContent = 'Devis Climatisation';
-    } else if (selectedOption === 'Froid') {
-      devisText.textContent = 'Devis Froid';
+    if (selectedOptionService === 'Entretien') {
+      texteDevis.textContent = 'Devis Entretien';
+    } else if (selectedOptionType === 'Batiment') {
+      texteDevis.textContent = 'Devis Bâtiment';
+    } else if (selectedOptionType === 'Champs') {
+      texteDevis.textContent = 'Devis Champs';
+    } else if (selectedOptionType === 'Usine') {
+      texteDevis.textContent = 'Devis Usine';
     } else {
-      devisText.textContent = 'Devis ?';
+      texteDevis.textContent = 'Devis ?';
     }
-
     // Supprime les anciens éléments s'ils existent dans le header
     while (header.firstChild) {
       header.removeChild(header.firstChild);
     }
-
-    // Ajoute le nouveau texte dans le header
-    header.appendChild(devisText);
-   // Ajoute l'image à l'élément header
-        header.appendChild(image);
-  });
+    // Ajoute le nouveau texte et le logo dans le header
+    header.appendChild(texteDevis);
+    header.appendChild(logo);
+  };
+  // Ajoute les écouteurs d'événements aux deux sélecteurs
+  selectType.addEventListener('change', updateHeader);
+  selectService.addEventListener('change', updateHeader);
 }
 // Appel de la fonction pour activer le comportement
-afficherDevis();
+afficherTexteDevis();
 
+// ::::::::::::::::::::::::::::::::::::
 
 
 
@@ -625,7 +642,6 @@ multiplierNombre();
     }
     montantElement.textContent = formatNumber(montant);
   }
-
   selectDecoration.addEventListener("change", calculateMontant);
   nombrecuisine.addEventListener("input", calculateMontant);
 }
