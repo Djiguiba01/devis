@@ -59,6 +59,7 @@
                                 <option>30 m²</option>
                                 <option>40 m²</option>
                                 <option>50 m²</option>
+                                <option>60 m²</option>
                             </select>
                         </div>
 
@@ -173,18 +174,17 @@
     <tr>
       <td>1</td>
       <td>Tapis </td>
-      <td>1 U </td>
-      <td>40 000 </td>
-      <td>40 000 </td>
+      <td id="utoit">1 U </td>
+      <td id="qtoit">40 000 </td>
+      <td id="mtoit">40 000 </td>
     </tr>
 
     <tr>
       <td>2 </td>
       <td>Colle flut </td>
-      <td>1/2 Boite </td>
-      <td>20 000 </td>
-      <td>20 000 </td>
-  
+      <td id="utoit">1 Boite </td>
+      <td id="qtoit">20 000 </td>
+      <td id="mtoit">20 000 </td>
     </tr>
 
     <tr>
@@ -275,6 +275,7 @@ function recupererVille() {
 document.getElementById("ville").addEventListener("input", recupererVille);
 recupererVille();
 
+
 function recupererNumero() {
   var numero = document.getElementById("numero").value;
   var telephoneElement = document.getElementById("telephone");
@@ -284,6 +285,7 @@ function recupererNumero() {
 document.getElementById("numero").addEventListener("input", recupererNumero);
 // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
 recupererNumero();
+
 
 function recupererSelectSurface() {
   var selectSurface = document.getElementById("selectsurface");
@@ -302,7 +304,6 @@ document.getElementById("selectsurface").addEventListener("change", recupererSel
 recupererSelectSurface();
 
 
-
 function afficherValeurSelectEtancheite() {
   var selectEtancheite = document.getElementById("selectetancheite");
   var etancheiteElement = document.getElementById("etancheite");
@@ -318,6 +319,76 @@ document.getElementById("selectetancheite").addEventListener("change", afficherV
 afficherValeurSelectEtancheite();
 
 
+
+// :::::::::::::
+function calculerValeurUToit() {
+  var selectSurface = document.getElementById("selectsurface");
+  var surfaceValue = selectSurface.value;
+
+  var uToitElements = document.querySelectorAll("#utoit");
+
+  // Réinitialiser les valeurs par défaut
+  uToitElements.forEach(function (element) {
+    element.textContent = "1 U";
+  });
+
+  var multiplicateur = 1;
+
+  if (surfaceValue === "10 m²") {
+    multiplicateur = 1;
+  } else if (surfaceValue === "20 m²") {
+    multiplicateur = 2;
+  } else if (surfaceValue === "30 m²") {
+    multiplicateur = 3;
+  } else if (surfaceValue === "40 m²") {
+    multiplicateur = 4;
+  } else if (surfaceValue === "50 m²") {
+    multiplicateur = 5;
+  } else if (surfaceValue === "60 m²") {
+    multiplicateur = 6;
+  }
+
+  // Effectuer la multiplication
+  uToitElements.forEach(function (element) {
+    var valeurUToit = parseInt(element.textContent) * multiplicateur;
+    element.textContent = valeurUToit + " U";
+  });
+}
+
+// Appeler la fonction lorsque la valeur de l'élément select surface change
+document.getElementById("selectsurface").addEventListener("change", calculerValeurUToit);
+
+// Appeler la fonction une fois au chargement de la page pour initialiser la valeur UToit
+calculerValeurUToit();
+
+
+// ::::::::::::
+function calculerMontantToit() {
+  var uToitElements = document.querySelectorAll("#utoit");
+  var qToitElements = document.querySelectorAll("#qtoit");
+  var mToitElements = document.querySelectorAll("#mtoit");
+
+  for (var i = 0; i < uToitElements.length; i++) {
+    var uToitValue = parseInt(uToitElements[i].textContent.replace(/\s/g, ""));
+    var qToitValue = parseInt(qToitElements[i].textContent.replace(/\s/g, ""));
+    var mToitValue = uToitValue * qToitValue;
+
+    mToitElements[i].textContent = mToitValue.toLocaleString();
+  }
+}
+
+
+
+
+// Appeler la fonction lorsque la valeur de l'élément select surface change
+document.getElementById("selectsurface").addEventListener("change", function() {
+  calculerValeurUToit();
+  calculerMontantToit();
+});
+
+// Appeler la fonction une fois au chargement de la page pour initialiser les valeurs UToit et calculer les montants Toit
+calculerValeurUToit();
+calculerMontantToit();
 
 
 
