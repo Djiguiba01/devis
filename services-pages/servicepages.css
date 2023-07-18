@@ -423,30 +423,6 @@ button{
 }
 
 
-/* Tableau:::: */
-.container{
-Border-radius : 5px ;
-Background-color : blanchedalmond ;
-Padding : 20px ;
-Margin-left : auto ;
-Margin-right : auto ;
-Display : block ;
-}
-
-table, td, th {
-Border : 1px solid black ;
-}
-
-table {
-Border-collapse : collapse ;
-Width : 95% ;
-margin-left: 2.5%;
-margin-right: 2.5%;
-}
-
-th {
-Height : 50px ;
-}
 
 /* ::::::::: */
 .numdoitobjet{

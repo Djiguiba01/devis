@@ -1,0 +1,154 @@
+/* :::::::::ENTETE::::::::::::: */
+.entete {
+	height: 15%;
+	width: 95%;
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	/* background-color: aquamarine; */
+	margin-left: auto;
+	margin-right: auto;
+  }
+  
+  .logo-left {
+	width: 20%;
+	height: auto;
+	margin-right: 10px;
+  }
+  
+  .logo-right {
+	width: 20%;
+	height: auto;
+  }
+  
+  .entete-text {
+	text-align: center;
+	
+  }
+  .hr1{
+	border: 1px solid #c6c5c9; margin-top: 1.5%; width: 95%;margin-left: auto; margin-right: auto;
+  }
+  .hr2{
+	border: 1px solid rgb(27, 24, 24); width: 95%;margin-top: 1%;margin-left: auto; margin-right: auto;
+  }
+  .coordonees{
+	width: 93%;margin-left: auto;margin-right: auto; font-size: 30px; padding-left: 4%; margin-top: 2%;
+  }
+  .coordonees li{
+	font-size: 30px;
+  }
+  /* Responsive styles for entete-text */
+  @media screen and (max-width: 600px) {
+	.entete {
+	  width: 100%;
+	}
+	h1 {
+	  font-size: 16px;
+	}
+	.entete-text {
+	  font-size: 12px;
+	}
+	.coordonees li{
+		font-size: 20px;
+	  }
+  }
+  
+  @media screen and (min-width: 601px) and (max-width: 900px) {
+	.entete-text {
+	  font-size: 16px;
+	}
+	
+  }
+  
+  @media screen and (min-width: 901px) {
+	.entete-text {
+	  font-size: 18px;
+	}
+  }
+
+  @media (max-width: 600px) {
+	/* ::::::: */
+	.content-item h1{
+		padding-top: 2%;
+	}
+  }
+  /* :::::::::ENTETE::::::::::::: */
+
+
+  
+  /* ::::::::::TABLEAU::::::::::::: */
+  table {
+
+	 margin-top: 1%;
+	 margin-left: auto;
+	 margin-right: auto;
+	/* transform: translate(-50%, -50%); */
+	border-collapse: collapse;
+	width: 95%;
+	height: 200px;
+	border: 1px solid #bdc3c7;
+	box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+tr {
+	transition: all .2s ease-in;
+	cursor: pointer;
+}
+
+th,
+td {
+	padding: 12px;
+	text-align: left;
+	border-bottom: 1px solid #ddd;
+}
+
+#header {
+	background-color: #5f7acb;
+	color: black;
+}
+
+
+
+tr:hover {
+	background-color: #f5f5f5;
+	transform: scale(1.02);
+	box-shadow: 2px 2px 12px rgba(0, 0, 0, 0.2), -1px -1px 8px rgba(0, 0, 0, 0.2);
+}
+
+@media only screen and (max-width: 768px) {
+	table {
+		width: 90%;
+	}
+}
+  
+  /* Responsive styles for table */
+  @media (max-width: 500px) {
+	/* Styles Entete */
+	/* .entete,
+	hr,
+	.coordonees {
+	  width: auto;
+	} */
+	/* Styles Entete */
+ 
+  }
+  @media (max-width: 450px) {
+    .telechargerpdf{
+		margin-top: 25%;
+	}
+	table{
+		width: 80%;
+	}
+}
+
+th,
+td {
+  padding: 12px;
+  text-align: left;
+  border-bottom: 1px solid black;
+  border-right: 1px solid black; /* Ajout de trait sur la colonne */
+}
+th:last-child,
+td:last-child {
+  border-right: none; /* Suppression du trait de la dernière colonne */
+}

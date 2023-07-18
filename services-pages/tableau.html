@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Table</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="tableau.css"/>
+
+</head>
+<body>
+<div class="telechargerpdf" >
+		
+<!-- :::::::::ENTETE::::::::::::: -->
+<div class="entete">
+  <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+  <div class="entete-text">
+	<h1>IKA PLOMBIER SARL</h1>
+	<p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+	<p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+	<p>Email: ctraore@ikaplombier.com</p>
+	<p>Tel: 74 24 00 74</p>
+  </div>
+  <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+</div>
+<!-- :::::::::ENTETE::::::::::::: -->
+
+<!-- ::::::::::::::: -->
+<hr style="border: 1px solid #c6c5c9; margin-top: 1.5%; width: 95%;">
+<hr style="border: 1px solid rgb(27, 24, 24); width: 95%; ">
+
+<div class="content-item" style="text-align: center; height: 40px; background-color: #834582; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
+	<h1>Facture Pro-format N°04.03.07.23</h1>
+  </div>
+  
+
+<!-- :: -->
+<ul class="coordonees" style="width: 93%;margin-left: auto;margin-right: auto; font-size: 30px; ">
+	<li>Doit :</li>
+	<li>Object :</li>
+	<li>Superficie : m²</li>
+  </ul>
+  <!-- :::::::::::::: -->
+
+
+<!-- ::::::::TABLEAU::::::::::::: -->
+<!-- <h1>Hoverable Table</h1>
+<hr> -->
+
+<table class="tableau">
+	<tr id="header">
+		<th>N°</th>
+		<th>Désignation</th>
+		<th>Quantité</th>
+		<th>Prix Unitaire</th>
+		<th>Montant</th>
+	</tr>
+	<tr>
+		<td>John </td>
+		<td>Doe </td>
+		<td>25 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+	<tr>
+		<td>steve </td>
+		<td>Doe </td>
+		<td>28 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+	<tr>
+		<td>simo </td>
+		<td>Doe </td>
+		<td>26 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+	<tr>
+		<td>karim </td>
+		<td>Doe </td>
+		<td>21 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+	<tr>
+		<td>adam </td>
+		<td>Doe </td>
+		<td>20 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+	<tr>
+		<td>keven </td>
+		<td>Doe </td>
+		<td>20 </td>
+		<td>USA </td>
+		<td>Male </td>
+
+	</tr>
+
+</table>
+
+<!-- ::::::::TABLEAU::::::::::::: -->
+
+<!-- :: -->
+<ul class="arretfacture" style="font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+	<li>Arrêté la Facture pro-forma à la somme deux millions cinq-cents mille
+		francs CFA.
+		</li>
+  </ul>
+  <div class="" style="width: 91%; margin-left: auto; margin-right: auto;">
+	<p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
+</div>
+<script>
+	function afficherDateDuJour() {
+	  var dateElement = document.querySelector('.datejour');
+	  var date = new Date();
+	  var options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+	  var dateString = date.toLocaleDateString(undefined, options);
+	  dateElement.textContent ='Bamako le ' + dateString;
+	}
+  
+	// Appeler la fonction pour afficher la date du jour au chargement de la page
+	afficherDateDuJour();
+  </script>
+  <!-- :::::::::::::: -->
+
+</div>
+
+</body>
+</html>
