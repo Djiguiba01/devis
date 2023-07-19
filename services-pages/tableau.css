@@ -72,6 +72,10 @@
 	.content-item h1{
 		padding-top: 2%;
 	}
+
+	.enbas{
+		margin-bottom: 10%;
+	}
   }
   /* :::::::::ENTETE::::::::::::: */
 
@@ -136,6 +140,9 @@ tr:hover {
   @media (max-width: 450px) {
     .telechargerpdf{
 		margin-top: 25%;
+	}
+	.entete-text p {
+		font-size: 10px;
 	}
 	.coordonees li {
 		font-size: 16px;
