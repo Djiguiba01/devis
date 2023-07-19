@@ -137,7 +137,7 @@ tr:hover {
 	/* Styles Entete */
  
   }
-  @media (max-width: 450px) {
+  @media (max-width: 466px) {
     .telechargerpdf{
 		margin-top: 25%;
 	}
@@ -149,7 +149,7 @@ tr:hover {
 	}
 
 	#header {
-		font-size: 10px;
+		font-size: 7px;
 	}
 	tr {
 		font-size: 10px;
