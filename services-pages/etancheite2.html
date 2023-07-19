@@ -150,7 +150,7 @@
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
 <div class="telechargerpdf">
-<div id="containairpdf" style="display: none;">
+<div id="containairpdf" style="display: none; padding-bottom: 5px;">
 		
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
@@ -283,14 +283,21 @@
   
   
   <!-- :: -->
-  <ul class="arretfacture" style=" margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+  <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
     <li>Arrêté la Facture pro-forma à la somme de
       francs CFA.
       </li>
     </ul>
-    <div class="enbas" style="margin-top: 4%; width: 91%; margin-left: auto; margin-right: auto;">
+    <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
+      <div class="accord" style=" font-weight: bold;">Pour accord</div>
     <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
   </div>
+
+  <!-- <div class="enbas" style="display: flex; justify-content: space-between; width: 91%; margin-left: auto; margin-right: auto;">
+    <div class="accord">zzzzzzzzz</div>
+
+    <div class="datejour">Bamako le 22/22/2222</div>
+  </div> -->
    
 </div>
 </div>
@@ -419,12 +426,11 @@ function afficherElements() {
     buttonToilette.style.display = "block";
   }
 }
-
 // Appeler la fonction lorsque la valeur de l'élément selectetancheite change
 document.getElementById("selectetancheite").addEventListener("change", afficherElements);
-
 // Appeler la fonction une fois au chargement de la page pour initialiser l'affichage
 afficherElements();
+
 
 // ::
 function afficherElementsPDF() {
@@ -442,20 +448,8 @@ function afficherElementsPDF() {
     }
   });
 }
-
 // Appeler la fonction pour afficher les éléments lorsque le bouton est cliqué et une option est sélectionnée
 afficherElementsPDF();
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -540,7 +534,6 @@ function afficherMontantTotal(montantTotal) {
   montantTotalElementLi.textContent = "Arrêté la Facture pro-forma à la somme de " + montantTotal.toLocaleString() + " francs CFA.";
 }
 
-
 function calculerMontantToit() {
   var uToitElements = document.querySelectorAll("#utoit");
   var qToitElements = document.querySelectorAll("#qtoit");
@@ -567,14 +560,11 @@ function calculerMontantToit() {
 
   afficherMontantTotal(sommeMontantTotal);
 }
-
-
 // Appeler les fonctions lorsque la valeur de l'élément select surface change
 document.getElementById("selectsurface").addEventListener("change", function() {
   calculerValeurUToit();
   calculerMontantToit();
 });
-
 // Appeler les fonctions une fois au chargement de la page pour initialiser les valeurs UToit, calculer les montants Toit et le montant total
 calculerValeurUToit();
 calculerMontantToit();
@@ -582,7 +572,7 @@ calculerMontantToit();
 
 
 
-// ::::::::::::::::::::::
+
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
