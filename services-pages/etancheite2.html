@@ -168,7 +168,7 @@
       <th>Désignation</th>
       <th>Quantité</th>
       <th>Prix Unitaire</th>
-      <th>Montant</th>
+      <th >Montant</th>
     </tr>
 
     <tr>
@@ -190,18 +190,18 @@
     <tr>
       <td>3 </td>
       <td colspan="3" style="text-align: center;">Nivellement </td>
-      <td>2 000 </td>
+      <td id="mtoit">2 000 </td>
     </tr>
 
     <tr>
       <td>4 </td>
       <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-      <td>15 000 </td>
+      <td id="mtoit">15 000 </td>
     </tr>
    
     <tr style="background-color: #5f7acb;">
       <td colspan="4" style="text-align: center; font-weight: bold; font-size: 20px;">Total </td>
-      <td> 77 000</td>
+      <td id="montantotal"> 77 000</td>
     </tr>
   
   </table>
@@ -209,11 +209,11 @@
   
   <!-- :: -->
   <ul class="arretfacture" style=" margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-    <li>Arrêté la Facture pro-forma à la somme deux millions cinq-cents mille
+    <li>Arrêté la Facture pro-forma à la somme de
       francs CFA.
       </li>
     </ul>
-    <div class="" style="margin-top: 4%; width: 91%; margin-left: auto; margin-right: auto;">
+    <div class="enbas" style="margin-top: 4%; width: 91%; margin-left: auto; margin-right: auto;">
     <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
   </div>
    
@@ -363,6 +363,14 @@ calculerValeurUToit();
 
 
 // ::::::::::::
+function afficherMontantTotal(montantTotal) {
+  var montantTotalElementTD = document.getElementById("montantotal");
+  var montantTotalElementLi = document.querySelector(".arretfacture li");
+
+  montantTotalElementTD.textContent = montantTotal.toLocaleString();
+  montantTotalElementLi.textContent = "Arrêté la Facture pro-forma à la somme " + montantTotal.toLocaleString() + " francs CFA.";
+}
+
 function calculerMontantToit() {
   var uToitElements = document.querySelectorAll("#utoit");
   var qToitElements = document.querySelectorAll("#qtoit");
@@ -375,28 +383,33 @@ function calculerMontantToit() {
 
     mToitElements[i].textContent = mToitValue.toLocaleString();
   }
+
+  calculerSommeMontantTotal();
 }
 
+function calculerSommeMontantTotal() {
+  var mToitElements = document.querySelectorAll("#mtoit");
 
+  var sommeMontantTotal = 0;
 
-
-// Appeler la fonction lorsque la valeur de l'élément select surface change
+  for (var i = 0; i < mToitElements.length; i++) {
+    var mToitValue = parseInt(mToitElements[i].textContent.replace(/\s/g, ""));
+    sommeMontantTotal += mToitValue;
+  }
+  afficherMontantTotal(sommeMontantTotal);
+}
+// Appeler les fonctions lorsque la valeur de l'élément select surface change
 document.getElementById("selectsurface").addEventListener("change", function() {
   calculerValeurUToit();
   calculerMontantToit();
 });
-
-// Appeler la fonction une fois au chargement de la page pour initialiser les valeurs UToit et calculer les montants Toit
+// Appeler les fonctions une fois au chargement de la page pour initialiser les valeurs UToit, calculer les montants Toit et le montant total
 calculerValeurUToit();
 calculerMontantToit();
 
 
 
-
-
-
-
-
+// ::::::::::::::::::::::
 
 
 
