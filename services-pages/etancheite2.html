@@ -200,7 +200,7 @@
     </tr>
    
     <tr style="background-color: #5f7acb;">
-      <td colspan="4" style="text-align: center; font-weight: bold; font-size: 20px;">Total </td>
+      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
       <td id="montantotal"> 77 000</td>
     </tr>
   
@@ -389,7 +389,6 @@ function calculerMontantToit() {
 
 function calculerSommeMontantTotal() {
   var mToitElements = document.querySelectorAll("#mtoit");
-
   var sommeMontantTotal = 0;
 
   for (var i = 0; i < mToitElements.length; i++) {
