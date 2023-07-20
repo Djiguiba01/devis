@@ -8,14 +8,15 @@
 }
 
 .toutcontainer{
-    min-height: 100vh;
+    min-height: auto;
     display: flex;
     align-items: center;
     justify-content: center;
-    background-image: url("image-services/fond1.jfif");
-    background-repeat: initial;
+    /* background-image: url("image-services/fond1.jfif");
+    background-repeat: initial; */
+    background-color: #fff;
     width: auto;
-    margin-bottom: 5%;
+    /* margin-bottom: 5%; */
     /* margin-top: -5%; */
   
 }
