@@ -38,6 +38,15 @@
     font-size: 18px;
 }
 
+/* Réinitialiser la valeur par défaut de font-weight */
+.coordtext {
+    font-weight: normal;
+}
+
+/* Appliquer le style bold uniquement au texte dans les éléments .coordtext */
+.coordonees li > .coordtext {
+    font-weight: bold;
+}
 
   /* Responsive styles for entete-text */
   @media screen and (max-width: 600px) {

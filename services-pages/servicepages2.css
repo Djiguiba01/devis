@@ -205,9 +205,11 @@ form .buttons button , .backBtn{
     form .fields .input-field{
         width: 100%;
     }
-    /* .toutcontainer{
-        margin-top: 2%;
-    } */
+    .toutcontainer{
+        background-image: none;
+        background-color: #fff;
+        /* margin-top: 2%; */
+    }
     .container{
         height: 2%;
     }
