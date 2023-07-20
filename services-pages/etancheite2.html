@@ -37,16 +37,18 @@
               >
         </div>
 
-        <form action="#">
+        <form action="#" class="form">
             <div class="form first" >
               <!-- Input Rang 1 ::::::::: -->
                 <div class="details personal" >
                     <span class="title"> </span>
 
                     <div class="fields">
+                      
                         <div class="input-field">
                             <input type="text" placeholder="Votre nom" id="nom" >
                         </div>
+                        
 
                         <div class="input-field">
                           <input type="text" placeholder="Votre prenom" id="prenom" >
@@ -60,6 +62,7 @@
                             <input type="number" placeholder="Votre téléphone" id="numero">
                         </div>
 
+
                         <div class="input-field">
                           <select required id="selectetancheite">
                               <option disabled selected>Produit</option>
@@ -68,6 +71,9 @@
                               <option>Etancheité toillette</option>
                           </select>
                       </div>
+
+                      
+                       
 
 
                        <!-- ::::::::::CHAMPS TOIT:::::::::: -->
@@ -83,6 +89,10 @@
                             <option>60 m²</option>
                         </select>
                     </div>
+
+                    <div class="input-field" >
+                      <input type="number" placeholder="surface" id="champsurface">
+                  </div>
                   </div>
 
                        <!-- :::::::CHAMPS MUR:::::::::::: -->
@@ -102,6 +112,8 @@
                         <!-- <div class="input-field">
                             <input type="text" placeholder="Enter your ccupation" required>
                         </div> -->
+
+                        
                     </div>
                 </div>
 
@@ -114,23 +126,6 @@
                             <input type="text" placeholder="Enter ID type" required>
                         </div> -->
 
-                        <!-- <div class="input-field">
-                            <input type="number" placeholder="Enter ID number" required>
-                        </div> -->
-
-                        <!-- <div class="input-field">
-                            <input type="text" placeholder="Enter issued authority" required>
-                        </div> -->
-
-                        <!-- <div class="input-field">
-                            <input type="text" placeholder="Enter issued state" required>
-                        </div> -->
-                        <!-- <div class="input-field">
-                          <input type="text" placeholder="Enter issued state" required>
-                      </div> -->
-                      <!-- <div class="input-field">
-                        <input type="text" placeholder="Enter issued state" required>
-                    </div>  -->
 
                     </div>
 
@@ -159,8 +154,8 @@
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
-<div class="telechargerpdf">
-<div id="containairpdf" style="display: none; padding-bottom: 5px;">
+<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div id="containairpdf" style="display: none; padding-bottom: 10px;">
 		
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
@@ -195,11 +190,6 @@
     </ul>
     <!-- :::::::::::::: -->
   
-  
-  <!-- ::::::::TABLEAU::::::::::::: -->
-  <!-- <h1>Hoverable Table</h1>
-  <hr> -->
-  
 
   <!-- :::::::TABEAU TOIT ::::::::::::-->
   <div  id="tabeautoit" style="display: none;">
@@ -214,16 +204,16 @@
     <tr>
       <td>1</td>
       <td>Tapis </td>
-      <td id="utoit">1 U </td>
-      <td id="qtoit">40 000 </td>
-      <td id="mtoit">40 000 </td>
+      <td  id="utoit1">1 U </td>
+      <td id="qtoit1">40 000 </td>
+      <td id="mtoit1">40 000 </td>
     </tr>
     <tr>
       <td>2 </td>
       <td>Colle flut </td>
-      <td id="utoit">1 Boite </td>
-      <td id="qtoit">20 000 </td>
-      <td id="mtoit">20 000 </td>
+      <td id="utoit2">1 Boite </td>
+      <td id="qtoit2">20 000 </td>
+      <td id="mtoit2">20 000 </td>
     </tr>
     <tr>
       <td>3 </td>
@@ -482,102 +472,146 @@ afficherValeurSelectEtancheite();
 
 
 
+
+
+
+// :::::::::::::::::::::CALCUL QUANTITE ET PU::::::::::::::::::::::::::::::::::::::
+function calculerEtAfficherResultats() {
+  var champsurface = parseFloat(document.getElementById("champsurface").value);
+
+  if (!isNaN(champsurface)) {
+    // Calculs pour la première ligne du tableau toit
+    var surfaceDiviseePar10 = champsurface / 10;
+    var surfaceMultiplieePar4000 = champsurface * 4000;
+
+    // Calculs pour la deuxième ligne du tableau toit
+    var surfaceDiviseePar10Boite = champsurface / 10;
+    var surfaceMultiplieePar2000 = champsurface * 2000;
+
+    // Affichage des résultats dans les éléments td appropriés
+    document.getElementById("utoit1").textContent = surfaceDiviseePar10 + " U";
+    document.getElementById("qtoit1").textContent = surfaceMultiplieePar4000.toLocaleString();
+    document.getElementById("utoit2").textContent = surfaceDiviseePar10Boite + " Boite";
+    document.getElementById("qtoit2").textContent = surfaceMultiplieePar2000.toLocaleString();
+  }
+
+}
+// Appeler la fonction lorsque la valeur de l'élément "champsurface" change
+document.getElementById("champsurface").addEventListener("input", calculerEtAfficherResultats);
+calculerEtAfficherResultats();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // // :::::::::::::
-function calculerValeurUToit() {
-  var selectSurface = document.getElementById("selectsurface");
-  var surfaceValue = selectSurface.value;
+// function calculerValeurUToit() {
+//   var selectSurface = document.getElementById("selectsurface");
+//   var surfaceValue = selectSurface.value;
 
-  var uToitElements = document.querySelectorAll("#utoit");
-  var mvivellemElement = document.getElementById("mvivellem");
-  var moeuvresElement = document.getElementById("moeuvres");
+//   var uToitElements = document.querySelectorAll("#utoit");
+//   var mvivellemElement = document.getElementById("mvivellem");
+//   var moeuvresElement = document.getElementById("moeuvres");
 
-  // Réinitialiser les valeurs par défaut
-  uToitElements.forEach(function (element) {
-    element.textContent = "1 U";
-  });
-  mvivellemElement.textContent = "2 000";
-  moeuvresElement.textContent = "15 000";
+//   // Réinitialiser les valeurs par défaut
+//   uToitElements.forEach(function (element) {
+//     element.textContent = "1 U";
+//   });
+//   mvivellemElement.textContent = "2 000";
+//   moeuvresElement.textContent = "15 000";
 
-  var multiplicateur = 1;
+//   var multiplicateur = 1;
 
-  if (surfaceValue === "10 m²") {
-    multiplicateur = 1;
-  } else if (surfaceValue === "20 m²") {
-    multiplicateur = 2;
-  } else if (surfaceValue === "30 m²") {
-    multiplicateur = 3;
-  } else if (surfaceValue === "40 m²") {
-    multiplicateur = 4;
-  } else if (surfaceValue === "50 m²") {
-    multiplicateur = 5;
-  } else if (surfaceValue === "60 m²") {
-    multiplicateur = 6;
-  }
+//   if (surfaceValue === "10 m²") {
+//     multiplicateur = 1;
+//   } else if (surfaceValue === "20 m²") {
+//     multiplicateur = 2;
+//   } else if (surfaceValue === "30 m²") {
+//     multiplicateur = 3;
+//   } else if (surfaceValue === "40 m²") {
+//     multiplicateur = 4;
+//   } else if (surfaceValue === "50 m²") {
+//     multiplicateur = 5;
+//   } else if (surfaceValue === "60 m²") {
+//     multiplicateur = 6;
+//   }
 
-  // Effectuer la multiplication
-  uToitElements.forEach(function (element) {
-    var valeurUToit = parseInt(element.textContent) * multiplicateur;
-    element.textContent = valeurUToit + " U";
-  });
+//   // Effectuer la multiplication
+//   uToitElements.forEach(function (element) {
+//     var valeurUToit = parseInt(element.textContent) * multiplicateur;
+//     element.textContent = valeurUToit + " U";
+//   });
 
-  var mvivellemValue = 2000 * multiplicateur;
-  mvivellemElement.textContent = mvivellemValue.toLocaleString();
+//   var mvivellemValue = 2000 * multiplicateur;
+//   mvivellemElement.textContent = mvivellemValue.toLocaleString();
 
-  var moeuvresValue = 15000 * multiplicateur;
-  moeuvresElement.textContent = moeuvresValue.toLocaleString();
-}
+//   var moeuvresValue = 15000 * multiplicateur;
+//   moeuvresElement.textContent = moeuvresValue.toLocaleString();
+// }
 
-// Appeler la fonction lorsque la valeur de l'élément selectsurface change
-document.getElementById("selectsurface").addEventListener("change", calculerValeurUToit);
+// // Appeler la fonction lorsque la valeur de l'élément selectsurface change
+// document.getElementById("selectsurface").addEventListener("change", calculerValeurUToit);
 
-// Appeler la fonction une fois au chargement de la page pour initialiser la valeur UToit
-calculerValeurUToit();
+// // Appeler la fonction une fois au chargement de la page pour initialiser la valeur UToit
+// calculerValeurUToit();
 
 
 
-// ::::::::::::
-function afficherMontantTotal(montantTotal) {
-  var montantTotalElement = document.getElementById("montanttoit");
-  montantTotalElement.textContent = montantTotal.toLocaleString();
+// // ::::::::::::
+// function afficherMontantTotal(montantTotal) {
+//   var montantTotalElement = document.getElementById("montanttoit");
+//   montantTotalElement.textContent = montantTotal.toLocaleString();
   
-  var montantTotalElementLi = document.querySelector(".arretfacture li");
-  montantTotalElementLi.textContent = "Arrêté la Facture pro-forma à la somme de " + montantTotal.toLocaleString() + " francs CFA.";
-}
+//   var montantTotalElementLi = document.querySelector(".arretfacture li");
+//   montantTotalElementLi.textContent = "Arrêté la Facture pro-forma à la somme de " + montantTotal.toLocaleString() + " francs CFA.";
+// }
 
-function calculerMontantToit() {
-  var uToitElements = document.querySelectorAll("#utoit");
-  var qToitElements = document.querySelectorAll("#qtoit");
-  var mToitElements = document.querySelectorAll("#mtoit");
+// function calculerMontantToit() {
+//   var uToitElements = document.querySelectorAll("#utoit");
+//   var qToitElements = document.querySelectorAll("#qtoit");
+//   var mToitElements = document.querySelectorAll("#mtoit");
 
-  for (var i = 0; i < uToitElements.length; i++) {
-    var uToitValue = parseInt(uToitElements[i].textContent.replace(/\s/g, ""));
-    var qToitValue = parseInt(qToitElements[i].textContent.replace(/\s/g, ""));
-    var mToitValue = uToitValue * qToitValue;
+//   for (var i = 0; i < uToitElements.length; i++) {
+//     var uToitValue = parseInt(uToitElements[i].textContent.replace(/\s/g, ""));
+//     var qToitValue = parseInt(qToitElements[i].textContent.replace(/\s/g, ""));
+//     var mToitValue = uToitValue * qToitValue;
 
-    mToitElements[i].textContent = mToitValue.toLocaleString();
-  }
+//     mToitElements[i].textContent = mToitValue.toLocaleString();
+//   }
 
-  var mvivellemValue = parseInt(document.getElementById("mvivellem").textContent.replace(/\s/g, ""));
-  var moeuvresValue = parseInt(document.getElementById("moeuvres").textContent.replace(/\s/g, ""));
+//   var mvivellemValue = parseInt(document.getElementById("mvivellem").textContent.replace(/\s/g, ""));
+//   var moeuvresValue = parseInt(document.getElementById("moeuvres").textContent.replace(/\s/g, ""));
 
-  var mToitElementsArray = Array.from(mToitElements);
-  var sommeMontantTotal = mToitElementsArray.reduce(function (total, element) {
-    var mToitValue = parseInt(element.textContent.replace(/\s/g, ""));
-    return total + mToitValue;
-  }, 0);
+//   var mToitElementsArray = Array.from(mToitElements);
+//   var sommeMontantTotal = mToitElementsArray.reduce(function (total, element) {
+//     var mToitValue = parseInt(element.textContent.replace(/\s/g, ""));
+//     return total + mToitValue;
+//   }, 0);
 
-  sommeMontantTotal += mvivellemValue + moeuvresValue;
+//   sommeMontantTotal += mvivellemValue + moeuvresValue;
 
-  afficherMontantTotal(sommeMontantTotal);
-}
-// Appeler les fonctions lorsque la valeur de l'élément select surface change
-document.getElementById("selectsurface").addEventListener("change", function() {
-  calculerValeurUToit();
-  calculerMontantToit();
-});
-// Appeler les fonctions une fois au chargement de la page pour initialiser les valeurs UToit, calculer les montants Toit et le montant total
-calculerValeurUToit();
-calculerMontantToit();
+//   afficherMontantTotal(sommeMontantTotal);
+// }
+// // Appeler les fonctions lorsque la valeur de l'élément select surface change
+// document.getElementById("selectsurface").addEventListener("change", function() {
+//   calculerValeurUToit();
+//   calculerMontantToit();
+// });
+// // Appeler les fonctions une fois au chargement de la page pour initialiser les valeurs UToit, calculer les montants Toit et le montant total
+// calculerValeurUToit();
+// calculerMontantToit();
 
 
 

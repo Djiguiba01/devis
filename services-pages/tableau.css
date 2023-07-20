@@ -5,7 +5,6 @@
 	display: flex;
 	align-items: center;
 	justify-content: space-between;
-	/* background-color: aquamarine; */
 	margin-left: auto;
 	margin-right: auto;
   }
@@ -73,6 +72,9 @@
 
   
   @media screen and (min-width: 901px) {
+	.telechargerpdf{
+		margin-top: 4%;
+	}
 	.entete-text {
 	  font-size: 18px;
 	}
@@ -82,6 +84,10 @@
 	/* ::::::: */
 	.content-item h1{
 		padding-top: 2%;
+	}
+
+	.telechargerpdf{
+		margin-top: 4%;
 	}
 
 	.enbas{
@@ -94,7 +100,6 @@
   
   /* ::::::::::TABLEAU::::::::::::: */
   table {
-
 	 margin-top: 1.5%;
 	 margin-left: auto;
 	 margin-right: auto;
@@ -124,7 +129,6 @@ td {
 }
 
 
-
 tr:hover {
 	background-color: #f5f5f5;
 	transform: scale(1.02);
@@ -134,6 +138,10 @@ tr:hover {
 @media only screen and (max-width: 768px) {
 	table {
 		width: 90%;
+	}
+
+	.telechargerpdf{
+		margin-top: 4%;
 	}
 }
   
@@ -150,7 +158,7 @@ tr:hover {
   }
   @media (max-width: 466px) {
     .telechargerpdf{
-		margin-top: 25%;
+		margin-top: 2%;
 	}
 	.entete-text p {
 		font-size: 10px;
