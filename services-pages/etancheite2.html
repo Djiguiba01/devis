@@ -456,6 +456,7 @@ afficherElementsPDF();
 
 
 // ::::::::::::::::::::::::
+
 function afficherValeurSelectEtancheite() {
   var selectEtancheite = document.getElementById("selectetancheite");
   var etancheiteElement = document.getElementById("etancheite");
@@ -476,7 +477,15 @@ afficherValeurSelectEtancheite();
 
 
 // :::::::::::::::::::::CALCUL QUANTITE ET PU::::::::::::::::::::::::::::::::::::::
+
+
 function calculerEtAfficherResultats() {
+
+    // Fonction formatage des résultats (enleve (.00) si resultat=entier)
+  function formatResultat(resultat) {
+  return Number.isInteger(resultat) ? resultat.toString() : resultat.toFixed(2);
+}
+
   var champsurface = parseFloat(document.getElementById("champsurface").value);
 
   if (!isNaN(champsurface)) {
@@ -488,17 +497,23 @@ function calculerEtAfficherResultats() {
     var surfaceDiviseePar10Boite = champsurface / 10;
     var surfaceMultiplieePar2000 = champsurface * 2000;
 
+    // Formatage des résultats (enleve (.00) si resultat=entier)
+    surfaceDiviseePar10 = formatResultat(surfaceDiviseePar10);
+    surfaceMultiplieePar4000 = formatResultat(surfaceMultiplieePar4000);
+    surfaceDiviseePar10Boite = formatResultat(surfaceDiviseePar10Boite);
+    surfaceMultiplieePar2000 = formatResultat(surfaceMultiplieePar2000);
+
     // Affichage des résultats dans les éléments td appropriés
     document.getElementById("utoit1").textContent = surfaceDiviseePar10 + " U";
     document.getElementById("qtoit1").textContent = surfaceMultiplieePar4000.toLocaleString();
     document.getElementById("utoit2").textContent = surfaceDiviseePar10Boite + " Boite";
     document.getElementById("qtoit2").textContent = surfaceMultiplieePar2000.toLocaleString();
   }
-
 }
 // Appeler la fonction lorsque la valeur de l'élément "champsurface" change
 document.getElementById("champsurface").addEventListener("input", calculerEtAfficherResultats);
 calculerEtAfficherResultats();
+
 
 
 
