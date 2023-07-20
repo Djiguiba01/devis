@@ -34,9 +34,11 @@
   .coordonees{
 	width: 93%;margin-left: auto;margin-right: auto; font-size: 30px; padding-left: 4%; margin-top: 2%;
   }
-  .coordonees li{
-	font-size: 30px;
-  }
+  .coordonees li {
+    font-size: 18px;
+}
+
+
   /* Responsive styles for entete-text */
   @media screen and (max-width: 600px) {
 	.entete {
