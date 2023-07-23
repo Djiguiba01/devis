@@ -560,8 +560,11 @@ function calculateMainOeuvre() {
   var moeuvres = parseFloat(document.getElementById("moeuvres").textContent.replace(/\s/g, '').replace(',', '.'));
 
   var montantTotalToit = mtoit1 + mtoit2 + mvivellem + moeuvres;
-
   document.getElementById("montanttoit").textContent = montantTotalToit.toLocaleString();
+
+   // Afficher le montant total du toit dans la balise <li> ayant la classe "arretfacture"
+    var liElement = document.querySelector(".arretfacture li");
+  liElement.textContent = "Arrêté la Facture pro-forma à la somme de " + montantTotalToit.toLocaleString() + " francs CFA.";
 }
 
 // Appeler la fonction au chargement de la page pour initialiser le montant total du toit
