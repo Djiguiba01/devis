@@ -7,8 +7,11 @@
   <title>Etancheité</title>
 
   <!-- ::CSS::::::: -->
-  <link rel="stylesheet" href="servicepages.css">
-  <link rel="stylesheet" href="fossetancheite.css">
+  <link rel="stylesheet" href="servicepages2.css">
+  <link rel="stylesheet" href="tableau.css">
+
+  <!----===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
 
   <!-- ::::::cdn icon:::::::: -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -19,358 +22,563 @@
 
 </head>
 <body>
+
+
+  <!-- ::::::::::::::::::::::::::::: -->
+  <div class="toutcontainer" >
+    <div class="container">
+        <div class="enteteform" style="display: flex; justify-content: space-between; ">
+          <div class="dd">
+            <header>Dévis Etancheité</header>
+          </div>
+
+              <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
+              style="width: 10%; margin-top: -2%;"
+              >
+        </div>
+
+        <form action="#" class="form">
+            <div class="form first" >
+              <!-- Input Rang 1 ::::::::: -->
+                <div class="details personal" >
+                    <span class="title"> </span>
+
+                    <div class="fields">
+                      
+                        <div class="input-field">
+                            <input type="text" placeholder="Votre nom" id="nom" >
+                        </div>
+                        
+
+                        <div class="input-field">
+                          <input type="text" placeholder="Votre prenom" id="prenom" >
+                       </div>
+
+                       <div class="input-field">
+                        <input type="text" placeholder="Votre quartier" id="ville" >
+                       </div>
+
+                        <div class="input-field">
+                            <input type="number" placeholder="Votre téléphone" id="numero">
+                        </div>
+
+
+                        <div class="input-field">
+                          <select required id="selectetancheite">
+                              <option disabled selected>Produit</option>
+                              <option>Etancheité toît</option>
+                              <option disabled>Etancheité sur mur(encours...)</option>
+                              <option disabled>Etancheité toilette(encours...)</option>
+                          </select>
+                      </div>
+
+
+                       <!-- ::::::::::CHAMPS TOIT:::::::::: -->
+                       <div id="champtoit" style="display: none; width: 100%;">
+                       <!-- <div class="input-field">
+                        <select required  id="selectsurface">
+                            <option disabled selected>Surface</option>
+                            <option>10 m²</option>
+                            <option>20 m²</option>
+                            <option>30 m²</option>
+                            <option>40 m²</option>
+                            <option>50 m²</option>
+                            <option>60 m²</option>
+                        </select>
+                    </div> -->
+
+                    <div class="input-field" >
+                      <input type="number" placeholder="surface" id="champsurface">
+                  </div>
+                  </div>
+
+                       <!-- :::::::CHAMPS MUR:::::::::::: -->
+                       <div id="champmur" style="display: none; width: 100%;">
+                       <div class="input-field">
+                        <input type="number" placeholder="Votre mur" id="numero">
+                    </div>
+                  </div>
+
+                    <!-- ::::::CHAMPS TOILETTE:::::::::: -->
+                    <div id="champtoilette" style="display: none; width: 100%;">
+                    <div class="input-field" >
+                      <input type="number" placeholder="Votre toilet" id="numero">
+                  </div>
+                </div>
+
+                        <!-- <div class="input-field">
+                            <input type="text" placeholder="Enter your ccupation" required>
+                        </div> -->
+
+                        
+                    </div>
+                </div>
+
+                <!-- Input Rang 2 ::::::::: -->
+                <div class="details ID">
+
+                    <div class="fields">
+                      
+                        <!-- <div class="input-field">
+                            <input type="text" placeholder="Enter ID type" required>
+                        </div> -->
+
+
+                    </div>
+
+                    <!-- ::::::::BUTTON TOIT::::::: -->
+                    <button id="buttontoit" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+                    <!-- ::::::::BUTTON MUR::::::: -->
+                    <button id="buttonmur" class="nextBtn" style="display: none;">
+                      <span class="btnText">Ajouter</span>
+                      <i class="uil uil-navigator"></i>
+                  </button>
+                  <!-- ::::::::BUTTON TOILETTE::::::: -->
+                  <button id="buttontoilette" class="nextBtn" style="display: none;">
+                    <span class="btnText">Ajouter</span>
+                    <i class="uil uil-navigator"></i>
+                </button>
+                </div> 
+            </div>
+        </form>
+       
+    </div>
+</div>
+<!--FORM::::::::::::::::::::::  -->
+
+
+<!-- :::::::::::TABLEAU:::::::::::::::::: -->
+<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div id="containairpdf" style="display: none; padding-bottom: 10px;">
+		
+  <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+    <div class="entete-text">
+    <h1>IKA PLOMBIER SARL</h1>
+    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+    <p>Email: ctraore@ikaplombier.com</p>
+    <p>Tel: 74 24 00 74</p>
+    </div>
+    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+  </div>
+  <!-- :::::::::ENTETE::::::::::::: -->
+  
+  <!-- ::::::::::::::: -->
+  <hr class="hr1" >
+  <hr class="hr2" >
+  
+  <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
+    <h1>Facture Pro-format N°04.03.07.23</h1>
+    </div>
+    
+  
+  <!-- :: -->
+  <ul class="coordonees" >
+    <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
+    <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
+    <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
+    <li id="etancheite"><div class="coordtext">Object : </div> </li>
+    <li id="surface"><div class="coordtext">Superficie: </div> </li>
+    </ul>
+    <!-- :::::::::::::: -->
+
+    
   
 
-  <!-- ::::::::FORMULAIRE::::::::::: -->
-  <div class="wrapper">
-
-    <div class="inner">
-
-      <div class="image-holder">
-        <img src="image-services/logo1.png" alt="img">
-      </div>
-
-      <form action="" >
-
-        <h3>Devis Etancheité</h3>
-
-        <div class="form-group">
-          <input type="text" placeholder="Votre nom" class="form-control" id="nom">
-          <input type="text" placeholder="Votre prenom" class="form-control" id="prenom">
-        </div>
-
-
-        <div class="form-wrapper">
-          <input type="number" min="1" maxlength="8" placeholder="Numéro" class="form-control" id="numero">
-        </div>
-
-        <div class="form-wrapper">
-          <input type="text" min="1" placeholder="Ville/Quartier" class="form-control" id="ville" >
-        </div>
-
-        <!-- <div class="form-group">
-          <input type="number" placeholder="Longueur du toît" class="form-control" id="longueur">
-          <input type="number" placeholder="Largeur du toît" class="form-control" id="largeur">
-        </div> -->
-
-        <div class="form-group">
-          <input type="number" min="1" placeholder="Surface du toît" class="form-control" id="surface">
-
-            <select name="" id="selectProduit">
-              <option value="" disabled selected>Type Produit</option>
-              <option value="Goudron Toillettes">Goudron Toillettes</option>
-              <option value="Etancheité sur mur">Etancheité sur mur</option>
-              <option value="Passalite Toît">Passalite Toît</option>
-            </select>
-        </div>
-
-        <!-- Button Ajouter:::::::::::::: -->
-      <a href="#Devis" id="septcent" class="btn" style="text-decoration: none;" onclick="verifierChamps()"; onclick="calculerMontant()">
-        AJOUTER 
-        <span class="fas fa-chevron-right"></span>
-      </a>
-     
-        
-      </form>
-
-    </div>
-  </div>
-
-  <!-- :::::::::::::AFFICHAGE DU FORMULAIRE::::::::::::: -->
-  <div class="telechargerpdf">
-  <section id="sectioncorps" style="display: none; margin-bottom: 4%;">
-
-    <div class="header">
-        <h3>Etancheité</h3>
-        <img src="image-services/logo.png" alt="sss">
-    </div>
-
-    <hr style="border: 1px solid #3f0dca; margin-top: 3%; margin-bottom: 3%;">
-
-    <div class="header2">
-
-        <div class="container1">
-            <h4>Ika Plombier</h4>
-            <p>Mali</p>
-            <p>Halles de Bamako </p>
-        </div>
-
-        <div class="container2">
-            <h4>Envoyé à</h4>
-            <p class="affichenom">?</p>
-            <p class="afficheprenom"></p>
-        </div>
-
-        <div class="container3">
-            <h4 >Ville/Quartier</h4>
-            <p class="afficheville">?</p>
-        </div>
-
-        <div class="container3">
-          <h4>Numéro</h4>
-          <p class="affichenum">?</p>
-      </div>
-
-    </div>
-
-    <!-- :::Tableau::::::::::::: -->
-    <table class="table">
-        <thead>
-            <tr>
-             <!-- <th>Longueur</th>
-             <th>Largeur</th> -->
-             <th>Surface</th>
-             <th>Type Produit</th>
-             <th>Montant</th>
-            </tr>
-        </thead>
-        <tbody>
-              <tr>
-                   <!-- <td data-label="Longueur">?</td>
-                   <td data-label="Largeur">?</td> -->
-                   <td data-label="Surface">?</td>
-                   <td data-label="Type Produit">?</td>
-                   <td data-label="Montant">?</td>
-              </tr>
-    
-        </tbody>
-      </table>
-
-      <!-- :::::::Montant::::::::: -->
-      <!-- <div class="montant">
-
-        <div class="containermontant1">
-            <p id="design">Total HT</p>
-            <p id="design">TVA 20%</p>
-            <p id="design">Total</p>
-        </div>
-
-        <div class="containermontant">
-            <p>112222222 fcfa</p>
-            <p>112222222 fcfa</p>
-            <p>222222 fcfa</p>
-        </div>
-
-      </div> -->
-
-      <hr style="border: 1px solid #3f0dca; margin-top: 10%; margin-bottom: 2%;">
-
-      <div class="condition">
-        <h5>Conditions et paiement</h5>
-        <div class="modalite">
-            <div class="tranche">Le payement est dû en 2 tranches</div>
-            <div class="num">
-                <p>Numéro : (+223) 74 24 00 74</p>
-                
-            </div>
-        </div>
-      </div>
-
-</section>
+  <!-- :::::::TABEAU TOIT ::::::::::::-->
+  <div  id="tabeautoit" style="display: none;">
+  <table class="tableau" >
+    <tr id="header">
+      <th>N°</th>
+      <th>Désignation</th>
+      <th>Quantité</th>
+      <th>Prix Unitaire</th>
+      <th id="colonnetoit">Montant</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Tapis </td>
+      <td  id="utoit1">1 U </td>
+      <td id="qtoit1">40 000 </td>
+      <td id="mtoit1">40 000 </td>
+    </tr>
+    <tr>
+      <td>2 </td>
+      <td>Colle flut </td>
+      <td id="utoit2">1 Boite </td>
+      <td id="qtoit2">20 000 </td>
+      <td id="mtoit2">20 000 </td>
+    </tr>
+    <tr>
+      <td>3 </td>
+      <td colspan="3" style="text-align: center;">Nivellement </td>
+      <td id="mvivellem">2 000 </td>
+    </tr>
+    <tr>
+      <td>4 </td>
+      <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+      <td id="moeuvres">15 000 </td>
+    </tr>
+    <tr style="background-color: #5f7acb;">
+      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+      <td id="montanttoit"> 77 000</td>
+    </tr>
+  </table>
 </div>
 
-<!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
-<button type="button" id="telecharger" style="display: none;" >Télécharger PDF</button>
+    <!-- :::::::TABEAU MUR ::::::::::::-->
+    <div id="tabeaumur" style="display: none;">
+    <table  class="tableau" >
+      <tr id="header">
+        <th>N°</th>
+        <th>Désignation</th>
+        <th>Quantité</th>
+        <th>Prix Unitaire</th>
+        <th >Montant</th>
+      </tr>
+      <tr>
+        <td>MUR</td>
+        <td>Tapis </td>
+        <td id="umur">1 U </td>
+        <td id="qmur">40 000 </td>
+        <td id="mmur">40 000 </td>
+      </tr>   
+      <tr style="background-color: #5f7acb;">
+        <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+        <td id="montantmur"> 77 000</td>
+      </tr>
+    </table>
+  </div>
 
+      <!-- :::::::TABEAU TOILETTE ::::::::::::-->
+      <div id="tabeautoilette" style="display: none;">
+  <table  class="tableau" >
+    <tr id="header">
+      <th>N°</th>
+      <th>Désignation</th>
+      <th>Quantité</th>
+      <th>Prix Unitaire</th>
+      <th >Montant</th>
+    </tr>
+    <tr>
+      <td>TOILETTE</td>
+      <td>Tapis </td>
+      <td id="utoilette">1 U </td>
+      <td id="qtoilette">40 000 </td>
+      <td id="mtoilette">40 000 </td>
+    </tr>
+   
+    <tr style="background-color: #5f7acb;">
+      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+      <td id="montantoilette"> 77 000</td>
+    </tr>
+  </table>
+</div>
+  
+  
+  <!-- :: -->
+  <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <li>Arrêté la Facture pro-forma à la somme de
+      francs CFA.
+      </li>
+    </ul>
+    <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
+      <div class="accord" style=" font-weight: bold;">Pour accord</div>
+    <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
+  </div>
+   
+</div>
+</div>
+
+
+  <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
+  <button  style="display: none;" id="telecharger" >
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+</button>
 
 
 
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>
+  // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
+function afficherDateDuJour() {
+      var dateElement = document.querySelector('.datejour');
+      var date = new Date();
+      var options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+      var dateString = date.toLocaleDateString(undefined, options);
+      dateElement.textContent ='Bamako le ' + dateString;
+    } 
+    // Appeler la fonction pour afficher la date du jour au chargement de la page
+    afficherDateDuJour();
 
-  // ::::::FONCTION QUI AFFICHE TOUT LE CONTENU S'IL Y'A UN EVENNEMENT DANS 1 DES INPUTS::::::::
-  function afficherContenu() {
-  var sectioncorps = document.getElementById('sectioncorps');
-  var telecharger = document.getElementById('telecharger');
 
-  // Événement pour les éléments d'entrée
-  var inputs = document.querySelectorAll('input');
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('input', function() {
-      sectioncorps.style.display = 'block';
-      telecharger.style.display = 'block';
-    });
+
+// :::::RECUPERATION NOM-PRENOM::::::::::
+function recupererNomPrenom() {
+  var nom = document.getElementById("nom").value;
+  var prenom = document.getElementById("prenom").value;
+  var nomprenomElement = document.getElementById("nomprenom");
+  nomprenomElement.innerHTML = "Doit : " + nom + " " + prenom;
+}
+// Appeler la fonction lorsque les champs de saisie changent
+document.getElementById("nom").addEventListener("input", recupererNomPrenom);
+document.getElementById("prenom").addEventListener("input", recupererNomPrenom);
+// Appeler la fonction une fois au chargement de la page pour afficher les valeurs initiales
+recupererNomPrenom();
+
+// :::::::::::RECUPERATION CHAMPS VILLE SAISI::::::::::
+function recupererVille() {
+  var ville = document.getElementById("ville").value;
+  var villequartElement = document.getElementById("villequart");
+  villequartElement.innerHTML = "Ville/Quartier : " + ville;
+}
+document.getElementById("ville").addEventListener("input", recupererVille);
+recupererVille();
+
+
+// :::::::::::RECUPERATION CHAMPS NUMERO SAISI::::::::::
+function recupererNumero() {
+  var numero = document.getElementById("numero").value;
+  var telephoneElement = document.getElementById("telephone");
+  telephoneElement.innerHTML = "Téléphone : " + numero;
+}
+// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+document.getElementById("numero").addEventListener("input", recupererNumero);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
+recupererNumero();
+
+
+// :::::::::::RECUPERATION CHAMPS SURFACE SAISI::::::::::
+function recupererChampsurface() {
+      var champsurface = document.getElementById("champsurface").value;
+      var surfaceElement = document.getElementById("surface");
+      surfaceElement.innerHTML = "Superficie: " + champsurface +' m²';
+    }
+    document.getElementById("champsurface").addEventListener("input", recupererChampsurface);
+    // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de surface
+    recupererChampsurface();
+
+
+
+// ::::::::AFFICHAGE BUTTON ET CHAMPS EN FONCTION SELECT PRODUIT::::::
+function afficherElements() {
+  var selectEtancheite = document.getElementById("selectetancheite");
+  var etancheiteValue = selectEtancheite.value;
+
+  var champtoitElement = document.getElementById("champtoit");
+  var champmurElement = document.getElementById("champmur");
+  var champtoiletteElement = document.getElementById("champtoilette");
+
+  champtoitElement.style.display = "none";
+  champmurElement.style.display = "none";
+  champtoiletteElement.style.display = "none";
+
+  var buttonToit = document.getElementById("buttontoit");
+  var buttonMur = document.getElementById("buttonmur");
+  var buttonToilette = document.getElementById("buttontoilette");
+
+  buttonToit.style.display = "none";
+  buttonMur.style.display = "none";
+  buttonToilette.style.display = "none";
+
+  if (etancheiteValue === "Etancheité toît") {
+    champtoitElement.style.display = "block";
+    buttonToit.style.display = "block";
+  } else if (etancheiteValue === "Etancheité sur mur") {
+    champmurElement.style.display = "block";
+    buttonMur.style.display = "block";
+  } else if (etancheiteValue === "Etancheité toillette") {
+    champtoiletteElement.style.display = "block";
+    buttonToilette.style.display = "block";
   }
 }
-afficherContenu();
+// Appeler la fonction lorsque la valeur de l'élément selectetancheite change
+document.getElementById("selectetancheite").addEventListener("change", afficherElements);
+// Appeler la fonction une fois au chargement de la page pour initialiser l'affichage
+afficherElements();
 
 
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT NOM SAISI:::::::::::::
-function afficherNom() {
-  var nomInput = document.getElementById('nom');
-  var afficheNom = document.querySelector('.affichenom');
+// ::::::LES ELEMENT QUI DOIVENT AFFICHER SI CHAMPS SURFACE EST REMPLIE::::::::::::::::
+function afficherElementsPDF() {
+  var selectSurface = document.getElementById("champsurface");
+  var buttonToit = document.getElementById("buttontoit");
+  var containairPDF = document.getElementById("containairpdf");
+  var tabeauToit = document.getElementById("tabeautoit");
+  var telecharger = document.getElementById("telecharger");
 
-  nomInput.addEventListener('input', function() {
-    var nom = nomInput.value;
-    afficheNom.textContent = nom;
-  });
-}
-afficherNom();
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT PRENOM SAISI:::::::::::::
-function afficherPrenom() {
-  var prenomInput = document.getElementById('prenom');
-  var affichePrenom = document.querySelector('.afficheprenom');
-
-  prenomInput.addEventListener('input', function() {
-    var prenom = prenomInput.value;
-    affichePrenom.textContent = prenom;
-  });
-}
-afficherPrenom();
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT NUMERO SAISI:::::::::::::
-function afficherNumero() {
-  var numeroInput = document.getElementById('numero');
-  var afficheNumero = document.querySelector('.affichenum');
-
-  // Événement pour récupérer la saisie
-  numeroInput.addEventListener('input', function() {
-    var numero = numeroInput.value;
-    afficheNumero.textContent = numero;
-  });
-}
-afficherNumero();
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT VILLE SAISI:::::::::::::
-function afficherVille() {
-  var villeInput = document.getElementById('ville');
-  var afficheVille = document.querySelector('.afficheville');
-
-  // Événement pour l'élément de saisie
-  villeInput.addEventListener('input', function() {
-    afficheVille.innerHTML = '<p>' + villeInput.value + '</p>';
-  });
-}
-afficherVille();
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT LONGUEUR SAISI:::::::::::::
-// function recupererLongueur() {
-//   var longueurInput = document.getElementById('longueur');
-//   var longueurCell = document.querySelector('td[data-label="Longueur"]');
-
-//   // Événement pour récupérer la saisie
-//   longueurInput.addEventListener('input', function() {
-//     var longueur = longueurInput.value;
-//     longueurCell.textContent = longueur + ' m';
-//   });
-// }
-// recupererLongueur();
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT LARGEUR SAISI:::::::::::::
-// function afficherLargeur() {
-//   var largeurInput = document.getElementById('largeur');
-//   var largeurCell = document.querySelector('td[data-label="Largeur"]');
-
-//   // Événement pour récupérer la saisie
-//   largeurInput.addEventListener('input', function() {
-//     var largeur = largeurInput.value;
-//     largeurCell.textContent = largeur + ' m';
-//   });
-// }
-// afficherLargeur();
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT LA SURFACE SAISI:::::::::::::
-function afficherSurface() {
-  var surfaceElement = document.getElementById('surface');
-  var surfaceCell = document.querySelector('td[data-label="Surface"]');
-
-  surfaceElement.addEventListener('input', function() {
-    var surface = surfaceElement.value;
-    surfaceCell.textContent = surface  + ' m²';
-  });
-}
-
-afficherSurface();
-
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT SELECT CHOISI:::::::::::::
-function afficherSelection() {
-  var selectElement = document.getElementById('selectProduit');
-  var typeProduitCell = document.querySelector('td[data-label="Type Produit"]');
-
-  // Événement pour récupérer la sélection
-  selectElement.addEventListener('change', function() {
-    var selectedOption = selectElement.options[selectElement.selectedIndex];
-    var selectedValue = selectedOption.value;
-    typeProduitCell.textContent = selectedValue;
-  });
-}
-afficherSelection();
-
-
-// :::::: FONCTION QUI CALCUL LA SURFACE (LONGUEUR*LARGEUR):::::::::::::
-// function calculerSurface() {
-//   var longueurInput = document.getElementById('longueur');
-//   var largeurInput = document.getElementById('largeur');
-//   var surfaceCell = document.querySelector('td[data-label="Surface"]');
-
-//   longueurInput.addEventListener('input', updateSurface);
-//   largeurInput.addEventListener('input', updateSurface);
-
-//   function updateSurface() {
-//     var longueur = longueurInput.value;
-//     var largeur = largeurInput.value;
-//     var surface = longueur * largeur;
-//     surfaceCell.textContent = surface + ' m²';
-//   }
-// }
-// calculerSurface();
-
-
-// ::::::::::::: RENDRE LES CHAMPS OBLIGATOIRE:::::::::::::::::::
-function verifierChamps() {
-  var surfaceInput = document.getElementById('surface');
-  var selectProduit = document.getElementById('selectProduit');
-
-  var message = '';
-
-  // Vérifier le champ "surface"
-  if (surfaceInput.value === '') {
-    message += 'Le champ "Surface" est obligatoire. ';
-  }
-
-  // Vérifier le champ "selectProduit"
-  if (selectProduit.value === '') {
-    message += 'Le champ "Type Produit" est obligatoire. ';
-  }
-
-  // Afficher le message d'erreur ou vider les champs
-  if (message !== '') {
-    alert(message);
-  }
-}
-
-
-// :::::: FONCTION QUI CALCUL (SURFACE * PRIX UNITAIRE(11500)):::::::::::::
-function calculerMontant() {
-  var surfaceCell = document.querySelector('td[data-label="Surface"]');
-  var montantCell = document.querySelector('td[data-label="Montant"]');
-  var btnElement = document.querySelector('.btn');
-
-  btnElement.addEventListener('click', function() {
-    var surface = parseFloat(surfaceCell.textContent);
-    var selectProduit = document.getElementById('selectProduit').value;
-
-    if (surface && selectProduit) { // Vérifie si les éléments ne sont pas vides
-      var montant = surface * 11500;
-      montantCell.textContent = montant.toLocaleString('fr-FR') + ' Fcfa';
-
-      // :::::::::::VIDER CHAMPS SURFACE-TYPES PRODUITS::::::::::
-      // document.getElementById('surface').value = ''; // Vider le champ avec l'ID "surface"
-      document.getElementById('selectProduit').value = ''; // Vider le champ avec l'ID "selectProduit"
-
+  buttonToit.addEventListener("click", function() {
+    if (selectSurface.selectedIndex !== 0) {
+      if (selectSurface.value.trim() !== "") { // Vérifier si le champ n'est pas vide (après avoir supprimé les espaces)
+        containairPDF.style.display = "block";
+        tabeauToit.style.display = "block";
+        telecharger.style.display = "block";
+      } else {
+        alert("Champs vide ! Veuillez saisir une valeur pour la surface.");
+      }
     }
   });
 }
-calculerMontant();
+// Appeler la fonction pour afficher les éléments lorsque le bouton est cliqué et une option est sélectionnée
+afficherElementsPDF();
+
+
+// ::::::::::::::::AFFICHER LA SELECT PRODUIT CHOISI:::::::::::
+function afficherValeurSelectEtancheite() {
+  var selectEtancheite = document.getElementById("selectetancheite");
+  var etancheiteElement = document.getElementById("etancheite");
+  var selectedOption = selectEtancheite.options[selectEtancheite.selectedIndex];
+  
+  if (!selectedOption.disabled) {
+    etancheiteElement.innerHTML = "Object : " + selectedOption.textContent;
+  }
+}
+// Appeler la fonction lorsque la valeur de l'élément select change
+document.getElementById("selectetancheite").addEventListener("change", afficherValeurSelectEtancheite);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
+afficherValeurSelectEtancheite();
+
+
+
+
+// :::::::::::::::::::::CALCUL QUANTITE ET PU::::::::::::::::::::::::::::::::::::::
+function calculerEtAfficherResultats() {
+
+// Fonction formatage des résultats (enleve (.00) si resultat=entier)
+function formatResultat(resultat) {
+  return Number.isInteger(resultat) ? resultat : resultat.toFixed(2);
+}
+var champsurface = parseFloat(document.getElementById("champsurface").value);
+
+if (!isNaN(champsurface)) {
+  // Calculs pour la première ligne du tableau toit
+  var surfaceDiviseePar10 = champsurface / 10;
+  var surfaceMultiplieePar4000 = champsurface * 4000;
+
+  // Calculs pour la deuxième ligne du tableau toit
+  var surfaceDiviseePar10Boite = champsurface / 10;
+  var surfaceMultiplieePar2000 = champsurface * 2000;
+
+  // Formatage des résultats (enleve (.00) si resultat=entier)
+  surfaceDiviseePar10 = formatResultat(surfaceDiviseePar10);
+  surfaceMultiplieePar4000 = formatResultat(surfaceMultiplieePar4000);
+  surfaceDiviseePar10Boite = formatResultat(surfaceDiviseePar10Boite);
+  surfaceMultiplieePar2000 = formatResultat(surfaceMultiplieePar2000);
+
+  // Affichage des résultats dans les éléments td appropriés
+  document.getElementById("utoit1").textContent = surfaceDiviseePar10 + " U";
+  document.getElementById("qtoit1").textContent = parseFloat(surfaceMultiplieePar4000).toLocaleString();
+  document.getElementById("utoit2").textContent = surfaceDiviseePar10Boite + " Boite";
+  document.getElementById("qtoit2").textContent = parseFloat(surfaceMultiplieePar2000).toLocaleString();
+}
+}
+// Appeler la fonction lorsque la valeur de l'élément "champsurface" change
+document.getElementById("champsurface").addEventListener("input", calculerEtAfficherResultats);
+calculerEtAfficherResultats();
+
+
+// :::::::::CALCULE LE MONTANT TOIT PAR PRODUIT::::::::::::::
+// Fonction pour calculer et afficher le montant pour un produit de toit
+function calculeMontantToitParProduit(numeroProduit) {
+    // Récupérer les valeurs des éléments avec les IDs spécifiés
+    var montant = parseFloat(document.getElementById("utoit" + numeroProduit).textContent.replace(/\s/g, '').replace(',', '.'));
+    var quantite = parseFloat(document.getElementById("qtoit" + numeroProduit).textContent.replace(/\s/g, '').replace(',', '.'));
+
+    // Effectuer la multiplication
+    var resultat = montant * quantite;
+
+    // Afficher le résultat dans l'élément avec l'ID spécifié
+    document.getElementById("mtoit" + numeroProduit).textContent = resultat.toLocaleString();
+  }
+  // Appeler la fonction pour calculer et afficher les résultats initiaux
+  calculeMontantToitParProduit(1);
+  calculeMontantToitParProduit(2);
+  // Ajouter des écouteurs d'événements pour déclencher la fonction lorsque les quantités changent
+  document.getElementById("qtoit1").addEventListener("DOMSubtreeModified", function() {
+    calculeMontantToitParProduit(1);
+  });
+  document.getElementById("qtoit2").addEventListener("DOMSubtreeModified", function() {
+    calculeMontantToitParProduit(2);
+  });
+
+
+// :::::::::CALCULE LE NIVELLEMENT::::::::::::::
+// Fonction de calcul et affichage du résultat
+function calculateNivellement() {
+    // Récupérer la valeur de l'input ayant l'id "champsurface"
+    var surfaceValue = parseFloat(document.getElementById("champsurface").value);
+
+    // Vérifier si la valeur est un nombre valide
+    if (!isNaN(surfaceValue)) {
+      // Effectuer le calcul en multipliant la valeur par 200
+      var result = surfaceValue * 200;
+
+      // Afficher le résultat dans l'élément ayant l'id "mvivellem"
+      document.getElementById("mvivellem").textContent = result.toLocaleString();
+
+    }
+  }
+ // Appeler la fonction resultatNivellement lorsque le bouton "Ajouter" pour le toit est cliqué
+ document.getElementById("champsurface").addEventListener("input", calculateNivellement);
+ calculateNivellement();
+
+
+// :::::::::CALCULE MAIN OEUVRES::::::::::::::
+function calculateMainOeuvre() {
+    var surfaceInput = document.getElementById("champsurface");
+    var surfaceValue = parseFloat(surfaceInput.value);
+
+    if (!isNaN(surfaceValue)) {
+      var mainOeuvre = surfaceValue * 1500;
+      var moeuvresCell = document.getElementById("moeuvres");
+
+      moeuvresCell.textContent = mainOeuvre.toLocaleString(); // Format the number with thousand separators
+    }
+  }
+  document.getElementById("champsurface").addEventListener("input", calculateMainOeuvre);
+  calculateMainOeuvre();
+
+
+  // ::::::: CALCULE MONTANT TOTAL TOIT:::::::::::::
+  function calculerMontantTotalToit() {
+  var mtoit1 = parseFloat(document.getElementById("mtoit1").textContent.replace(/\s/g, '').replace(',', '.'));
+  var mtoit2 = parseFloat(document.getElementById("mtoit2").textContent.replace(/\s/g, '').replace(',', '.'));
+  var mvivellem = parseFloat(document.getElementById("mvivellem").textContent.replace(/\s/g, '').replace(',', '.'));
+  var moeuvres = parseFloat(document.getElementById("moeuvres").textContent.replace(/\s/g, '').replace(',', '.'));
+
+  var montantTotalToit = mtoit1 + mtoit2 + mvivellem + moeuvres;
+  document.getElementById("montanttoit").textContent = montantTotalToit.toLocaleString();
+
+   // Afficher le montant total du toit dans la balise <li> ayant la classe "arretfacture"
+    var liElement = document.querySelector(".arretfacture li");
+  liElement.textContent = "Arrêté la Facture pro-forma à la somme de " + montantTotalToit.toLocaleString() + " francs CFA.";
+}
+// Appeler la fonction au chargement de la page pour initialiser le montant total du toit
+calculerMontantTotalToit();
+// Appeler la fonction à chaque changement de valeur des éléments associés
+document.getElementById("mtoit1").addEventListener("DOMSubtreeModified", calculerMontantTotalToit);
+document.getElementById("mtoit2").addEventListener("DOMSubtreeModified", calculerMontantTotalToit);
+document.getElementById("mvivellem").addEventListener("DOMSubtreeModified", calculerMontantTotalToit);
+document.getElementById("moeuvres").addEventListener("DOMSubtreeModified", calculerMontantTotalToit);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 // ::::::TELECHARGEMENT::::::::::::::::
@@ -415,6 +623,7 @@ function downloadPDF() {
 document.getElementById("telecharger").addEventListener("click", function () {
   downloadPDF();
 });
+
 
 
 </script>
