@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Etancheité</title>
+
+  <!-- ::CSS::::::: -->
+  <link rel="stylesheet" href="servicepages2.css">
+  <link rel="stylesheet" href="tableau.css">
+
+  <!----===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
+
+  <!-- ::::::cdn icon:::::::: -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <!-- ::::PDF::::::::: -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+
+</head>
+<body>
+
+
+  <!-- ::::::::::::::::::::::::::::: -->
+  <div class="toutcontainer" >
+    <div class="container">
+        <div class="enteteform" style="display: flex; justify-content: space-between; ">
+          <div class="dd">
+            <header>Dévis Etancheité</header>
+          </div>
+
+              <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
+              style="width: 10%; margin-top: -2%;"
+              >
+        </div>
+
+        <form action="#" class="form">
+            <div class="form first" >
+              <!-- Input Rang 1 ::::::::: -->
+                <div class="details personal" >
+                    <span class="title"> </span>
+
+                    <div class="fields">
+                      
+                        <div class="input-field">
+                            <input type="text" placeholder="Votre nom" id="nom" >
+                        </div>
+                        
+
+                        <div class="input-field">
+                          <input type="text" placeholder="Votre prenom" id="prenom" >
+                       </div>
+
+                       <div class="input-field">
+                        <input type="text" placeholder="Votre quartier" id="ville" >
+                       </div>
+
+                        <div class="input-field">
+                            <input type="number" placeholder="Votre téléphone" id="numero">
+                        </div>
+
+
+                        <div class="input-field">
+                          <select required id="selectfosse">
+                              <option disabled selected>Type fosse septique</option>
+                              <option>Biofil</option>
+                              </select>
+                      </div>
+
+
+                       <!-- ::::::::::CHAMPS BIOFIL:::::::::: -->
+                       <div id="champbiofil" style=" width: 100%;">
+                       <div class="input-field">
+                        <select required  id="selectzone">
+                            <option disabled selected>Zones</option>
+                            <option id="standartselect">Standart</option>
+                            <option id="gravierselect">Gravier</option>
+                            <option id="rocheuseselect">Rocheuse</option>
+
+                        </select>
+                    </div>
+                    <!-- <div class="input-field" >
+                      <input type="number" placeholder="surface" id="champsurface">
+                  </div> -->
+                  </div>
+
+                        
+                    </div>
+                </div>
+
+                <!-- Input Rang 2 ::::::::: -->
+                <div class="details ID">
+
+                    <div class="fields">
+                      
+                        <!-- <div class="input-field">
+                            <input type="text" placeholder="Enter ID type" required>
+                        </div> -->
+
+
+                    </div>
+
+                    <!-- ::::::::BUTTON STANDART::::::: -->
+                    <button id="buttonstandart" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+
+                    <!-- ::::::::BUTTON GRAVIER::::::: -->
+                    <button id="buttongravier" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+
+                    <!-- ::::::::BUTTON ROCHEUSE::::::: -->
+                    <button id="buttonrocheuse" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+            
+                </div> 
+            </div>
+        </form>
+       
+    </div>
+</div>
+<!--FORM::::::::::::::::::::::  -->
+
+
+<!-- :::::::::::TABLEAU:::::::::::::::::: -->
+<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div id="containairpdf" style="display: none; padding-bottom: 10px;">
+		
+  <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+    <div class="entete-text">
+    <h1>IKA PLOMBIER SARL</h1>
+    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+    <p>Email: ctraore@ikaplombier.com</p>
+    <p>Tel: 74 24 00 74</p>
+    </div>
+    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+  </div>
+  <!-- :::::::::ENTETE::::::::::::: -->
+  
+  <!-- ::::::::::::::: -->
+  <hr class="hr1" >
+  <hr class="hr2" >
+  
+  <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
+    <h1>Facture Pro-format N°04.03.07.23</h1>
+    </div>
+    
+  
+  <!-- :: -->
+  <ul class="coordonees" >
+    <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
+    <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
+    <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
+    <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
+    <li id="zone"><div class="coordtext">Zone : </div> </li>
+    </ul>
+    <!-- :::::::::::::: -->
+
+    
+  
+
+  <!-- :::::::TABEAU STANDART ::::::::::::-->
+  <div  id="tabeaustandart" style="display: none;">
+  <table class="tableau" >
+    <tr id="header">
+      <th>N°</th>
+      <th>Désignation</th>
+      <th>Quantité</th>
+      <th>Prix Unitaire</th>
+      <th id="colonnetoit">Montant</th>
+    </tr>
+    <tr>
+      <td>1</td>
+      <td>Tapis </td>
+      <td  id="utoit1">1 U </td>
+      <td id="qtoit1">40 000 </td>
+      <td id="mtoit1">40 000 </td>
+    </tr>
+    <tr>
+      <td>2 </td>
+      <td>Colle flut </td>
+      <td id="utoit2">1 Boite </td>
+      <td id="qtoit2">20 000 </td>
+      <td id="mtoit2">20 000 </td>
+    </tr>
+    <tr>
+      <td>3 </td>
+      <td colspan="3" style="text-align: center;">Nivellement </td>
+      <td id="mvivellem">2 000 </td>
+    </tr>
+    <tr>
+      <td>4 </td>
+      <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+      <td id="moeuvres">15 000 </td>
+    </tr>
+    <tr style="background-color: #5f7acb;">
+      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+      <td id="montanttoit"> 77 000</td>
+    </tr>
+  </table>
+</div>
+
+<!-- ::::TABLEAU GRAVIER:::::: -->
+<div class="tabeaugravier" style="display: none;">
+    <p>gravier</p>
+</div>
+  
+<!-- ::::::::TABEAU ROCHEUSE::::: -->
+<div class="tabeaurocheuse" style="display: none;">
+    <p>rocheuse</p>
+</div>
+  
+  <!-- :: -->
+  <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <li>Arrêté la Facture pro-forma à la somme de
+      francs CFA.
+      </li>
+    </ul>
+    <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
+      <div class="accord" style=" font-weight: bold;">Pour accord</div>
+    <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
+  </div>
+   
+</div>
+</div>
+
+
+  <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
+  <button  style="display: none;" id="telecharger" >
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+</button>
+
+
+
+
+<!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
+<script>
+  // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
+function afficherDateDuJour() {
+      var dateElement = document.querySelector('.datejour');
+      var date = new Date();
+      var options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+      var dateString = date.toLocaleDateString(undefined, options);
+      dateElement.textContent ='Bamako le ' + dateString;
+    } 
+    // Appeler la fonction pour afficher la date du jour au chargement de la page
+    afficherDateDuJour();
+
+
+
+// :::::RECUPERATION NOM-PRENOM::::::::::
+function recupererNomPrenom() {
+  var nom = document.getElementById("nom").value;
+  var prenom = document.getElementById("prenom").value;
+  var nomprenomElement = document.getElementById("nomprenom");
+  nomprenomElement.innerHTML = "Doit : " + nom + " " + prenom;
+}
+// Appeler la fonction lorsque les champs de saisie changent
+document.getElementById("nom").addEventListener("input", recupererNomPrenom);
+document.getElementById("prenom").addEventListener("input", recupererNomPrenom);
+// Appeler la fonction une fois au chargement de la page pour afficher les valeurs initiales
+recupererNomPrenom();
+
+// :::::::::::RECUPERATION CHAMPS VILLE SAISI::::::::::
+function recupererVille() {
+  var ville = document.getElementById("ville").value;
+  var villequartElement = document.getElementById("villequart");
+  villequartElement.innerHTML = "Ville/Quartier : " + ville;
+}
+document.getElementById("ville").addEventListener("input", recupererVille);
+recupererVille();
+
+
+// :::::::::::RECUPERATION CHAMPS NUMERO SAISI::::::::::
+function recupererNumero() {
+  var numero = document.getElementById("numero").value;
+  var telephoneElement = document.getElementById("telephone");
+  telephoneElement.innerHTML = "Téléphone : " + numero;
+}
+// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+document.getElementById("numero").addEventListener("input", recupererNumero);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
+recupererNumero();
+
+
+// :::::::::::RECUPERATION CHAMPS SELECT TYPE FOSSE::::::::::
+function afficherTypeFosseSelectionne() {
+  // Récupérer la valeur sélectionnée du champ "selectfosse"
+  var selectElement = document.getElementById("selectfosse");
+  var typeFosseSelectionne = selectElement.value;
+
+  // Vérifier si l'option sélectionnée est activée (non désactivée)
+  var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
+  if (!optionSelectionnee.disabled) {
+    // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "typefosse"
+    var typeFosseElement = document.getElementById("typefosse");
+    typeFosseElement.textContent = "Type fosse : " + typeFosseSelectionne;
+  } else {
+    // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
+    var typeFosseElement = document.getElementById("typefosse");
+    typeFosseElement.textContent = "Type fosse : ";
+  }
+}
+// Appeler la fonction lorsque la sélection du champ change
+document.getElementById("selectfosse").addEventListener("change", afficherTypeFosseSelectionne);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
+afficherTypeFosseSelectionne();
+
+
+// :::::::::::RECUPERATION CHAMPS SELECT ZONE::::::::::
+function afficherZoneSelectionnee() {
+    // Récupérer la valeur sélectionnée du champ "selectzone"
+    var selectElement = document.getElementById("selectzone");
+    var zoneSelectionnee = selectElement.value;
+
+    // Vérifier si l'option sélectionnée est activée (non désactivée)
+    var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
+    if (!optionSelectionnee.disabled) {
+      // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "zone"
+      var zoneElement = document.getElementById("zone");
+      zoneElement.textContent = "Zone : " + zoneSelectionnee;
+    } else {
+      // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
+      var zoneElement = document.getElementById("zone");
+      zoneElement.textContent = "Zone : ";
+    }
+  }
+  // Appeler la fonction lorsque la sélection du champ change
+  document.getElementById("selectzone").addEventListener("change", afficherZoneSelectionnee);
+  // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
+  afficherZoneSelectionnee();
+
+//   :::::FFFICHE BUTTON EN FONCTION DE SELECT ZONE::::::
+function afficherButtonEnFonctionDeSelection() {
+    var selectElement = document.getElementById("selectzone");
+    var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
+
+    // Cacher tous les boutons
+    var boutons = document.querySelectorAll(".nextBtn");
+    boutons.forEach(function (bouton) {
+      bouton.style.display = "none";
+    });
+
+    // Afficher le bouton correspondant à la sélection
+    if (optionSelectionnee.id === "standartselect") {
+      document.getElementById("buttonstandart").style.display = "block";
+    } else if (optionSelectionnee.id === "gravierselect") {
+      document.getElementById("buttongravier").style.display = "block";
+    } else if (optionSelectionnee.id === "rocheuseselect") {
+      document.getElementById("buttonrocheuse").style.display = "block";
+    }
+  }
+  // Appeler la fonction lorsque la sélection du champ change
+  document.getElementById("selectzone").addEventListener("change", afficherButtonEnFonctionDeSelection);
+  // Appeler la fonction une fois au chargement de la page pour afficher les boutons initiaux
+  afficherButtonEnFonctionDeSelection();
+
+
+
+// :::::: AFFICHER LES CONTENUES EN FONCTION BUTTON CLIQUE::::::
+ // Fonction pour afficher le contenu en fonction du bouton cliqué
+ function afficherContenuEnFonctionDuBouton(boutonId) {
+    // Récupérer la valeur sélectionnée du champ "selectfosse"
+    var selectFosseElement = document.getElementById("selectfosse");
+    var selectFosseValue = selectFosseElement.value;
+
+    // Vérifier si le champ "selectfosse" est vide
+    if (selectFosseValue === "" || selectFosseValue === "Type fosse septique") {
+      alert("Veuillez sélectionner un type de fosse avant de continuer.");
+      return;
+    }
+
+    // Cacher tous les contenus
+    var contenairs = document.querySelectorAll(".tabeaustandart, .tabeaugravier, .tabeaurocheuse");
+    contenairs.forEach(function (contenair) {
+      contenair.style.display = "none";
+    });
+
+    // Afficher le contenu correspondant au bouton cliqué
+    if (boutonId === "buttonstandart") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("tabeaustandart").style.display = "block";
+      document.querySelector(".tabeaugravier").style.display = "none";
+      document.querySelector(".tabeaurocheuse").style.display = "none";
+    } else if (boutonId === "buttongravier") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("tabeaustandart").style.display = "none";
+      document.querySelector(".tabeaugravier").style.display = "block";
+      document.querySelector(".tabeaurocheuse").style.display = "none";
+    } else if (boutonId === "buttonrocheuse") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("tabeaustandart").style.display = "none";
+      document.querySelector(".tabeaugravier").style.display = "none";
+      document.querySelector(".tabeaurocheuse").style.display = "block";
+    }
+
+    // Afficher l'élément avec l'ID "telecharger"
+    var telechargerElement = document.getElementById("telecharger");
+    telechargerElement.style.display = "block";
+  }
+
+  // Appeler la fonction lorsqu'un bouton est cliqué
+  document.getElementById("buttonstandart").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttonstandart");
+  });
+
+  document.getElementById("buttongravier").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttongravier");
+  });
+
+  document.getElementById("buttonrocheuse").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttonrocheuse");
+  });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ::::::TELECHARGEMENT::::::::::::::::
+// :::::::PDF TELECHARGEMENT/////////
+// Transformation en image
+window.html2canvas = html2canvas;
+window.jsPDF = window.jspdf.jsPDF;
+
+function makePDF() {
+  html2canvas(document.querySelector("#capture"), {
+    allowTaint: true,
+    useCORS: true,
+    scale: 1
+  }).then(canvas => {
+    var img = canvas.toDataURL("image/png");
+
+    var doc = new jsPDF();
+    doc.setFont('Arial');
+    doc.save("etancheite.pdf");
+  });
+}
+
+function downloadPDF() {
+  var element = document.querySelector(".telechargerpdf");
+  html2canvas(element, {
+    scale: 2,
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: document.documentElement.offsetWidth,
+    windowHeight: document.documentElement.offsetHeight,
+    useCORS: true
+  }).then(function (canvas) {
+    var imgData = canvas.toDataURL("image/png", 1.0);
+    var pdf = new jsPDF("p", "mm", "a4", true);
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    pdf.save("etancheite.pdf");
+  });
+}
+document.getElementById("telecharger").addEventListener("click", function () {
+  downloadPDF();
+});
+
+
+
+</script>
+
+ 
+</body>
+</html>
