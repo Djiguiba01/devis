@@ -4,11 +4,15 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Fosse Septique</title>
+  <title>Climatissation et Froid</title>
 
   <!-- ::CSS::::::: -->
   <link rel="stylesheet" href="servicepages2.css">
   <link rel="stylesheet" href="tableau.css">
+  <!-- <link rel="stylesheet" href="fossetancheite.css"> -->
+
+<!-- CSS de Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 
   <!----===== Iconscout CSS ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
@@ -19,8 +23,23 @@
    <!-- ::::PDF::::::::: -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-
-</head>
+   <style>
+    table {
+      width: 80%;
+      border-collapse: collapse;
+    }
+  
+    td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+  
+    .opposes {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+  </head>
 <body>
 
 
@@ -29,7 +48,7 @@
     <div class="container">
         <div class="enteteform" style="display: flex; justify-content: space-between; ">
           <div class="dd">
-            <header>Dévis Fosse Septique</header>
+            <header>Dévis Climatissation et Froid</header>
           </div>
 
               <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
@@ -66,27 +85,35 @@
                         <div class="input-field">
                           <select required id="selectfosse">
                               <option disabled selected>Type fosse septique</option>
-                              <option>Biofil</option>
+                              <option>Climatisation</option>
+                              <option>Refrigerateur</option>
                               </select>
                       </div>
 
 
-                       <!-- ::::::::::CHAMPS BIOFIL:::::::::: -->
-                       <div id="champbiofil" style=" width: 100%;">
-                       <div class="input-field">
-                        <select required  id="selectzone">
-                            <option disabled selected>Zones</option>
-                            <option id="standartselect">Standart</option>
-                            <option id="gravierselect">Gravier</option>
-                            <option id="rocheuseselect">Rocheuse</option>
-
+                       <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
+                       <div class="input-field" id="champsclimatisation">
+                        <select required  id="problemeclimatisation">
+                            <option disabled selected>Problème</option>
+                            <option id="entretienselect">Entretien</option>
+                            <option id="installationselect">Installation</option>
+                            <option id="reparationselect">Réparation</option>
                         </select>
                     </div>
-                    <!-- <div class="input-field" >
-                      <input type="number" placeholder="surface" id="champsurface">
-                  </div> -->
-                  </div>
+                    <div class="input-field" id="champsclimatisation">
+                        <input type="numberappareil" placeholder="surface" id="champsnombre">
+                    </div>
 
+
+                    
+                   <!-- ::::::CHAMPS REFRIGERATEUR::::::::::: -->
+                    <div class="input-field" id="champsrefrigerateur">
+                        <select required  id="problemerefigerateur">
+                            <option disabled selected>Problème</option>
+                            <option id="standartselect">Réparation</option>
+                          </select>
+                    </div>
+                                      
                         
                     </div>
                 </div>
@@ -95,6 +122,7 @@
                 <div class="details ID">
 
                     <div class="fields">
+                        
                       
                         <!-- <div class="input-field">
                             <input type="text" placeholder="Enter ID type" required>
@@ -132,7 +160,7 @@
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
 <div class="telechargerpdf" style="padding-bottom: 8%;">
-<div id="containairpdf" style="display: none; padding-bottom: 10px;">
+<div id="containairpdf" style="padding-bottom: 10px;">
 		
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
@@ -171,45 +199,55 @@
   
 
   <!-- :::::::TABEAU STANDART ::::::::::::-->
-  <div  id="tabeaustandart" style="display: none;">
-  <table class="tableau" >
-    <tr id="header">
-      <th>N°</th>
-      <th>Désignation</th>
-      <th>Quantité</th>
-      <th>Prix Unitaire</th>
-      <th id="colonnetoit">Montant</th>
-    </tr>
-    <tr>
-      <td>1</td>
-      <td>Tapis </td>
-      <td  id="utoit1">1 U </td>
-      <td id="qtoit1">40 000 </td>
-      <td id="mtoit1">40 000 </td>
-    </tr>
-    <tr>
-      <td>2 </td>
-      <td>Colle flut </td>
-      <td id="utoit2">1 Boite </td>
-      <td id="qtoit2">20 000 </td>
-      <td id="mtoit2">20 000 </td>
-    </tr>
-    <tr>
-      <td>3 </td>
-      <td colspan="3" style="text-align: center;">Nivellement </td>
-      <td id="mvivellem">2 000 </td>
-    </tr>
-    <tr>
-      <td>4 </td>
-      <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-      <td id="moeuvres">15 000 </td>
-    </tr>
-    <tr style="background-color: #5f7acb;">
-      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-      <td id="montanttoit"> 77 000</td>
-    </tr>
-  </table>
-</div>
+ 
+  <div id="tabeaustandart" style="">
+    <table>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+       
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+      </tr>
+
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+       
+      </tr>
+      <!-- Ajoutez plus de lignes ici si nécessaire -->
+    </table>
+  </div>
 
 <!-- ::::TABLEAU GRAVIER:::::: -->
 <div class="tabeaugravier" style="display: none;">
@@ -295,134 +333,6 @@ document.getElementById("numero").addEventListener("input", recupererNumero);
 recupererNumero();
 
 
-// :::::::::::RECUPERATION CHAMPS SELECT TYPE FOSSE::::::::::
-function afficherTypeFosseSelectionne() {
-  // Récupérer la valeur sélectionnée du champ "selectfosse"
-  var selectElement = document.getElementById("selectfosse");
-  var typeFosseSelectionne = selectElement.value;
-
-  // Vérifier si l'option sélectionnée est activée (non désactivée)
-  var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
-  if (!optionSelectionnee.disabled) {
-    // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "typefosse"
-    var typeFosseElement = document.getElementById("typefosse");
-    typeFosseElement.textContent = "Type fosse : " + typeFosseSelectionne;
-  } else {
-    // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
-    var typeFosseElement = document.getElementById("typefosse");
-    typeFosseElement.textContent = "Type fosse : ";
-  }
-}
-// Appeler la fonction lorsque la sélection du champ change
-document.getElementById("selectfosse").addEventListener("change", afficherTypeFosseSelectionne);
-// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
-afficherTypeFosseSelectionne();
-
-
-// :::::::::::RECUPERATION CHAMPS SELECT ZONE::::::::::
-function afficherZoneSelectionnee() {
-    // Récupérer la valeur sélectionnée du champ "selectzone"
-    var selectElement = document.getElementById("selectzone");
-    var zoneSelectionnee = selectElement.value;
-
-    // Vérifier si l'option sélectionnée est activée (non désactivée)
-    var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
-    if (!optionSelectionnee.disabled) {
-      // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "zone"
-      var zoneElement = document.getElementById("zone");
-      zoneElement.textContent = "Zone : " + zoneSelectionnee;
-    } else {
-      // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
-      var zoneElement = document.getElementById("zone");
-      zoneElement.textContent = "Zone : ";
-    }
-  }
-  // Appeler la fonction lorsque la sélection du champ change
-  document.getElementById("selectzone").addEventListener("change", afficherZoneSelectionnee);
-  // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
-  afficherZoneSelectionnee();
-
-//   :::::FFFICHE BUTTON EN FONCTION DE SELECT ZONE::::::
-function afficherButtonEnFonctionDeSelection() {
-    var selectElement = document.getElementById("selectzone");
-    var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
-
-    // Cacher tous les boutons
-    var boutons = document.querySelectorAll(".nextBtn");
-    boutons.forEach(function (bouton) {
-      bouton.style.display = "none";
-    });
-
-    // Afficher le bouton correspondant à la sélection
-    if (optionSelectionnee.id === "standartselect") {
-      document.getElementById("buttonstandart").style.display = "block";
-    } else if (optionSelectionnee.id === "gravierselect") {
-      document.getElementById("buttongravier").style.display = "block";
-    } else if (optionSelectionnee.id === "rocheuseselect") {
-      document.getElementById("buttonrocheuse").style.display = "block";
-    }
-  }
-  // Appeler la fonction lorsque la sélection du champ change
-  document.getElementById("selectzone").addEventListener("change", afficherButtonEnFonctionDeSelection);
-  // Appeler la fonction une fois au chargement de la page pour afficher les boutons initiaux
-  afficherButtonEnFonctionDeSelection();
-
-
-
-// :::::: AFFICHER LES CONTENUES EN FONCTION BUTTON CLIQUE::::::
- // Fonction pour afficher le contenu en fonction du bouton cliqué
- function afficherContenuEnFonctionDuBouton(boutonId) {
-    // Récupérer la valeur sélectionnée du champ "selectfosse"
-    var selectFosseElement = document.getElementById("selectfosse");
-    var selectFosseValue = selectFosseElement.value;
-
-    // Vérifier si le champ "selectfosse" est vide
-    if (selectFosseValue === "" || selectFosseValue === "Type fosse septique") {
-      alert("Veuillez sélectionner un type de fosse avant de continuer.");
-      return;
-    }
-
-    // Cacher tous les contenus
-    var contenairs = document.querySelectorAll(".tabeaustandart, .tabeaugravier, .tabeaurocheuse");
-    contenairs.forEach(function (contenair) {
-      contenair.style.display = "none";
-    });
-
-    // Afficher le contenu correspondant au bouton cliqué
-    if (boutonId === "buttonstandart") {
-      document.getElementById("containairpdf").style.display = "block";
-      document.getElementById("tabeaustandart").style.display = "block";
-      document.querySelector(".tabeaugravier").style.display = "none";
-      document.querySelector(".tabeaurocheuse").style.display = "none";
-    } else if (boutonId === "buttongravier") {
-      document.getElementById("containairpdf").style.display = "block";
-      document.getElementById("tabeaustandart").style.display = "none";
-      document.querySelector(".tabeaugravier").style.display = "block";
-      document.querySelector(".tabeaurocheuse").style.display = "none";
-    } else if (boutonId === "buttonrocheuse") {
-      document.getElementById("containairpdf").style.display = "block";
-      document.getElementById("tabeaustandart").style.display = "none";
-      document.querySelector(".tabeaugravier").style.display = "none";
-      document.querySelector(".tabeaurocheuse").style.display = "block";
-    }
-
-    // Afficher l'élément avec l'ID "telecharger"
-    var telechargerElement = document.getElementById("telecharger");
-    telechargerElement.style.display = "block";
-  }
-
-  // Appeler la fonction lorsqu'un bouton est cliqué
-  document.getElementById("buttonstandart").addEventListener("click", function () {
-    afficherContenuEnFonctionDuBouton("buttonstandart");
-  });
-
-  document.getElementById("buttongravier").addEventListener("click", function () {
-    afficherContenuEnFonctionDuBouton("buttongravier");
-  });
-
-  document.getElementById("buttonrocheuse").addEventListener("click", function () {
-    afficherContenuEnFonctionDuBouton("buttonrocheuse");
-  });
 
 
 
