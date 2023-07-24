@@ -448,64 +448,73 @@ afficherValeurSelectEtancheite();
 
 
 // :::::::::::::::::::::CALCUL QUANTITE ET PU::::::::::::::::::::::::::::::::::::::
-function calculerEtAfficherResultats() {
+function afficherQuantite() {
+    // Récupérer la valeur saisie dans l'input ayant l'id "champsurface"
+    var inputSurface = document.getElementById("champsurface");
+    var valeurSaisie = parseFloat(inputSurface.value);
 
-// Fonction formatage des résultats (enleve (.00) si resultat=entier)
-function formatResultat(resultat) {
-  return Number.isInteger(resultat) ? resultat : resultat.toFixed(2);
-}
-var champsurface = parseFloat(document.getElementById("champsurface").value);
+    // Vérifier si la valeur est un nombre valide et différent de zéro
+    if (!isNaN(valeurSaisie) && valeurSaisie !== 0) {
+      // Effectuer le calcul de la quantité en divisant par 0.1
+      var quantite = valeurSaisie / 10;
 
-if (!isNaN(champsurface)) {
-  // Calculs pour la première ligne du tableau toit
-  var surfaceDiviseePar10 = champsurface / 10;
-  var surfaceMultiplieePar4000 = champsurface * 4000;
+      // Vérifier si la quantité est un entier (n'a pas de décimales)
+      if (quantite % 1 === 0) {
+        // Si c'est un entier, afficher la quantité sans les décimales et avec "U" derrière les valeurs
+        quantite = quantite.toFixed(0);
+        document.getElementById("utoit1").textContent = quantite + " U";
+        document.getElementById("utoit2").textContent = quantite + " U";
+      } else {
+        // Si ce n'est pas un entier, afficher la quantité avec deux décimales et avec "U" derrière les valeurs
+        document.getElementById("utoit1").textContent = quantite.toFixed(2) + " U";
+        document.getElementById("utoit2").textContent = quantite.toFixed(2) + " U";
+      }
+    } else if (inputSurface.value.trim() !== "") {
+      // Si la valeur saisie n'est pas valide ou égale à zéro, et si le champ n'est pas vide, afficher un message d'erreur
+      alert("Veuillez saisir une valeur numérique non nulle dans le champ de surface.");
+    }
+  }
+  // Appeler la fonction une fois au chargement de la page pour afficher la quantité initiale
+  afficherQuantite();
+  // Ajouter un écouteur d'événement sur le champ de surface pour mettre à jour la quantité automatiquement
+  document.getElementById("champsurface").addEventListener("input", afficherQuantite);
 
-  // Calculs pour la deuxième ligne du tableau toit
-  var surfaceDiviseePar10Boite = champsurface / 10;
-  var surfaceMultiplieePar2000 = champsurface * 2000;
-
-  // Formatage des résultats (enleve (.00) si resultat=entier)
-  surfaceDiviseePar10 = formatResultat(surfaceDiviseePar10);
-  surfaceMultiplieePar4000 = formatResultat(surfaceMultiplieePar4000);
-  surfaceDiviseePar10Boite = formatResultat(surfaceDiviseePar10Boite);
-  surfaceMultiplieePar2000 = formatResultat(surfaceMultiplieePar2000);
-
-  // Affichage des résultats dans les éléments td appropriés
-  document.getElementById("utoit1").textContent = surfaceDiviseePar10 + " U";
-  document.getElementById("qtoit1").textContent = parseFloat(surfaceMultiplieePar4000).toLocaleString();
-  document.getElementById("utoit2").textContent = surfaceDiviseePar10Boite + " Boite";
-  document.getElementById("qtoit2").textContent = parseFloat(surfaceMultiplieePar2000).toLocaleString();
-}
-}
-// Appeler la fonction lorsque la valeur de l'élément "champsurface" change
-document.getElementById("champsurface").addEventListener("input", calculerEtAfficherResultats);
-calculerEtAfficherResultats();
 
 
 // :::::::::CALCULE LE MONTANT TOIT PAR PRODUIT::::::::::::::
-// Fonction pour calculer et afficher le montant pour un produit de toit
-function calculeMontantToitParProduit(numeroProduit) {
-    // Récupérer les valeurs des éléments avec les IDs spécifiés
-    var montant = parseFloat(document.getElementById("utoit" + numeroProduit).textContent.replace(/\s/g, '').replace(',', '.'));
-    var quantite = parseFloat(document.getElementById("qtoit" + numeroProduit).textContent.replace(/\s/g, '').replace(',', '.'));
+function calculerMontantToitParProduit() {
+    // Récupérer les valeurs des quantités et des prix unitaires pour chaque produit
+    var quantiteToit1 = parseFloat(document.getElementById("utoit1").textContent.split(" ")[0]);
+    var quantiteToit2 = parseFloat(document.getElementById("utoit2").textContent.split(" ")[0]);
+    var prixToit1 = parseFloat(document.getElementById("qtoit1").textContent.replace(/\s/g, '').replace(',', '.'));
+    var prixToit2 = parseFloat(document.getElementById("qtoit2").textContent.replace(/\s/g, '').replace(',', '.'));
 
-    // Effectuer la multiplication
-    var resultat = montant * quantite;
+    // Calculer le montant pour chaque produit en multipliant la quantité par le prix unitaire
+    var montantToit1 = quantiteToit1 * prixToit1;
+    var montantToit2 = quantiteToit2 * prixToit2;
 
-    // Afficher le résultat dans l'élément avec l'ID spécifié
-    document.getElementById("mtoit" + numeroProduit).textContent = resultat.toLocaleString();
+    // Afficher les montants dans les cellules du tableau avec " U" derrière les valeurs
+    document.getElementById("mtoit1").textContent = montantToit1 % 1 === 0 ? montantToit1.toLocaleString() : montantToit1.toFixed(2).toLocaleString() + " U";
+    document.getElementById("mtoit2").textContent = montantToit2 % 1 === 0 ? montantToit2.toLocaleString() : montantToit2.toFixed(2).toLocaleString() + " U";
+
+    // Calculer le montant total pour le toit en additionnant les montants de chaque produit
+    var montantTotalToit = montantToit1 + montantToit2;
+    document.getElementById("montanttoit").textContent = montantTotalToit.toLocaleString();
   }
-  // Appeler la fonction pour calculer et afficher les résultats initiaux
-  calculeMontantToitParProduit(1);
-  calculeMontantToitParProduit(2);
-  // Ajouter des écouteurs d'événements pour déclencher la fonction lorsque les quantités changent
-  document.getElementById("qtoit1").addEventListener("DOMSubtreeModified", function() {
-    calculeMontantToitParProduit(1);
-  });
-  document.getElementById("qtoit2").addEventListener("DOMSubtreeModified", function() {
-    calculeMontantToitParProduit(2);
-  });
+  // Appeler la fonction une fois au chargement de la page pour calculer les montants initiaux
+  calculerMontantToitParProduit();
+  // Ajouter des écouteurs d'événement sur les quantités et les prix pour mettre à jour les montants automatiquement
+  document.getElementById("utoit1").addEventListener("DOMSubtreeModified", calculerMontantToitParProduit);
+  document.getElementById("utoit2").addEventListener("DOMSubtreeModified", calculerMontantToitParProduit);
+  document.getElementById("qtoit1").addEventListener("DOMSubtreeModified", calculerMontantToitParProduit);
+  document.getElementById("qtoit2").addEventListener("DOMSubtreeModified", calculerMontantToitParProduit);
+
+
+
+
+
+
+
 
 
 // :::::::::CALCULE LE NIVELLEMENT::::::::::::::
