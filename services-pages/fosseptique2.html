@@ -136,7 +136,7 @@
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
-<div class="telechargerpdf" id="capture" style="padding-bottom: 8%;">
+<div class="telechargerpdf" style="padding-bottom: 8%;">
 <div id="containairpdf" style="display: none; padding-bottom: 10px;">
 	
 
@@ -466,13 +466,11 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <!-- <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
+  <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
-  </button> -->
+  </button>
 
-    <!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
-    <button type="button" id="telecharger" onclick="downloadPDF()">Télécharger PDF</button>
 
 <p  style="text-align: center;">xcc</p>
 
@@ -696,35 +694,34 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-// Assurez-vous que les bibliothèques html2canvas et jsPDF sont incluses correctement dans votre page HTML.
+// Function to download content as PDF
+function telechargerContenu() {
+    const element = document.querySelector('.telechargerpdf');
+    html2canvas(element).then((canvas) => {
+      const imgData = canvas.toDataURL('image/png');
+      const pdf = new jsPDF('p', 'mm', 'a4');
+      const width = pdf.internal.pageSize.getWidth();
+      const height = pdf.internal.pageSize.getHeight();
 
-function downloadPDF() {
-  // Sélectionnez l'élément contenant le tableau que vous souhaitez convertir en PDF.
-  var element = document.getElementById("capture");
+      // Divide the canvas into two parts
+      pdf.addImage(imgData, 'PNG', 0, 0, width, height / 2, 't1', 'NONE', 0);
+      pdf.addPage();
+      pdf.addImage(imgData, 'PNG', 0, -height / 2, width, height / 2, 't2', 'NONE', 0);
 
-  // Utilisez html2canvas pour convertir l'élément en une image (canvas).
-  html2canvas(element, {
-    allowTaint: true,
-    useCORS: true,
-    scale: 2 // Vous pouvez ajuster l'échelle pour obtenir une meilleure résolution dans le PDF.
-  }).then(function (canvas) {
-    // Convertissez l'image (canvas) en une URL de données.
-    var imgData = canvas.toDataURL("image/png");
+      // Save the PDF
+      pdf.save('document.pdf');
+    });
+  }
 
-    // Créez une nouvelle instance de jsPDF.
-    var pdf = new jsPDF("p", "mm", "a4");
+  // Show the button when the content is divided into two parts
+  function afficherButton() {
+    document.getElementById('telecharger').style.display = 'block';
+  }
+  // Call the function when the button with the specific ID is clicked
+  document.getElementById('buttonstandart').addEventListener('click', afficherButton);
+  document.getElementById('buttongravier').addEventListener('click', afficherButton);
+  document.getElementById('buttonrocheuse').addEventListener('click', afficherButton);
 
-    // Définissez la largeur et la hauteur de la page PDF en fonction du contenu du tableau.
-    var width = pdf.internal.pageSize.getWidth();
-    var height = pdf.internal.pageSize.getHeight();
-
-    // Ajoutez l'image (canvas) en tant qu'image dans le PDF.
-    pdf.addImage(imgData, "PNG", 0, 0, width, height);
-
-    // Enregistrez le fichier PDF avec le nom "plombier.pdf".
-    pdf.save("plombier.pdf");
-  });
-}
 
 </script>
 
