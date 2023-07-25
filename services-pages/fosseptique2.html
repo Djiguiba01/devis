@@ -17,12 +17,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    <!-- ::::PDF::::::::: -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script> -->
 
-   <!-- Include the necessary scripts -->
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script> -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
 
 </head>
@@ -466,7 +465,7 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
+  <button id="telecharger" style="display: none;">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
@@ -694,33 +693,48 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-// Function to download content as PDF
+// Fonction pour diviser la page en deux et télécharger le contenu
 function telechargerContenu() {
-    const element = document.querySelector('.telechargerpdf');
-    html2canvas(element).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-      const pdf = new jsPDF('p', 'mm', 'a4');
-      const width = pdf.internal.pageSize.getWidth();
-      const height = pdf.internal.pageSize.getHeight();
+    // Cacher le bouton de téléchargement
+    document.getElementById("telecharger").style.display = "none";
 
-      // Divide the canvas into two parts
-      pdf.addImage(imgData, 'PNG', 0, 0, width, height / 2, 't1', 'NONE', 0);
-      pdf.addPage();
-      pdf.addImage(imgData, 'PNG', 0, -height / 2, width, height / 2, 't2', 'NONE', 0);
+    // Diviser la page en deux (afficher la première moitié)
+    document.getElementById("t1").style.display = "block";
+    document.getElementById("t2").style.display = "none";
 
-      // Save the PDF
-      pdf.save('document.pdf');
+    // Télécharger le contenu de class="telechargerpdf"
+    const pdfElement = document.querySelector(".telechargerpdf");
+    const pdfOptions = { margin: 10, filename: "page1.pdf", image: { type: "jpeg", quality: 0.98 } };
+
+    html2canvas(pdfElement).then(function (canvas) {
+      let pdf = new jsPDF("p", "mm", "a4");
+      pdf.addImage(canvas.toDataURL("image/jpeg", 1.0), "JPEG", 0, 0, 210, 297);
+      pdf.save("page1.pdf");
+
+      // Diviser la page en deux (afficher la deuxième moitié)
+      document.getElementById("t1").style.display = "none";
+      document.getElementById("t2").style.display = "block";
+
+      // Télécharger le contenu de class="telechargerpdf"
+      const pdfElement2 = document.querySelector(".telechargerpdf");
+      const pdfOptions2 = { margin: 10, filename: "page2.pdf", image: { type: "jpeg", quality: 0.98 } };
+
+      html2canvas(pdfElement2).then(function (canvas2) {
+        let pdf2 = new jsPDF("p", "mm", "a4");
+        pdf2.addImage(canvas2.toDataURL("image/jpeg", 1.0), "JPEG", 0, 0, 210, 297);
+        pdf2.save("page2.pdf");
+
+        // Afficher à nouveau le bouton de téléchargement
+        document.getElementById("telecharger").style.display = "block";
+
+        // Cacher la deuxième moitié de la page
+        document.getElementById("t2").style.display = "none";
+      });
     });
   }
+  // Appeler la fonction lorsque le bouton de téléchargement est cliqué
+  document.getElementById("telecharger").addEventListener("click", telechargerContenu);
 
-  // Show the button when the content is divided into two parts
-  function afficherButton() {
-    document.getElementById('telecharger').style.display = 'block';
-  }
-  // Call the function when the button with the specific ID is clicked
-  document.getElementById('buttonstandart').addEventListener('click', afficherButton);
-  document.getElementById('buttongravier').addEventListener('click', afficherButton);
-  document.getElementById('buttonrocheuse').addEventListener('click', afficherButton);
 
 
 </script>
