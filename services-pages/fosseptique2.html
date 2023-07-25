@@ -471,7 +471,7 @@
   </button>
 
 
-<p  style="text-align: center;">ggg</p>
+<p  style="text-align: center;">bbb</p>
 
 
 
@@ -693,32 +693,33 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function telechargerPDF() {
+ // Function to download content as PDF
+  function downloadPDF() {
     const pdf = new jsPDF();
-    const element = document.querySelector('.telechargerpdf');
 
-    // Convertir le premier contenu (id="t1") en image
-    html2canvas(document.getElementById('t1')).then((canvas) => {
-      const imgData = canvas.toDataURL('image/png');
-
-      // Ajouter la première image dans le PDF
-      pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
-
-      // Aller à la deuxième page du PDF
+    // Function to add a page to the PDF with the provided content
+    function addPageToPDF(content) {
       pdf.addPage();
-
-      // Convertir le deuxième contenu (id="t2") en image
-      html2canvas(document.getElementById('t2')).then((canvas) => {
-        const imgData2 = canvas.toDataURL('image/png');
-
-        // Ajouter la deuxième image dans le PDF
-        pdf.addImage(imgData2, 'PNG', 0, 0, 210, 297);
-
-        // Télécharger le PDF avec le contenu des deux pages
-        pdf.save('telechargement.pdf');
+      pdf.fromHTML(content, 15, 15, {
+        width: 170
       });
-    });
+    }
+
+    const t1Content = document.getElementById("t1").innerHTML;
+    const t2Content = document.getElementById("t2").innerHTML;
+
+    // Add the first page (t1Content) to the PDF
+    addPageToPDF(t1Content);
+
+    // Add the second page (t2Content) to the PDF
+    addPageToPDF(t2Content);
+
+    // Save the PDF with the filename "download.pdf"
+    pdf.save("download.pdf");
   }
+
+  // Add an event listener to the button with id "telecharger"
+  document.getElementById("telecharger").addEventListener("click", downloadPDF);
 
 </script>
 
