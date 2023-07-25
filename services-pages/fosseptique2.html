@@ -466,6 +466,7 @@
   <span class="btnText">Télécharger PDF</span>
   <i class="fa-solid fa-download"></i>
 </button>
+<p  style="text-align: center;">aaaa</p>
 
 
 
@@ -689,57 +690,40 @@ function afficherButtonEnFonctionDeSelection() {
 // :::::::PDF TELECHARGEMENT/////////
 // Transformation en image
 function telechargerPDF() {
-    // Récupérer le contenu de la page
-    const content = document.documentElement;
-
-    // Créer un objet jsPDF
-    const doc = new jsPDF();
-
-    // Fonction pour diviser la page en deux parties
-    function diviserPageEnDeux() {
-      // Récupérer la hauteur totale de la page
-      const hauteurTotale = content.scrollHeight;
-
-      // Diviser la page en deux parties (50%)
-      const hauteurPage1 = hauteurTotale * 0.5;
-      const hauteurPage2 = hauteurTotale * 0.5;
-
-      // Créer un canvas pour la première partie (page1)
-      html2canvas(content, {
-        scale: 1,
-        scrollY: 0,
-        windowHeight: hauteurPage1,
-        windowWidth: window.innerWidth,
-      }).then((canvas1) => {
-        const image1 = canvas1.toDataURL("image/png");
-
-        // Ajouter la première partie au PDF
-        doc.addImage(image1, "PNG", 0, 0, 210, 297);
-
-        // Créer un canvas pour la deuxième partie
-        html2canvas(content, {
-          scale: 1,
-          scrollY: hauteurPage1,
-          windowHeight: hauteurPage2,
-          windowWidth: window.innerWidth,
-        }).then((canvas2) => {
-          const image2 = canvas2.toDataURL("image/png");
-
-          // Ajouter la deuxième partie au PDF
-          doc.addPage();
-          doc.addImage(image2, "PNG", 0, 0, 210, 297);
-
-          // Enregistrer le PDF
-          doc.save("document.pdf");
+    // Diviser la page en deux parties
+    html2canvas(document.querySelector(".page1"), {
+      scrollY: -window.scrollY
+    }).then(canvas1 => {
+      html2canvas(document.querySelector("#page2standart"), {
+        scrollY: -window.scrollY
+      }).then(canvas2 => {
+        html2canvas(document.querySelector("#page2gravier"), {
+          scrollY: -window.scrollY
+        }).then(canvas3 => {
+          html2canvas(document.querySelector("#page2rocheuse"), {
+            scrollY: -window.scrollY
+          }).then(canvas4 => {
+            const doc = new jsPDF();
+            const imgData1 = canvas1.toDataURL("image/jpeg", 1.0);
+            const imgData2 = canvas2.toDataURL("image/jpeg", 1.0);
+            const imgData3 = canvas3.toDataURL("image/jpeg", 1.0);
+            const imgData4 = canvas4.toDataURL("image/jpeg", 1.0);
+            const width = doc.internal.pageSize.getWidth();
+            const height = doc.internal.pageSize.getHeight();
+            doc.addImage(imgData1, "JPEG", 0, 0, width, height / 2);
+            doc.addPage();
+            doc.addImage(imgData2, "JPEG", 0, 0, width, height / 2);
+            doc.addPage();
+            doc.addImage(imgData3, "JPEG", 0, 0, width, height / 2);
+            doc.addPage();
+            doc.addImage(imgData4, "JPEG", 0, 0, width, height / 2);
+            doc.save("fosse_septique.pdf");
+          });
         });
       });
-    }
-
-    // Appeler la fonction pour diviser la page en deux parties et télécharger le PDF
-    diviserPageEnDeux();
+    });
   }
 
-  // Ajouter un écouteur d'événement pour le bouton de téléchargement
   document.getElementById("telecharger").addEventListener("click", telechargerPDF);
 
 
