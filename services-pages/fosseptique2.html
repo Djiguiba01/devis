@@ -460,7 +460,7 @@
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
-<p  style="text-align: center;">rrrr</p>
+<p  style="text-align: center;">rrrrff</p>
 
 
 
@@ -682,24 +682,46 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function telechargerContenu() {
-  // Créer un objet jsPDF
-  var doc = new jsPDF();
+window.html2canvas = html2canvas;
+window.jsPDF = window.jspdf.jsPDF;
 
-  // Récupérer le contenu HTML de la div avec la classe "telechargerpdf"
-  var contenuDiv = document.querySelector('.telechargerpdf').innerHTML;
-
-  // Générer le PDF en utilisant html2canvas pour capturer le contenu HTML dans le PDF
-  html2canvas(document.querySelector('.telechargerpdf'), {
-    scale: 1 // Vous pouvez régler la mise à l'échelle selon vos besoins
+function makePDF() {
+  html2canvas(document.querySelector("#capture"), {
+    allowTaint: true,
+    useCORS: true,
+    scale: 1
   }).then(canvas => {
-    // Ajouter le canvas capturé au PDF
-    doc.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, 210, 297); // 210x297 mm pour le format A4
+    var img = canvas.toDataURL("image/png");
 
-    // Enregistrer le PDF avec un nom de fichier spécifié
-    doc.save('votre_nom_de_fichier.pdf');
+    var doc = new jsPDF();
+    doc.setFont('Arial');
+    doc.save("climatisationfroid.pdf");
   });
 }
+
+function downloadPDF() {
+  var element = document.querySelector(".telechargerpdf");
+  html2canvas(element, {
+    scale: 2,
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: document.documentElement.offsetWidth,
+    windowHeight: document.documentElement.offsetHeight,
+    useCORS: true
+  }).then(function (canvas) {
+    var imgData = canvas.toDataURL("image/png", 1.0);
+    var pdf = new jsPDF("p", "mm", "a4", true);
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    pdf.save("climatisationfroid.pdf");
+  });
+}
+document.getElementById("telecharger").addEventListener("click", function () {
+  downloadPDF();
+});
+
 
 </script>
 
