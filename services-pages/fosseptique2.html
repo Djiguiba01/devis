@@ -471,7 +471,7 @@
   </button>
 
 
-<p  style="text-align: center;">gfff</p>
+<p  style="text-align: center;">bbiii</p>
 
 
 
@@ -693,42 +693,36 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function captureEtTelecharger() {
-  const elementToCapture = document.querySelector('.telechargerpdf');
+ function captureAndDownloadPDF() {
+    const pdf = new jsPDF();
 
-  // Capture du contenu de la classe "telechargerpdf" sous forme d'une image
-  html2canvas(elementToCapture).then(canvas => {
-    const imgData = canvas.toDataURL('image/png'); // Convertir l'image en format base64
+    // Capture content of the element with class "telechargerpdf"
+    const container = document.querySelector(".telechargerpdf");
+    const content = container.innerHTML;
 
-    // Création du document PDF
-    const doc = new jsPDF();
+    // Split the content into two pages based on elements with IDs "t1" and "t2"
+    const page1Content = document.querySelector("#t1").outerHTML;
+    const page2Content = document.querySelector("#t2").outerHTML;
 
-    // Ajout de l'image capturée dans le document PDF
-    doc.addImage(imgData, 'PNG', 0, 0, 210, 297); // Taille A4 standard (210x297 mm)
+    // Set the content of the first page
+    container.innerHTML = page1Content;
+    pdf.html(container, {
+      callback: function () {
+        // Add the second page to the PDF
+        container.innerHTML = page2Content;
+        pdf.addPage();
+        pdf.html(container, {
+          callback: function () {
+            // Save the PDF with the specified filename
+            pdf.save("devis_fosse_septique.pdf");
+          },
+        });
+      },
+    });
+  }
 
-    // Sauvegarde du document PDF avec le contenu capturé
-    doc.save('telechargement.pdf');
-
-    // Vous pouvez également afficher l'image capturée sur la page
-    const img = new Image();
-    img.src = imgData;
-    document.body.appendChild(img);
-  });
-}
-
-// La fonction pour afficher le bouton et appeler captureEtTelecharger()
-function afficherBoutonTelecharger() {
-  const boutonTelecharger = document.getElementById('telecharger');
-
-  // Afficher le bouton
-  boutonTelecharger.style.display = 'block';
-
-  // Appeler captureEtTelecharger() lorsqu'on clique sur le bouton
-  boutonTelecharger.addEventListener('click', captureEtTelecharger);
-}
-// Appeler afficherBoutonTelecharger() lorsque la page a fini de charger
-window.onload = afficherBoutonTelecharger;
-
+  // Add a click event listener to the button
+  document.getElementById("telecharger").addEventListener("click", captureAndDownloadPDF);
 
 </script>
 
