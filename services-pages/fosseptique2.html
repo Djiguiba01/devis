@@ -682,42 +682,57 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function downloadPDF() {
+// Assurez-vous que les bibliothèques html2canvas et jsPDF sont correctement chargées.
+
+// Fonction pour télécharger le PDF
+function telechargerPDF() {
+  // Création d'un nouveau document PDF au format A4 en mode portrait
   var pdf = new jsPDF("p", "mm", "a4", true);
 
-  // Capture de la première page avec id "page1"
+  // Capture de la première page avec l'ID "page1"
   html2canvas(document.querySelector("#page1"), {
-    scale: 2,
+    scale: 2, // Échelle de capture
     scrollX: 0,
     scrollY: 0,
     windowWidth: document.documentElement.offsetWidth,
     windowHeight: document.documentElement.offsetHeight,
-    useCORS: true
+    useCORS: true, // Autoriser le téléchargement des images provenant d'autres domaines
   }).then(function (canvas) {
+    // Conversion du canevas en image au format PNG
     var imgData = canvas.toDataURL("image/png", 1.0);
     var width = pdf.internal.pageSize.getWidth();
     var height = pdf.internal.pageSize.getHeight();
 
+    // Ajout de l'image dans le document PDF
     pdf.addImage(imgData, "PNG", 0, 0, width, height);
 
     // Capture de la deuxième page avec la classe ".tabeaustandart"
     html2canvas(document.querySelector(".tabeaustandart"), {
-      scale: 2,
+      scale: 2, // Échelle de capture
       scrollX: 0,
       scrollY: 0,
       windowWidth: document.documentElement.offsetWidth,
       windowHeight: document.documentElement.offsetHeight,
-      useCORS: true
+      useCORS: true, // Autoriser le téléchargement des images provenant d'autres domaines
     }).then(function (canvas) {
+      // Conversion du canevas en image au format PNG
       var imgData2 = canvas.toDataURL("image/png", 1.0);
+
+      // Ajout d'une nouvelle page dans le document PDF
       pdf.addPage();
+
+      // Ajout de l'image de la deuxième page dans le document PDF (à partir de la deuxième page)
       pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
       // Sauvegarde du PDF avec les deux pages
-      pdf.save("aaa.pdf");
+      pdf.save("climatisationfroid.pdf");
     });
   });
 }
+// Ajout d'un événement au bouton pour déclencher le téléchargement du PDF
+document.getElementById("telecharger").addEventListener("click", function () {
+  telechargerPDF();
+});
 
 
 
