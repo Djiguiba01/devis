@@ -17,12 +17,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    <!-- ::::PDF::::::::: -->
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script> -->
 
-  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
- -->
+
 
 </head>
 <body>
@@ -465,13 +465,13 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;">
+  <button id="telecharger" style="display: none;" onclick="captureAndDownloadPDF()">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
 
 
-<p  style="text-align: center;">bbiii</p>
+<p  style="text-align: center;">ffggg</p>
 
 
 
@@ -693,37 +693,26 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
- function captureAndDownloadPDF() {
-    const pdf = new jsPDF();
+function captureAndDownloadPDF() {
+      const telechargerpdf = document.querySelector('.telechargerpdf');
 
-    // Capture content of the element with class "telechargerpdf"
-    const container = document.querySelector(".telechargerpdf");
-    const content = container.innerHTML;
+      // Capture le contenu de la classe "telechargerpdf" sous forme de canvas
+      html2canvas(telechargerpdf).then((canvas) => {
+        const pdf = new jsPDF();
+        const imgData = canvas.toDataURL('image/png');
 
-    // Split the content into two pages based on elements with IDs "t1" and "t2"
-    const page1Content = document.querySelector("#t1").outerHTML;
-    const page2Content = document.querySelector("#t2").outerHTML;
-
-    // Set the content of the first page
-    container.innerHTML = page1Content;
-    pdf.html(container, {
-      callback: function () {
-        // Add the second page to the PDF
-        container.innerHTML = page2Content;
+        // Ajouter la première page du PDF avec le contenu de id="t1"
+        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
         pdf.addPage();
-        pdf.html(container, {
-          callback: function () {
-            // Save the PDF with the specified filename
-            pdf.save("devis_fosse_septique.pdf");
-          },
-        });
-      },
-    });
-  }
 
-  // Add a click event listener to the button
-  document.getElementById("telecharger").addEventListener("click", captureAndDownloadPDF);
+        // Ajouter la deuxième page du PDF avec le contenu de id="t2"
+        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
 
+        // Télécharger le PDF avec le nom "telechargement.pdf"
+        pdf.save('telechargement.pdf');
+      });
+    }
+    
 </script>
 
  
