@@ -460,7 +460,7 @@
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
-<p  style="text-align: center;">dsss</p>
+<p  style="text-align: center;">rrrr</p>
 
 
 
@@ -683,39 +683,22 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 function telechargerContenu() {
-  // Set the options for pdf export
-  const options = {
-    margin: 10,
-    filename: 'output.pdf',
-    image: { type: 'png', quality: 0.98 },
-    html2canvas: { scale: 2 },
-    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-  };
+  // Créer un objet jsPDF
+  var doc = new jsPDF();
 
-  // Create a new jsPDF instance
-  const pdf = new jsPDF(options.jsPDF);
+  // Récupérer le contenu HTML de la div avec la classe "telechargerpdf"
+  var contenuDiv = document.querySelector('.telechargerpdf').innerHTML;
 
-  // Function to save the content of an element to the PDF
-  const saveElementToPDF = (element) => {
-    html2pdf().from(element).set(options).outputImg().then((pdfOutput) => {
-      pdf.addPage();
-      pdf.addImage(pdfOutput, 'PNG', 0, 0);
-      pdf.deletePage(1); // Delete the automatically added blank first page
-      pdf.save(options.filename);
-    });
-  };
+  // Générer le PDF en utilisant html2canvas pour capturer le contenu HTML dans le PDF
+  html2canvas(document.querySelector('.telechargerpdf'), {
+    scale: 1 // Vous pouvez régler la mise à l'échelle selon vos besoins
+  }).then(canvas => {
+    // Ajouter le canvas capturé au PDF
+    doc.addImage(canvas.toDataURL('image/jpeg'), 'JPEG', 0, 0, 210, 297); // 210x297 mm pour le format A4
 
-  // Set the content to display in two pages
-  const contentPage1 = document.getElementById("AffichedansToutableau");
-  const contentPage2Standart = document.getElementById("page2standart");
-  const contentPage2Gravier = document.getElementById("page2gravier");
-  const contentPage2Rocheuse = document.getElementById("page2rocheuse");
-
-  // Call the saveElementToPDF function for each page's content
-  saveElementToPDF(contentPage1);
-  saveElementToPDF(contentPage2Standart);
-  saveElementToPDF(contentPage2Gravier);
-  saveElementToPDF(contentPage2Rocheuse);
+    // Enregistrer le PDF avec un nom de fichier spécifié
+    doc.save('votre_nom_de_fichier.pdf');
+  });
 }
 
 </script>
