@@ -462,11 +462,11 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-<button id="telecharger" style="display: none;">
-  <span class="btnText">Télécharger PDF</span>
-  <i class="fa-solid fa-download"></i>
-</button>
-<p  style="text-align: center;">aaaa</p>
+  <button id="telecharger" style="display: none;">
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+  </button>
+<p  style="text-align: center;">bbb</p>
 
 
 
@@ -690,41 +690,60 @@ function afficherButtonEnFonctionDeSelection() {
 // :::::::PDF TELECHARGEMENT/////////
 // Transformation en image
 function telechargerPDF() {
-    // Diviser la page en deux parties
-    html2canvas(document.querySelector(".page1"), {
+  // Diviser la page en deux parties
+  html2canvas(document.querySelector(".page1"), {
+    scrollY: -window.scrollY
+  }).then(canvas1 => {
+    html2canvas(document.querySelector("#page2standart"), {
       scrollY: -window.scrollY
-    }).then(canvas1 => {
-      html2canvas(document.querySelector("#page2standart"), {
+    }).then(canvas2 => {
+      html2canvas(document.querySelector("#page2gravier"), {
         scrollY: -window.scrollY
-      }).then(canvas2 => {
-        html2canvas(document.querySelector("#page2gravier"), {
+      }).then(canvas3 => {
+        html2canvas(document.querySelector("#page2rocheuse"), {
           scrollY: -window.scrollY
-        }).then(canvas3 => {
-          html2canvas(document.querySelector("#page2rocheuse"), {
-            scrollY: -window.scrollY
-          }).then(canvas4 => {
-            const doc = new jsPDF();
-            const imgData1 = canvas1.toDataURL("image/jpeg", 1.0);
-            const imgData2 = canvas2.toDataURL("image/jpeg", 1.0);
-            const imgData3 = canvas3.toDataURL("image/jpeg", 1.0);
-            const imgData4 = canvas4.toDataURL("image/jpeg", 1.0);
-            const width = doc.internal.pageSize.getWidth();
-            const height = doc.internal.pageSize.getHeight();
-            doc.addImage(imgData1, "JPEG", 0, 0, width, height / 2);
-            doc.addPage();
-            doc.addImage(imgData2, "JPEG", 0, 0, width, height / 2);
-            doc.addPage();
-            doc.addImage(imgData3, "JPEG", 0, 0, width, height / 2);
-            doc.addPage();
-            doc.addImage(imgData4, "JPEG", 0, 0, width, height / 2);
-            doc.save("fosse_septique.pdf");
-          });
+        }).then(canvas4 => {
+          const doc = new jsPDF();
+          const imgData1 = canvas1.toDataURL("image/jpeg", 1.0);
+          const imgData2 = canvas2.toDataURL("image/jpeg", 1.0);
+          const imgData3 = canvas3.toDataURL("image/jpeg", 1.0);
+          const imgData4 = canvas4.toDataURL("image/jpeg", 1.0);
+          const width = doc.internal.pageSize.getWidth();
+          const height = doc.internal.pageSize.getHeight();
+          doc.addImage(imgData1, "JPEG", 0, 0, width, height / 2);
+          doc.addPage();
+          doc.addImage(imgData2, "JPEG", 0, 0, width, height / 2);
+          doc.addPage();
+          doc.addImage(imgData3, "JPEG", 0, 0, width, height / 2);
+          doc.addPage();
+          doc.addImage(imgData4, "JPEG", 0, 0, width, height / 2);
+          doc.save("fosse_septique.pdf");
         });
       });
     });
-  }
+  });
+}
+document.getElementById("telecharger").addEventListener("click", function () {
+  // Récupérer le conteneur de la page à convertir en PDF
+  var conteneur = document.querySelector('.toutcontainer');
 
-  document.getElementById("telecharger").addEventListener("click", telechargerPDF);
+  // Convertir le conteneur en image avec html2canvas
+  html2canvas(conteneur).then(function (canvas) {
+    var imgData = canvas.toDataURL('image/png');
+
+    // Créer un nouveau PDF avec jsPDF
+    var pdf = new jsPDF();
+
+    // Ajouter l'image convertie au PDF
+    pdf.addImage(imgData, 'PNG', 0, 0, 210, 297);
+
+    // Télécharger le PDF
+    pdf.save("devis_fosse_septique.pdf");
+
+    // Télécharger également le PDF avec la fonction telechargerPDF
+    telechargerPDF();
+  });
+});
 
 
 
