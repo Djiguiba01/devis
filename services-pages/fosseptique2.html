@@ -466,7 +466,7 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;" onclick="captureAndDownloadPDF()">
+  <button id="telecharger" style="display: none;" onclick="downloadPDF()">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
@@ -694,27 +694,51 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function captureAndDownloadPDF() {
+function downloadPDF() {
+            // Sélectionner tous les éléments avec la classe "telechargerpdf"
+            var elements = document.querySelectorAll(".telechargerpdf");
 
-      var doc = new jsPDF();
-      const telechargerpdf = document.querySelector('.telechargerpdf');
+            // Créer un tableau pour stocker les données des deux pages
+            var pagesData = [];
 
-      // Capture le contenu de la classe "telechargerpdf" sous forme de canvas
-      html2canvas(telechargerpdf).then((canvas) => {
-        const pdf = new jsPDF();
-        const imgData = canvas.toDataURL('image/png');
+            // Parcourir chaque élément avec la classe "telechargerpdf"
+            elements.forEach(function (element) {
+                // Utiliser html2canvas pour capturer le contenu de chaque élément
+                html2canvas(element, {
+                    scale: 2,
+                    scrollX: 0,
+                    scrollY: 0,
+                    windowWidth: document.documentElement.offsetWidth,
+                    windowHeight: document.documentElement.offsetHeight,
+                    useCORS: true
+                }).then(function (canvas) {
+                    // Convertir le canvas en image au format base64
+                    var imgData = canvas.toDataURL("image/png", 1.0);
+                    // Ajouter les données de l'image au tableau des pages
+                    pagesData.push(imgData);
 
-        // Ajouter la première page du PDF avec le contenu de id="t1"
-        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
-        pdf.addPage();
+                    // Vérifier si toutes les pages ont été traitées
+                    if (pagesData.length === elements.length) {
+                        // Créer un nouveau document PDF
+                        var pdf = new jsPDF("p", "mm", "a4", true);
 
-        // Ajouter la deuxième page du PDF avec le contenu de id="t2"
-        pdf.addImage(imgData, 'PNG', 10, 10, 190, 0);
+                        // Ajouter chaque page au document PDF
+                        pagesData.forEach(function (data) {
+                            var width = pdf.internal.pageSize.getWidth();
+                            var height = pdf.internal.pageSize.getHeight();
+                            pdf.addImage(data, "PNG", 0, 0, width, height);
+                            // Ajouter une nouvelle page si ce n'est pas la dernière
+                            if (pagesData.indexOf(data) !== pagesData.length - 1) {
+                                pdf.addPage();
+                            }
+                        });
 
-        // Télécharger le PDF avec le nom "telechargement.pdf"
-        pdf.save('telechargement.pdf');
-      });
-    }
+                        // Télécharger le PDF final
+                        pdf.save("etancheite.pdf");
+                    }
+                });
+            });
+        }
 
 </script>
 
