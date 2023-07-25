@@ -471,7 +471,7 @@
   </button>
 
 
-<p  style="text-align: center;">vvv</p>
+<p  style="text-align: center;">gdd</p>
 
 
 
@@ -694,32 +694,31 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
  // Function to download content as PDF
-  function downloadPDF() {
-    const pdf = new jsPDF();
+    function downloadPDF() {
+      const element = document.getElementById("t1");
+      const element2 = document.getElementById("t2");
 
-    // Function to add a page to the PDF with the provided content
-    function addPageToPDF(content) {
-      pdf.addPage();
-      pdf.fromHTML(content, 15, 15, {
-        width: 170
-      });
+      const opt = {
+        margin: 10,
+        filename: 'download.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: { scale: 2 },
+        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+      };
+
+      // Create a new HTML2PDF instance and add the first page content
+      const pdf = new window.html2pdf().from(element).set(opt);
+
+      // Add the second page content to the existing PDF
+      pdf.addPage().from(element2);
+
+      // Save the PDF
+      pdf.save();
     }
 
-    const t1Content = document.getElementById("t1").innerHTML;
-    const t2Content = document.getElementById("t2").innerHTML;
+    // Add an event listener to the button with id "telecharger"
+    document.getElementById("telecharger").addEventListener("click", downloadPDF);
 
-    // Add the first page (t1Content) to the PDF
-    addPageToPDF(t1Content);
-
-    // Add the second page (t2Content) to the PDF
-    addPageToPDF(t2Content);
-
-    // Save the PDF with the filename "download.pdf"
-    pdf.save("download.pdf");
-  }
-
-  // Add an event listener to the button with id "telecharger"
-  document.getElementById("telecharger").addEventListener("click", downloadPDF);
 
 </script>
 
