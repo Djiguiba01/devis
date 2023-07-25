@@ -471,7 +471,7 @@
   </button>
 
 
-<p  style="text-align: center;">gdd</p>
+<p  style="text-align: center;">cxxxcc</p>
 
 
 
@@ -693,32 +693,46 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
- // Function to download content as PDF
-    function downloadPDF() {
-      const element = document.getElementById("t1");
-      const element2 = document.getElementById("t2");
+ // Function to generate the PDF
+  function generatePDF() {
+    // Create a new jsPDF instance
+    const doc = new jsPDF();
 
-      const opt = {
-        margin: 10,
-        filename: 'download.pdf',
-        image: { type: 'jpeg', quality: 0.98 },
-        html2canvas: { scale: 2 },
-        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+    // Get the content of the elements with IDs "t1" and "t2"
+    const content1 = document.getElementById("t1");
+    const content2 = document.getElementById("t2");
+
+    // Generate the first page of the PDF using the content of "t1"
+    const options1 = {
+      margin: {
+        top: 10,
+        bottom: 10,
+        left: 10,
+        right: 10,
+      },
+    };
+    doc.addHTML(content1, options1, function () {
+      // Generate the second page of the PDF using the content of "t2"
+      const options2 = {
+        margin: {
+          top: 10,
+          bottom: 10,
+          left: 10,
+          right: 10,
+        },
+        pageBreak: { before: '#t2' }, // Add a page break before "t2"
       };
+      doc.addHTML(content2, options2, function () {
+        // Save the PDF
+        doc.save("download.pdf");
+      });
+    });
+  }
 
-      // Create a new HTML2PDF instance and add the first page content
-      const pdf = new window.html2pdf().from(element).set(opt);
-
-      // Add the second page content to the existing PDF
-      pdf.addPage().from(element2);
-
-      // Save the PDF
-      pdf.save();
-    }
-
-    // Add an event listener to the button with id "telecharger"
-    document.getElementById("telecharger").addEventListener("click", downloadPDF);
-
+  // Add event listener to the "Télécharger PDF" button
+  document.getElementById("telecharger").addEventListener("click", function () {
+    generatePDF();
+  });
 
 </script>
 
