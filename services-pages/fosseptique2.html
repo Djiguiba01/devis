@@ -683,46 +683,33 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 function telechargerContenu() {
-    // Get the container elements
-    const container1 = document.getElementById("AffichedansToutableau");
-    const container2standart = document.getElementById("page2standart");
-    const container2gravier = document.getElementById("page2gravier");
-    const container2rocheuse = document.getElementById("page2rocheuse");
+  // Create a new jsPDF instance
+  const doc = new jsPDF();
 
-    // Create a new jsPDF instance
-    const pdf = new jsPDF("p", "pt", "a4");
-
-    // Function to create a PDF from a container element
-    async function createPDFFromContainer(container) {
-      const canvas = await html2canvas(container);
+  // Function to save the content of an element to the PDF
+  const saveElementToPDF = (element, options) => {
+    html2canvas(element, options).then(canvas => {
       const imgData = canvas.toDataURL("image/png");
-      pdf.addImage(imgData, "PNG", 40, 40, 400, 400);
-      pdf.addPage();
-    }
+      doc.addImage(imgData, "PNG", 10, 10, 190, 277);
+      doc.addPage();
+    });
+  };
 
-    // Create PDF from container1 (page1)
-    createPDFFromContainer(container1)
-      .then(() => {
-        // Create PDF from container2standart (page2standart)
-        return createPDFFromContainer(container2standart);
-      })
-      .then(() => {
-        // Create PDF from container2gravier (page2gravier)
-        return createPDFFromContainer(container2gravier);
-      })
-      .then(() => {
-        // Create PDF from container2rocheuse (page2rocheuse)
-        return createPDFFromContainer(container2rocheuse);
-      })
-      .then(() => {
-        // Save the PDF
-        pdf.save("fosses_septiques.pdf");
-      })
-      .catch((error) => {
-        console.error("An error occurred while creating the PDF:", error);
-      });
-  }
+  // Set the content to display in two pages
+  const contentPage1 = document.getElementById("AffichedansToutableau");
+  const contentPage2Standart = document.getElementById("page2standart");
+  const contentPage2Gravier = document.getElementById("page2gravier");
+  const contentPage2Rocheuse = document.getElementById("page2rocheuse");
 
+  // Call the saveElementToPDF function for each page's content
+  saveElementToPDF(contentPage1, { width: 210, height: 297 });
+  saveElementToPDF(contentPage2Standart, { width: 210, height: 297 });
+  saveElementToPDF(contentPage2Gravier, { width: 210, height: 297 });
+  saveElementToPDF(contentPage2Rocheuse, { width: 210, height: 297 });
+
+  // Save the PDF with the specified name
+  doc.save("output.pdf");
+}
 
 
 </script>
