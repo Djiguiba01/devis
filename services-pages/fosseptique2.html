@@ -471,7 +471,7 @@
   </button>
 
 
-<p  style="text-align: center;">cxxxcc</p>
+<p  style="text-align: center;">gfff</p>
 
 
 
@@ -693,46 +693,42 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
- // Function to generate the PDF
-  function generatePDF() {
-    // Create a new jsPDF instance
+function captureEtTelecharger() {
+  const elementToCapture = document.querySelector('.telechargerpdf');
+
+  // Capture du contenu de la classe "telechargerpdf" sous forme d'une image
+  html2canvas(elementToCapture).then(canvas => {
+    const imgData = canvas.toDataURL('image/png'); // Convertir l'image en format base64
+
+    // Création du document PDF
     const doc = new jsPDF();
 
-    // Get the content of the elements with IDs "t1" and "t2"
-    const content1 = document.getElementById("t1");
-    const content2 = document.getElementById("t2");
+    // Ajout de l'image capturée dans le document PDF
+    doc.addImage(imgData, 'PNG', 0, 0, 210, 297); // Taille A4 standard (210x297 mm)
 
-    // Generate the first page of the PDF using the content of "t1"
-    const options1 = {
-      margin: {
-        top: 10,
-        bottom: 10,
-        left: 10,
-        right: 10,
-      },
-    };
-    doc.addHTML(content1, options1, function () {
-      // Generate the second page of the PDF using the content of "t2"
-      const options2 = {
-        margin: {
-          top: 10,
-          bottom: 10,
-          left: 10,
-          right: 10,
-        },
-        pageBreak: { before: '#t2' }, // Add a page break before "t2"
-      };
-      doc.addHTML(content2, options2, function () {
-        // Save the PDF
-        doc.save("download.pdf");
-      });
-    });
-  }
+    // Sauvegarde du document PDF avec le contenu capturé
+    doc.save('telechargement.pdf');
 
-  // Add event listener to the "Télécharger PDF" button
-  document.getElementById("telecharger").addEventListener("click", function () {
-    generatePDF();
+    // Vous pouvez également afficher l'image capturée sur la page
+    const img = new Image();
+    img.src = imgData;
+    document.body.appendChild(img);
   });
+}
+
+// La fonction pour afficher le bouton et appeler captureEtTelecharger()
+function afficherBoutonTelecharger() {
+  const boutonTelecharger = document.getElementById('telecharger');
+
+  // Afficher le bouton
+  boutonTelecharger.style.display = 'block';
+
+  // Appeler captureEtTelecharger() lorsqu'on clique sur le bouton
+  boutonTelecharger.addEventListener('click', captureEtTelecharger);
+}
+// Appeler afficherBoutonTelecharger() lorsque la page a fini de charger
+window.onload = afficherBoutonTelecharger;
+
 
 </script>
 
