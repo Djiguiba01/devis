@@ -378,12 +378,6 @@
     </tr>
   </table>
 </div>
-  
-
-
-
-
-
 
 
 <!-- ::::::::TABEAU ROCHEUSE::::: -->
@@ -466,9 +460,7 @@
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
-<p  style="text-align: center;">ccc</p>
-<!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
-<button type="button" id="telecharger" onclick="downloadPDF()">Télécharger PDF</button>
+<p  style="text-align: center;">cvcc</p>
 
 
 
@@ -690,64 +682,52 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-// Transformation en image
-window.html2canvas = html2canvas;
-window.jsPDF = window.jspdf.jsPDF;
-function makePDF(){
+ // Fonction pour afficher le contenu en fonction du bouton cliqué
+ function telechargerContenu() {
+    // Récupérer la valeur sélectionnée du champ "selectzone"
+    var selectZone = document.getElementById("selectzone");
+    var zoneSelectionnee = selectZone.value;
 
-html2canvas(document.querySelector("#AffichedansToutableau"),{
+    var page1Class = "page1";
+    var page2Class;
 
-allowTaint:true,
-useCORS: true,
-scale: 1
-}).then(canvas => {
-// document.body.appendChild(canvas)
-var img = canvas.toDataURL("image/png");
+    // Vérifier quelle zone a été sélectionnée
+    if (zoneSelectionnee === "standartselect") {
+      page2Class = "tabeaustandart";
+    } else if (zoneSelectionnee === "gravierselect") {
+      page2Class = "tabeaugravier";
+    } else if (zoneSelectionnee === "rocheuseselect") {
+      page2Class = "tabeaurocheuse";
+    } else {
+      alert("Veuillez sélectionner une zone avant de télécharger.");
+      return;
+    }
 
-var doc = new jsPDF();
-doc.setFont('Arial');
-//   doc.getFontSize(11);
-//   doc.addImage(img,'PNG',7,13,195,105);
-doc.save("plomberie");
-});
-}
-//   Téléchargement PDF
-function downloadPDF() {
-var element = document.getElementById("AffichedansToutableau");
-html2canvas(element, {
-scale: 2,
-scrollX: 0,
-scrollY: 0,
-windowWidth: document.documentElement.offsetWidth,
-windowHeight: document.documentElement.offsetHeight,
-useCORS: true
-}).then(function(canvas) {
-var imgData = canvas.toDataURL("image/png", 1.0);
-var pdf = new jsPDF("p", "mm", "a4");
-var width = pdf.internal.pageSize.getWidth();
-var height = pdf.internal.pageSize.getHeight();
+    // Cacher tous les contenus de class="telechargerpdf"
+    var telechargerpdfElements = document.getElementsByClassName("telechargerpdf");
+    for (var i = 0; i < telechargerpdfElements.length; i++) {
+      telechargerpdfElements[i].style.display = "none";
+    }
 
-var table1 = document.getElementById("AffichedansToutableau");
-var table2 = document.getElementById("page2standart");
+    // Afficher le contenu correspondant aux classes de page1 et page2
+    document.querySelector("." + page1Class).style.display = "block";
+    document.querySelector("." + page2Class).style.display = "block";
 
-if (table1.rows.length > 13) {
-// Première page avec les premières 13 lignes de la table t1
-pdf.addImage(imgData, "PNG", 0, 0, width, height);
-pdf.addPage();
+    // Télécharger le PDF
+    var pdfElement = document.getElementById("containairpdf");
+    html2canvas(pdfElement).then(function (canvas) {
+      var pdf = new jsPDF("p", "pt", "a4");
+      var width = pdf.internal.pageSize.getWidth();
+      var height = pdf.internal.pageSize.getHeight();
+      var imgData = canvas.toDataURL("image/png", 1.0);
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
+      pdf.save("fosse_septique.pdf");
+    });
+  }
 
-// Deuxième page avec les lignes restantes de la table t1 et la table t2
-var imgData2 = canvas.toDataURL("image/png", 1.0);
-pdf.addImage(imgData2, "PNG", 0, 0, width, height);
-
-// Supprimez la première ligne de la table t2 car elle a déjà été ajoutée dans la première page
-table2.deleteRow(0);
-} else {
-pdf.addImage(imgData, "PNG", 0, 0, width, height);
-}
-
-pdf.save("plombier.pdf");
-});
-}
+  // Écouter le clic sur le bouton avec id="telecharger"
+  var telechargerButton = document.getElementById("telecharger");
+  telechargerButton.addEventListener("click", telechargerContenu);
 
 
 
