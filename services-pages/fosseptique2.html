@@ -460,7 +460,7 @@
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
-<p  style="text-align: center;">vvv</p>
+<p  style="text-align: center;">dsss</p>
 
 
 
@@ -683,15 +683,25 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 function telechargerContenu() {
+  // Set the options for pdf export
+  const options = {
+    margin: 10,
+    filename: 'output.pdf',
+    image: { type: 'png', quality: 0.98 },
+    html2canvas: { scale: 2 },
+    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+  };
+
   // Create a new jsPDF instance
-  const doc = new jsPDF();
+  const pdf = new jsPDF(options.jsPDF);
 
   // Function to save the content of an element to the PDF
-  const saveElementToPDF = (element, options) => {
-    html2canvas(element, options).then(canvas => {
-      const imgData = canvas.toDataURL("image/png");
-      doc.addImage(imgData, "PNG", 10, 10, 190, 277);
-      doc.addPage();
+  const saveElementToPDF = (element) => {
+    html2pdf().from(element).set(options).outputImg().then((pdfOutput) => {
+      pdf.addPage();
+      pdf.addImage(pdfOutput, 'PNG', 0, 0);
+      pdf.deletePage(1); // Delete the automatically added blank first page
+      pdf.save(options.filename);
     });
   };
 
@@ -702,15 +712,11 @@ function telechargerContenu() {
   const contentPage2Rocheuse = document.getElementById("page2rocheuse");
 
   // Call the saveElementToPDF function for each page's content
-  saveElementToPDF(contentPage1, { width: 210, height: 297 });
-  saveElementToPDF(contentPage2Standart, { width: 210, height: 297 });
-  saveElementToPDF(contentPage2Gravier, { width: 210, height: 297 });
-  saveElementToPDF(contentPage2Rocheuse, { width: 210, height: 297 });
-
-  // Save the PDF with the specified name
-  doc.save("output.pdf");
+  saveElementToPDF(contentPage1);
+  saveElementToPDF(contentPage2Standart);
+  saveElementToPDF(contentPage2Gravier);
+  saveElementToPDF(contentPage2Rocheuse);
 }
-
 
 </script>
 
