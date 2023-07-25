@@ -695,15 +695,12 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 function downloadPDF() {
-            // Sélectionner tous les éléments avec la classe "telechargerpdf"
-            var elements = document.querySelectorAll(".telechargerpdf");
+            var pages = document.querySelectorAll(".telechargerpdf");
+            var pdf = new jsPDF("p", "mm", "a4", true);
 
-            // Créer un tableau pour stocker les données des deux pages
-            var pagesData = [];
+            var processPage = function (index) {
+                var element = pages[index];
 
-            // Parcourir chaque élément avec la classe "telechargerpdf"
-            elements.forEach(function (element) {
-                // Utiliser html2canvas pour capturer le contenu de chaque élément
                 html2canvas(element, {
                     scale: 2,
                     scrollX: 0,
@@ -712,33 +709,28 @@ function downloadPDF() {
                     windowHeight: document.documentElement.offsetHeight,
                     useCORS: true
                 }).then(function (canvas) {
-                    // Convertir le canvas en image au format base64
                     var imgData = canvas.toDataURL("image/png", 1.0);
-                    // Ajouter les données de l'image au tableau des pages
-                    pagesData.push(imgData);
+                    var width = pdf.internal.pageSize.getWidth();
+                    var height = pdf.internal.pageSize.getHeight();
 
-                    // Vérifier si toutes les pages ont été traitées
-                    if (pagesData.length === elements.length) {
-                        // Créer un nouveau document PDF
-                        var pdf = new jsPDF("p", "mm", "a4", true);
+                    pdf.addImage(imgData, "PNG", 0, 0, width, height);
 
-                        // Ajouter chaque page au document PDF
-                        pagesData.forEach(function (data) {
-                            var width = pdf.internal.pageSize.getWidth();
-                            var height = pdf.internal.pageSize.getHeight();
-                            pdf.addImage(data, "PNG", 0, 0, width, height);
-                            // Ajouter une nouvelle page si ce n'est pas la dernière
-                            if (pagesData.indexOf(data) !== pagesData.length - 1) {
-                                pdf.addPage();
-                            }
-                        });
-
-                        // Télécharger le PDF final
+                    // Si ce n'est pas la dernière page, ajouter une nouvelle page avant de passer à la suivante
+                    if (index !== pages.length - 1) {
+                        pdf.addPage();
+                        processPage(index + 1); // Passer à la page suivante
+                    } else {
+                        // Si c'est la dernière page, sauvegarder le PDF
                         pdf.save("etancheite.pdf");
                     }
                 });
-            });
+            };
+
+            // Démarrer le processus en appelant automatiquement le bouton
+            document.getElementById("telecharger").disabled = true; // Désactiver le bouton pour éviter les clics multiples
+            processPage(0);
         }
+
 
 </script>
 
