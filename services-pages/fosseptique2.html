@@ -456,11 +456,11 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;">
+  <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
-<p  style="text-align: center;">cvcc</p>
+<p  style="text-align: center;">www</p>
 
 
 
@@ -682,8 +682,8 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
- // Fonction pour afficher le contenu en fonction du bouton cliqué
- function telechargerContenu() {
+// Fonction pour afficher le contenu en fonction du bouton cliqué
+function telechargerContenu() {
     // Récupérer la valeur sélectionnée du champ "selectzone"
     var selectZone = document.getElementById("selectzone");
     var zoneSelectionnee = selectZone.value;
@@ -698,10 +698,11 @@ function afficherButtonEnFonctionDeSelection() {
       page2Class = "tabeaugravier";
     } else if (zoneSelectionnee === "rocheuseselect") {
       page2Class = "tabeaurocheuse";
-    } else {
-      alert("Veuillez sélectionner une zone avant de télécharger.");
-      return;
-    }
+    } 
+    // else {
+    //   alert("Veuillez sélectionner une zone avant de télécharger.");
+    //   return;
+    // }
 
     // Cacher tous les contenus de class="telechargerpdf"
     var telechargerpdfElements = document.getElementsByClassName("telechargerpdf");
@@ -724,7 +725,6 @@ function afficherButtonEnFonctionDeSelection() {
       pdf.save("fosse_septique.pdf");
     });
   }
-
   // Écouter le clic sur le bouton avec id="telecharger"
   var telechargerButton = document.getElementById("telecharger");
   telechargerButton.addEventListener("click", telechargerContenu);
