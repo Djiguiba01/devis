@@ -136,9 +136,14 @@
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
-<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div class="telechargerpdf" id="capture" style="padding-bottom: 8%;">
 <div id="containairpdf" style="display: none; padding-bottom: 10px;">
-		
+	
+
+<!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
+<div id="t1">
+
+  	
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -170,14 +175,10 @@
     <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
     <li id="zone"><div class="coordtext">Zone : </div> </li>
     </ul>
-    <!-- :::::::::::::: -->
-
-    
-  
 
   <!-- :::::::TABEAU QUI AFFICHE DANS TOUT ::::::::::::-->
   <div id="AffichedansToutableau"  style="display: none;">
-  <table class="tableau" id="page1">
+  <table class="tableau">
     <tr id="header">
       <th>N°</th>
       <th>Désignation</th>
@@ -259,186 +260,195 @@
     
   </table>
 
-  <div class="tabeaustandart">
-     <!-- :::::::::ENTETE::::::::::::: -->
-  <div class="entete">
-    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
-    <div class="entete-text">
-    <h1>IKA PLOMBIER SARL</h1>
-    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
-    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
-    <p>Email: ctraore@ikaplombier.com</p>
-    <p>Tel: 74 24 00 74</p>
-    </div>
-    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
-  </div>
-  <!-- :::::::::ENTETE::::::::::::: -->
-  
-  <!-- ::::::::::::::: -->
-  <hr class="hr1" >
-  <hr class="hr2" >
+</div>
 
-    <table class="tableau" >
-      <tr>
-        <td>11 </td>
-        <td>Fer 12 </td>
-        <td id="ufosse11"> 4 b </td>
-        <td id="qfosse11"> 2 500 </td>
-        <td id="mfosse11"> 10 000 </td>
-      </tr>
-      <tr>
-        <td>12 </td>
-        <td>Tuyau PVC 110 </td>
-        <td id="ufosse12"> 1 U </td>
-        <td id="qfosse12"> 11 000 </td>
-        <td id="mfosse12"> 11 000 </td>
-      </tr>
-      <tr>
-        <td>13 </td>
-        <td>Sika </td>
-        <td id="ufosse12"> 2 sacs </td>
-        <td id="qfosse12"> 5 000 </td>
-        <td id="mfosse12"> 10 000 </td>
-      </tr>
-      <tr>
-        <td>14 </td>
-        <td colspan="3"  style="text-align: center;">Fouille </td>
-        <td id="mfosse12"> 79 000 </td>
-      </tr>
-      <tr>
-        <td>15 </td>
-        <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-        <td id="moeuvres">100 000 </td>
-      </tr> 
-      <tr style="background-color: #5f7acb;">
-        <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-        <td id="montant1"> 500 000 </td>
-      </tr>
-    </table>
-  </div>
 </div>
 
 
+<!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
+<div id="t2" style=" margin-top: 1%;">
 
+  <!-- :::::::::TABLEAU STANDART::::::::::: -->
+  <div class="tabeaustandart">
+    <!-- :::::::::ENTETE::::::::::::: -->
+ <div class="entete">
+   <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+   <div class="entete-text">
+   <h1>IKA PLOMBIER SARL</h1>
+   <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+   <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+   <p>Email: ctraore@ikaplombier.com</p>
+   <p>Tel: 74 24 00 74</p>
+   </div>
+   <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+ </div>
+ <!-- :::::::::ENTETE::::::::::::: -->
+ 
+ <!-- ::::::::::::::: -->
+ <hr class="hr1" >
+ <hr class="hr2" >
+
+   <table class="tableau" >
+     <tr>
+       <td>11 </td>
+       <td>Fer 12 </td>
+       <td id="ufosse11"> 4 b </td>
+       <td id="qfosse11"> 2 500 </td>
+       <td id="mfosse11"> 10 000 </td>
+     </tr>
+     <tr>
+       <td>12 </td>
+       <td>Tuyau PVC 110 </td>
+       <td id="ufosse12"> 1 U </td>
+       <td id="qfosse12"> 11 000 </td>
+       <td id="mfosse12"> 11 000 </td>
+     </tr>
+     <tr>
+       <td>13 </td>
+       <td>Sika </td>
+       <td id="ufosse12"> 2 sacs </td>
+       <td id="qfosse12"> 5 000 </td>
+       <td id="mfosse12"> 10 000 </td>
+     </tr>
+     <tr>
+       <td>14 </td>
+       <td colspan="3"  style="text-align: center;">Fouille </td>
+       <td id="mfosse12"> 79 000 </td>
+     </tr>
+     <tr>
+       <td>15 </td>
+       <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+       <td id="moeuvres">100 000 </td>
+     </tr> 
+     <tr style="background-color: #5f7acb;">
+       <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+       <td id="montant1"> 500 000 </td>
+     </tr>
+   </table>
+ </div>
 
 <!-- ::::TABLEAU GRAVIER:::::: -->
 <div class="tabeaugravier" id="page2gravier" style="display: none;" >
-   <!-- :::::::::ENTETE::::::::::::: -->
-   <div class="entete">
-    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
-    <div class="entete-text">
-    <h1>IKA PLOMBIER SARL</h1>
-    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
-    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
-    <p>Email: ctraore@ikaplombier.com</p>
-    <p>Tel: 74 24 00 74</p>
-    </div>
-    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
-  </div>
   <!-- :::::::::ENTETE::::::::::::: -->
-  
-  <!-- ::::::::::::::: -->
-  <hr class="hr1" >
-  <hr class="hr2" >
-  <table class="tableau" >
-    <tr>
-      <td>11 </td>
-      <td>Fer 12 </td>
-      <td id="ufosse11"> 4 b </td>
-      <td id="qfosse11"> 2 500 </td>
-      <td id="mfosse11"> 10 000 </td>
-    </tr>
-    <tr>
-      <td>12 </td>
-      <td>Tuyau PVC 110 </td>
-      <td id="ufosse12"> 1 U </td>
-      <td id="qfosse12"> 11 000 </td>
-      <td id="mfosse12"> 11 000 </td>
-    </tr>
-    <tr>
-      <td>13 </td>
-      <td>Sika </td>
-      <td id="ufosse12"> 2 sacs </td>
-      <td id="qfosse12"> 5 000 </td>
-      <td id="mfosse12"> 10 000 </td>
-    </tr>
-    <tr>
-      <td>14 </td>
-      <td colspan="3"  style="text-align: center;">Fouille </td>
-      <td id="mfosse12"> 189 000 </td>
-    </tr>
-    <tr>
-      <td>15 </td>
-      <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-      <td id="moeuvres">100 000 </td>
-    </tr> 
-    <tr style="background-color: #5f7acb;">
-      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-      <td id="montant2"> 600 000 </td>
-    </tr>
-  </table>
+  <div class="entete">
+   <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+   <div class="entete-text">
+   <h1>IKA PLOMBIER SARL</h1>
+   <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+   <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+   <p>Email: ctraore@ikaplombier.com</p>
+   <p>Tel: 74 24 00 74</p>
+   </div>
+   <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+ </div>
+ <!-- :::::::::ENTETE::::::::::::: -->
+ 
+ <!-- ::::::::::::::: -->
+ <hr class="hr1" >
+ <hr class="hr2" >
+ <table class="tableau" >
+   <tr>
+     <td>11 </td>
+     <td>Fer 12 </td>
+     <td id="ufosse11"> 4 b </td>
+     <td id="qfosse11"> 2 500 </td>
+     <td id="mfosse11"> 10 000 </td>
+   </tr>
+   <tr>
+     <td>12 </td>
+     <td>Tuyau PVC 110 </td>
+     <td id="ufosse12"> 1 U </td>
+     <td id="qfosse12"> 11 000 </td>
+     <td id="mfosse12"> 11 000 </td>
+   </tr>
+   <tr>
+     <td>13 </td>
+     <td>Sika </td>
+     <td id="ufosse12"> 2 sacs </td>
+     <td id="qfosse12"> 5 000 </td>
+     <td id="mfosse12"> 10 000 </td>
+   </tr>
+   <tr>
+     <td>14 </td>
+     <td colspan="3"  style="text-align: center;">Fouille </td>
+     <td id="mfosse12"> 189 000 </td>
+   </tr>
+   <tr>
+     <td>15 </td>
+     <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+     <td id="moeuvres">100 000 </td>
+   </tr> 
+   <tr style="background-color: #5f7acb;">
+     <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+     <td id="montant2"> 600 000 </td>
+   </tr>
+ </table>
 </div>
 
 
 <!-- ::::::::TABEAU ROCHEUSE::::: -->
 <div class="tabeaurocheuse" id="page2rocheuse" style="display: none;">
 
-   <!-- :::::::::ENTETE::::::::::::: -->
-   <div class="entete">
-    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
-    <div class="entete-text">
-    <h1>IKA PLOMBIER SARL</h1>
-    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
-    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
-    <p>Email: ctraore@ikaplombier.com</p>
-    <p>Tel: 74 24 00 74</p>
-    </div>
-    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
-  </div>
   <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+   <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+   <div class="entete-text">
+   <h1>IKA PLOMBIER SARL</h1>
+   <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+   <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+   <p>Email: ctraore@ikaplombier.com</p>
+   <p>Tel: 74 24 00 74</p>
+   </div>
+   <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+ </div>
+ <!-- :::::::::ENTETE::::::::::::: -->
+ 
+ <!-- ::::::::::::::: -->
+ <hr class="hr1" >
+ <hr class="hr2" >
+ <table class="tableau">
   
-  <!-- ::::::::::::::: -->
-  <hr class="hr1" >
-  <hr class="hr2" >
-  <table class="tableau">
-   
-    <tr>
-      <td>11 </td>
-      <td>Fer 12 </td>
-      <td id="ufosse11"> 4 b </td>
-      <td id="qfosse11"> 2 500 </td>
-      <td id="mfosse11"> 10 000 </td>
-    </tr>
-    <tr>
-      <td>12 </td>
-      <td>Tuyau PVC 110 </td>
-      <td id="ufosse12"> 1 U </td>
-      <td id="qfosse12"> 11 000 </td>
-      <td id="mfosse12"> 11 000 </td>
-    </tr>
-    <tr>
-      <td>13 </td>
-      <td>Sika </td>
-      <td id="ufosse12"> 2 sacs </td>
-      <td id="qfosse12"> 5 000 </td>
-      <td id="mfosse12"> 10 000 </td>
-    </tr>
-    <tr>
-      <td>14 </td>
-      <td colspan="3"  style="text-align: center;">Fouille </td>
-      <td id="mfosse12"> 339 000 </td>
-    </tr>
-    <tr>
-      <td>15 </td>
-      <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-      <td id="moeuvres">100 000 </td>
-    </tr> 
-    <tr style="background-color: #5f7acb;">
-      <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-      <td id="montant3"> 750 000 </td>
-    </tr>
-  </table>
+   <tr>
+     <td>11 </td>
+     <td>Fer 12 </td>
+     <td id="ufosse11"> 4 b </td>
+     <td id="qfosse11"> 2 500 </td>
+     <td id="mfosse11"> 10 000 </td>
+   </tr>
+   <tr>
+     <td>12 </td>
+     <td>Tuyau PVC 110 </td>
+     <td id="ufosse12"> 1 U </td>
+     <td id="qfosse12"> 11 000 </td>
+     <td id="mfosse12"> 11 000 </td>
+   </tr>
+   <tr>
+     <td>13 </td>
+     <td>Sika </td>
+     <td id="ufosse12"> 2 sacs </td>
+     <td id="qfosse12"> 5 000 </td>
+     <td id="mfosse12"> 10 000 </td>
+   </tr>
+   <tr>
+     <td>14 </td>
+     <td colspan="3"  style="text-align: center;">Fouille </td>
+     <td id="mfosse12"> 339 000 </td>
+   </tr>
+   <tr>
+     <td>15 </td>
+     <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+     <td id="moeuvres">100 000 </td>
+   </tr> 
+   <tr style="background-color: #5f7acb;">
+     <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+     <td id="montant3"> 750 000 </td>
+   </tr>
+ </table>
 </div>
+  
+</div>
+
+
   
   <!-- :: -->
   <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
@@ -456,11 +466,15 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
+  <!-- <button id="telecharger" style="display: none;" onclick="telechargerContenu()">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
-  </button>
-<p  style="text-align: center;">qsqsq</p>
+  </button> -->
+
+    <!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
+    <button type="button" id="telecharger" onclick="downloadPDF()">Télécharger PDF</button>
+
+<p  style="text-align: center;">kkk</p>
 
 
 
@@ -682,56 +696,63 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-// Fonction pour télécharger le PDF
-function telechargerPDF() {
-  // Création d'un nouveau document PDF au format A4 en mode portrait
-  var pdf = new jsPDF("p", "mm", "a4", true);
+window.html2canvas = html2canvas;
+window.jsPDF = window.jspdf.jsPDF;
+function makePDF(){
 
-  // Capture de la première page avec l'ID "page1"
-  html2canvas(document.querySelector("#page1"), {
-    scale: 2, // Échelle de capture
-    scrollX: 0,
-    scrollY: 0,
-    windowWidth: document.documentElement.offsetWidth,
-    windowHeight: document.documentElement.offsetHeight,
-    useCORS: true, // Autoriser le téléchargement des images provenant d'autres domaines
-  }).then(function (canvas) {
-    // Conversion du canevas en image au format PNG
-    var imgData = canvas.toDataURL("image/png", 1.0);
-    var width = pdf.internal.pageSize.getWidth();
-    var height = pdf.internal.pageSize.getHeight();
+html2canvas(document.querySelector("#capture"),{
 
-    // Ajout de l'image dans le document PDF
-    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+allowTaint:true,
+useCORS: true,
+scale: 1
+}).then(canvas => {
+// document.body.appendChild(canvas)
+var img = canvas.toDataURL("image/png");
 
-    // Capture de la deuxième page avec la classe ".tabeaustandart"
-    html2canvas(document.querySelector(".tabeaustandart"), {
-      scale: 2, // Échelle de capture
-      scrollX: 0,
-      scrollY: 0,
-      windowWidth: document.documentElement.offsetWidth,
-      windowHeight: document.documentElement.offsetHeight,
-      useCORS: true, // Autoriser le téléchargement des images provenant d'autres domaines
-    }).then(function (canvas) {
-      // Conversion du canevas en image au format PNG
-      var imgData2 = canvas.toDataURL("image/png", 1.0);
-
-      // Ajout d'une nouvelle page dans le document PDF
-      pdf.addPage();
-
-      // Ajout de l'image de la deuxième page dans le document PDF (à partir de la deuxième page)
-      pdf.addImage(imgData2, "PNG", 0, 0, width, height);
-
-      // Sauvegarde du PDF avec les deux pages
-      pdf.save("climatisationfroid.pdf");
-    });
-  });
-}
-// Ajout d'un événement au bouton pour déclencher le téléchargement du PDF
-document.getElementById("telecharger").addEventListener("click", function () {
-  telechargerPDF();
+var doc = new jsPDF();
+doc.setFont('Arial');
+//   doc.getFontSize(11);
+//   doc.addImage(img,'PNG',7,13,195,105);
+doc.save("plomberie");
 });
+}
+//   Téléchargement PDF
+function downloadPDF() {
+var element = document.getElementById("capture");
+html2canvas(element, {
+scale: 2,
+scrollX: 0,
+scrollY: 0,
+windowWidth: document.documentElement.offsetWidth,
+windowHeight: document.documentElement.offsetHeight,
+useCORS: true
+}).then(function(canvas) {
+var imgData = canvas.toDataURL("image/png", 1.0);
+var pdf = new jsPDF("p", "mm", "a4");
+var width = pdf.internal.pageSize.getWidth();
+var height = pdf.internal.pageSize.getHeight();
 
+var table1 = document.getElementById("t1");
+var table2 = document.getElementById("t2");
+
+if (table1.rows.length > 13) {
+// Première page avec les premières 13 lignes de la table t1
+pdf.addImage(imgData, "PNG", 0, 0, width, height);
+pdf.addPage();
+
+// Deuxième page avec les lignes restantes de la table t1 et la table t2
+var imgData2 = canvas.toDataURL("image/png", 1.0);
+pdf.addImage(imgData2, "PNG", 0, 0, width, height);
+
+// Supprimez la première ligne de la table t2 car elle a déjà été ajoutée dans la première page
+table2.deleteRow(0);
+} else {
+pdf.addImage(imgData, "PNG", 0, 0, width, height);
+}
+
+pdf.save("plombier.pdf");
+});
+}
 
 
 </script>
