@@ -259,7 +259,7 @@
     
   </table>
 
-  <div class="tabeaustandart">
+  <div class="tabeaustandart" id="page2standart">
      <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -277,6 +277,7 @@
   <!-- ::::::::::::::: -->
   <hr class="hr1" >
   <hr class="hr2" >
+
     <table class="tableau" >
       <tr>
         <td>11 </td>
@@ -321,7 +322,7 @@
 
 
 <!-- ::::TABLEAU GRAVIER:::::: -->
-<div class="tabeaugravier" id="page2" style="display: none;" >
+<div class="tabeaugravier" id="page2gravier" style="display: none;" >
    <!-- :::::::::ENTETE::::::::::::: -->
    <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -386,7 +387,7 @@
 
 
 <!-- ::::::::TABEAU ROCHEUSE::::: -->
-<div class="tabeaurocheuse" id="page2" style="display: none;">
+<div class="tabeaurocheuse" id="page2rocheuse" style="display: none;">
 
    <!-- :::::::::ENTETE::::::::::::: -->
    <div class="entete">
@@ -687,61 +688,59 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 // Transformation en image
-window.html2canvas = html2canvas;
-window.jsPDF = window.jspdf.jsPDF;
+function telechargerPDF() {
+    // Récupérer le contenu de la page
+    const content = document.documentElement;
 
-function makePDF() {
-  html2canvas(document.querySelector("#capture"), {
-    allowTaint: true,
-    useCORS: true,
-    scale: 1
-  }).then(canvas => {
-    var img = canvas.toDataURL("image/png");
+    // Créer un objet jsPDF
+    const doc = new jsPDF();
 
-    var doc = new jsPDF();
-    doc.setFont('Arial');
-    doc.save("fosseptique.pdf");
-  });
-}
+    // Fonction pour diviser la page en deux parties
+    function diviserPageEnDeux() {
+      // Récupérer la hauteur totale de la page
+      const hauteurTotale = content.scrollHeight;
 
-function downloadPDF() {
-    // Get the div containing the two sections
-    const container = document.querySelector('.telechargerpdf');
+      // Diviser la page en deux parties (50%)
+      const hauteurPage1 = hauteurTotale * 0.5;
+      const hauteurPage2 = hauteurTotale * 0.5;
 
-    // Get the divs for each page
-    const page1 = container.querySelector('.page1');
-    const page2 = container.querySelector('.page2');
+      // Créer un canvas pour la première partie (page1)
+      html2canvas(content, {
+        scale: 1,
+        scrollY: 0,
+        windowHeight: hauteurPage1,
+        windowWidth: window.innerWidth,
+      }).then((canvas1) => {
+        const image1 = canvas1.toDataURL("image/png");
 
-    // Get the total height of the container to avoid splitting images
-    const totalHeight = page1.offsetHeight + page2.offsetHeight;
+        // Ajouter la première partie au PDF
+        doc.addImage(image1, "PNG", 0, 0, 210, 297);
 
-    // Create a canvas for each page
-    html2canvas(page1, { scale: 2, height: totalHeight })
-      .then(canvas1 => {
-        html2canvas(page2, { scale: 2, height: totalHeight })
-          .then(canvas2 => {
-            // Create a PDF document
-            const doc = new jsPDF();
+        // Créer un canvas pour la deuxième partie
+        html2canvas(content, {
+          scale: 1,
+          scrollY: hauteurPage1,
+          windowHeight: hauteurPage2,
+          windowWidth: window.innerWidth,
+        }).then((canvas2) => {
+          const image2 = canvas2.toDataURL("image/png");
 
-            // Add the first page image to the PDF
-            const imgData1 = canvas1.toDataURL('image/jpeg', 1.0);
-            doc.addImage(imgData1, 'JPEG', 10, 10, 190, 140);
+          // Ajouter la deuxième partie au PDF
+          doc.addPage();
+          doc.addImage(image2, "PNG", 0, 0, 210, 297);
 
-            // Add a new page to the PDF
-            doc.addPage();
-
-            // Add the second page image to the PDF
-            const imgData2 = canvas2.toDataURL('image/jpeg', 1.0);
-            doc.addImage(imgData2, 'JPEG', 10, 10, 190, 140);
-
-            // Save the PDF with a specified name
-            doc.save('output.pdf');
-          });
+          // Enregistrer le PDF
+          doc.save("document.pdf");
+        });
       });
+    }
+
+    // Appeler la fonction pour diviser la page en deux parties et télécharger le PDF
+    diviserPageEnDeux();
   }
 
-  // Call the downloadPDF function when the "Télécharger PDF" button is clicked
-  document.getElementById('telecharger').addEventListener('click', downloadPDF);
+  // Ajouter un écouteur d'événement pour le bouton de téléchargement
+  document.getElementById("telecharger").addEventListener("click", telechargerPDF);
 
 
 
