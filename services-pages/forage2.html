@@ -4,7 +4,7 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Climatissation et Froid</title>
+  <title>FORAGE ADDUCTION D'EAU</title>
 
   <!-- ::CSS::::::: -->
   <link rel="stylesheet" href="servicepages2.css">
@@ -48,7 +48,7 @@
     <div class="container">
         <div class="enteteform" style="display: flex; justify-content: space-between; ">
           <div class="dd">
-            <header>Dévis Climatissation et Froid</header>
+            <header>DEVIS FORAGE ADDUCTION D'EAU</header>
           </div>
 
               <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
@@ -83,44 +83,33 @@
 
 
                         <div class="input-field">
-                            <select required id="selectservice">
-                                <option disabled selected>Service</option>
-                                <option value="serviceclimatisation">Climatisation</option>
-                                <option value="servicerefigerateur">Refrigerateur</option>
+                            <select required id="selecttype">
+                                <option disabled selected>Type</option>
+                                <option value="serviceforage">Forage</option>
+                                <option value="serviceadduction" disabled>Adduction d'eau</option>
                               </select>
                       </div>
 
 
                        <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
-                       <div id="champsclimatisation1" style="display: none;width: 200%;">
+                       <div id="champsclimatisation1" style="width: 200%;">
                        <div class="input-field">
                         <select required  id="problemeclimatisation">
-                            <option disabled selected>Problème</option>
-                            <option id="entretienselect">Entretien</option>
-                            <option id="installationselect">Installation</option>
-                            <option id="reparationselect">Réparation</option>
+                            <option disabled selected>Zones</option>
+                            <option value="sableuseselect">Sableuse</option>
+                            <option value="rocheuseselect">Rocheuse</option>
+                            <option value="terrefinselect">Terre fin</option>
+                            <option value="boueuseselect">Boueuse</option>
                         </select>
                     </div>
                 </div>
 
-                <div id="champsclimatisation2" style="display: none;width: 200%;">
+                <!-- <div id="champsclimatisation2" style="display: none;width: 200%;">
                 <div class="input-field">
-                    <input type="numberappareil" placeholder="surface"  >
+                    <input type="number" placeholder="Nombre appareil" id="numberappareil" >
                 </div>
-            </div>
+            </div> -->
 
-
-
-                    
-                   <!-- ::::::CHAMPS REFRIGERATEUR::::::::::: -->
-                   <div id="champsrefrigerateur1" style="display: none; width: 200%;">
-                    <div class="input-field" >
-                        <select required  id="problemerefigerateur">
-                            <option disabled selected>Problème</option>
-                            <option id="standartselect">Réparation</option>
-                          </select>
-                    </div>
-                   </div>
                                       
                         
                     </div>
@@ -139,23 +128,13 @@
 
                     </div>
 
-                    <!-- ::::::::BUTTON STANDART::::::: -->
-                    <button id="button" class="nextBtn" style="display: none;">
+                    <!-- ::::::::BUTTON CLIMATISATION::::::: -->
+                    <button id="buttonClimatisation" class="nextBtn" style="">
                         <span  class="btnText">Ajouter</span>
                         <i class="fa-solid fa-copy"></i>
                     </button>
 
-                    <!-- ::::::::BUTTON GRAVIER::::::: -->
-                    <!-- <button id="buttongravier" class="nextBtn" style="display: none;">
-                        <span  class="btnText">Ajouter</span>
-                        <i class="fa-solid fa-copy"></i>
-                    </button> -->
-
-                    <!-- ::::::::BUTTON ROCHEUSE::::::: -->
-                    <!-- <button id="buttonrocheuse" class="nextBtn" style="display: none;">
-                        <span  class="btnText">Ajouter</span>
-                        <i class="fa-solid fa-copy"></i>
-                    </button> -->
+                 
             
                 </div> 
             </div>
@@ -198,8 +177,6 @@
     <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
     <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
     <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-    <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
-    <li id="zone"><div class="coordtext">Zone : </div> </li>
     </ul>
     <!-- :::::::::::::: -->
 
@@ -207,29 +184,29 @@
   
 
   <!-- :::::::::CLIMATISATION ENTRETIEN::::::::: -->
-  <div id="tabeau" style="">
+  <div id="tabeauClimatisation" style="">
     <table>
       <tr>
         <td>
           <div class="opposes">
-            <div>Service</div>
-            <div> ?</div>
+            <div>fggggf</div>
+            <div > ?</div>
           </div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="opposes">
-            <div >Problème </div>
-            <div> ?</div>
+            <div >ddddd </div>
+            <div > ?</div>
           </div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="opposes">
-            <div>Nombre </div>
-            <div> ?</div>
+            <div>fff </div>
+            <div > ?</div>
           </div>
         </td>
        
@@ -237,22 +214,12 @@
       <tr>
         <td>
           <div class="opposes">
-            <div>Montant </div>
-            <div> ?</div>
+            <div >hzz </div>
+            <div > ?</div>
           </div>
         </td>
       </tr>
 
-      <tr>
-        <td>
-          <div class="opposes">
-            <div>Contenu à gauche</div>
-            <div>Contenu à droite</div>
-          </div>
-        </td>
-       
-      </tr>
-      <!-- Ajoutez plus de lignes ici si nécessaire -->
     </table>
   </div>
 
@@ -342,39 +309,12 @@ recupererNumero();
 
 
 
-// ::::::::::::AFFICHER CHAMPS EN FONCTION SERVICE:::::
-// Fonction pour afficher les champs correspondants au service sélectionné
-function afficherChamps() {
-    var selectService = document.getElementById("selectservice");
-    var serviceClimatisation = document.getElementById("serviceclimatisation");
-    var serviceRefrigerateur = document.getElementById("servicerefigerateur");
-    var champsClimatisation1 = document.getElementById("champsclimatisation1");
-    var champsClimatisation2 = document.getElementById("champsclimatisation2");
-    var champsRefrigerateur1 = document.getElementById("champsrefrigerateur1");
-    var button = document.getElementById("button");
 
-    if (selectService.value === "serviceclimatisation") {
-      champsClimatisation1.style.display = "block";
-      champsClimatisation2.style.display = "block";
-      champsRefrigerateur1.style.display = "none";
-      button.style.display = "block";
-    } else if (selectService.value === "servicerefigerateur") {
-      champsClimatisation1.style.display = "none";
-      champsClimatisation2.style.display = "none";
-      champsRefrigerateur1.style.display = "block";
-      button.style.display = "block";
-    } else {
-      // Si aucun service n'est sélectionné, masquer tous les champs
-      champsClimatisation1.style.display = "none";
-      champsClimatisation2.style.display = "none";
-      champsRefrigerateur1.style.display = "none";
-      button.style.display = "none";
-    }
-  }
-  // Ajoutez un écouteur d'événement pour détecter les changements de sélection du menu déroulant
-  document.getElementById("selectservice").addEventListener("change", afficherChamps);
-  // Appeler la fonction une fois au chargement de la page pour afficher les champs initiaux en fonction du service sélectionné (s'il y en a un)
-  afficherChamps();
+
+
+
+
+// ::::::::::::AFFICHER CHAMPS EN FONCTION TYPE:::::
 
 
 

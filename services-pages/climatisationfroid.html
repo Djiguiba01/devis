@@ -4,11 +4,18 @@
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Climatisation et Froid</title>
+  <title>Climatissation et Froid</title>
 
   <!-- ::CSS::::::: -->
-  <link rel="stylesheet" href="servicepages.css">
-  <link rel="stylesheet" href="fossetancheite.css">
+  <link rel="stylesheet" href="servicepages2.css">
+  <link rel="stylesheet" href="tableau.css">
+  <!-- <link rel="stylesheet" href="fossetancheite.css"> -->
+
+<!-- CSS de Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+  <!----===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
 
   <!-- ::::::cdn icon:::::::: -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
@@ -16,521 +23,441 @@
    <!-- ::::PDF::::::::: -->
    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
-
    <style>
-    @media(max-width: 1800px){
-    .table thead{
-		display: none;
-	}
-
-	.table, .table tbody, .table tr, .table td{
-		display: block;
-		width: 100%;
-	}
-	.table tr{
-		margin-bottom:15px;
-	}
-	.table td{
-		text-align: right;
-		padding-left: 50%;
-		text-align: right;
-		position: relative;
-	}
-	.table td::before{
-		content: attr(data-label);
-		position: absolute;
-		left:0;
-		width: 50%;
-		padding-left:15px;
-		font-size:15px;
-		font-weight: bold;
-		text-align: left;
-	}
-}
-
-   </style>
-</head>
+    table {
+      width: 90%;
+      border-collapse: collapse;
+    }
+  
+    td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+  
+    .opposes {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+  </head>
 <body>
+
+
+  <!-- ::::::::::::::::::::::::::::: -->
+  <div class="toutcontainer" >
+    <div class="container">
+        <div class="enteteform" style="display: flex; justify-content: space-between; ">
+          <div class="dd">
+            <header>Dévis Climatissation et Froid</header>
+          </div>
+
+              <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
+              style="width: 10%; margin-top: -2%;"
+              >
+        </div>
+
+        <form action="#" class="form">
+            <div class="form first" >
+              <!-- Input Rang 1 ::::::::: -->
+                <div class="details personal" >
+                    <span class="title"> </span>
+
+                    <div class="fields">
+                      
+                        <div class="input-field">
+                            <input type="text" placeholder="Votre nom" id="nom" >
+                        </div>
+                        
+
+                        <div class="input-field">
+                          <input type="text" placeholder="Votre prenom" id="prenom" >
+                       </div>
+
+                       <div class="input-field">
+                        <input type="text" placeholder="Votre quartier" id="ville" >
+                       </div>
+
+                        <div class="input-field">
+                            <input type="number" placeholder="Votre téléphone" id="numero">
+                        </div>
+
+
+                        <div class="input-field">
+                            <select required id="selectservice">
+                                <option disabled selected>Service</option>
+                                <option value="serviceclimatisation">Climatisation</option>
+                                <option value="servicerefigerateur" disabled>Refrigerateur(Encours...)</option>
+                              </select>
+                      </div>
+
+
+                       <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
+                       <div id="champsclimatisation1" style="display: none;width: 200%;">
+                       <div class="input-field">
+                        <select required  id="problemeclimatisation">
+                            <option disabled selected>Problème</option>
+                            <option value="entretienselect">Entretien</option>
+                            <option value="installationselect">Installation</option>
+                            <option value="reparationselect" disabled>Réparation (Encours...)</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div id="champsclimatisation2" style="display: none;width: 200%;">
+                <div class="input-field">
+                    <input type="number" placeholder="Nombre appareil" id="numberappareil" >
+                </div>
+            </div>
+
+
+
+                    
+                   <!-- ::::::CHAMPS REFRIGERATEUR::::::::::: -->
+                   <div id="champsrefrigerateur1" style="display: none; width: 200%;">
+                    <div class="input-field" >
+                        <select required  id="problemerefigerateur">
+                            <option disabled selected>Problème</option>
+                            <option id="standartselect" disabled>Réparation (Encours...)</option>
+                          </select>
+                    </div>
+                   </div>
+                                      
+                        
+                    </div>
+                </div>
+
+                <!-- Input Rang 2 ::::::::: -->
+                <div class="details ID">
+
+                    <div class="fields">
+                        
+                      
+                        <!-- <div class="input-field">
+                            <input type="text" placeholder="Enter ID type" required>
+                        </div> -->
+
+
+                    </div>
+
+                    <!-- ::::::::BUTTON CLIMATISATION::::::: -->
+                    <button id="buttonClimatisation" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+
+                    <!-- ::::::::BUTTON GRAVIER::::::: -->
+                    <!-- <button id="buttongravier" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button> -->
+
+                    <!-- ::::::::BUTTON ROCHEUSE::::::: -->
+                    <!-- <button id="buttonrocheuse" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button> -->
+            
+                </div> 
+            </div>
+        </form>
+       
+    </div>
+</div>
+<!--FORM::::::::::::::::::::::  -->
+
+
+<!-- :::::::::::TABLEAU:::::::::::::::::: -->
+<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div id="containairpdf" style="display: none; padding-bottom: 10px;">
+		
+  <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+    <div class="entete-text">
+    <h1>IKA PLOMBIER SARL</h1>
+    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+    <p>Email: ctraore@ikaplombier.com</p>
+    <p>Tel: 74 24 00 74</p>
+    </div>
+    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+  </div>
+  <!-- :::::::::ENTETE::::::::::::: -->
+  
+  <!-- ::::::::::::::: -->
+  <hr class="hr1" >
+  <hr class="hr2" >
+  
+  <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
+    <h1>Facture Pro-format N°04.03.07.23</h1>
+    </div>
+    
+  
+  <!-- :: -->
+  <ul class="coordonees" >
+    <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
+    <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
+    <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
+    </ul>
+    <!-- :::::::::::::: -->
+
+    
   
 
-  <!-- ::::::::FORMULAIRE::::::::::: -->
-  <div class="wrapper">
+  <!-- :::::::::CLIMATISATION ENTRETIEN::::::::: -->
+  <div id="tabeauClimatisation" style="display: none;">
+    <table>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Service</div>
+            <div > Climatisation</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div >Problème </div>
+            <div id="afficheProbleme"> ?</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Nombre </div>
+            <div id="afficheNombre"> ?</div>
+          </div>
+        </td>
+       
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div >Montant </div>
+            <div id="montantClimatssation"> ?</div>
+          </div>
+        </td>
+      </tr>
 
-    <div class="inner">
-
-      <div class="image-holder">
-        <img src="image-services/logo1.png" alt="img">
-      </div>
-
-      <form action="" >
-
-        <h3>Climatisation et Froid </h3>
-
-        <div class="form-group">
-          <input type="text" placeholder="Votre nom" class="form-control" id="nom">
-          <input type="text" placeholder="Votre prenom" class="form-control" id="prenom">
-        </div>
-
-
-        <div class="form-wrapper">
-          <input type="number" min="1" maxlength="8" placeholder="Numéro" class="form-control" id="numero">
-        </div>
-
-        <div class="form-wrapper">
-          <input type="text" min="1" placeholder="Ville/Quartier" class="form-control" id="ville" >
-        </div>
-
-        <div class="form-group">
-          <select name="" id="selectservice" style="width: 47%;">
-              <option value="" disabled selected>Service</option>
-              <option value="Climatisation">Climatisation</option>
-              <option value="Froid">Refrigerateur</option>
-            </select>
-
-            <!-- :::::::AFFICHE Climatisation::::::::::::: -->
-          <select name="" id="selectprobleme" style="width: 47%; margin-left: 6%; display: none;">
-            <option value="" disabled selected>Problème</option>
-            <option value="Entretien">Entretien</option>
-            <option value="Installation">Installation</option>
-            <option value="Reparation">Réparation</option>
-          </select>
-      </div>
-
-          <!-- :::::::AFFICHE Climatisation::::::::::::: -->
-        <div class="form-group" >
-          <input type="number" min="1" placeholder="Nombre appareil" class="form-control" id="nombre" style="display: none;">
-
-          <!-- <select name="" id="selectequipe" style="width: 47%; display: none;">
-            <option value="" disabled selected>Equipements</option>
-            <option value="Equipe">Equipé</option>
-            <option value="Nom Equipe">Non équipé</option>
-          </select> -->
-          
-        </div>
-
-        
-
-        <!-- :::::::AFFICHE Froid::::::::::::: -->
-         <div class="form-group" >
-        <select name="" id="selectadduct" style="width: 47%; display: none;">
-            <option value="" disabled selected>Problème</option>
-            <option value="Equipesq">Réparation</option>
-          </select>
-
-         <!-- <select name="" id="selectprobleme" style="width: 47%; margin-left: 6%;">
-          <option value="" disabled selected>???</option>
-          <option value="Standart">???</option>
-        </select>  -->
-    </div>
-
-        <!-- Button Ajouter:::::::::::::: -->
-      <a href="#Devis" id="septcent" class="btn" style="text-decoration: none;">
-        AJOUTER 
-        <span class="fas fa-chevron-right"></span>
-      </a>
-     
-        
-      </form>
-
-    </div>
+      <!-- <tr>
+        <td>
+          <div class="opposes">
+            <div>Contenu à gauche</div>
+            <div>Contenu à droite</div>
+          </div>
+        </td>
+       
+      </tr> -->
+      <!-- Ajoutez plus de lignes ici si nécessaire -->
+    </table>
   </div>
 
-
-
-  <!-- :::::::::::::AFFICHAGE DU FORMULAIRE::::::::::::: -->
-  <div class="telechargerpdf">
-  <section id="sectioncorps" style="display: none; margin-bottom: 4%;">
-
-    <div class="header">
-        <h3>Devis ?</h3>
-        <!-- <img src="image-services/logo.png" alt="sss"> -->
-    </div>
-
-    <hr style="border: 1px solid #3f0dca; margin-top: 3%; margin-bottom: 3%;">
-
-    <div class="header2">
-
-        <div class="container1">
-            <h4>Ika Plombier</h4>
-            <p>Mali</p>
-            <p>Halles de Bamako </p>
-        </div>
-
-        <div class="container2">
-            <h4>Envoyé à</h4>
-            <p class="affichenom">?</p>
-            <p class="afficheprenom"></p>
-        </div>
-
-        <div class="container3">
-            <h4 >Ville/Quartier</h4>
-            <p class="afficheville">?</p>
-        </div>
-
-        <div class="container3">
-          <h4>Numéro</h4>
-          <p class="affichenum">?</p>
-      </div>
-
-    </div>
-
-    <!-- :::Tableau::::::::::::: -->
-    <table class="table">
-
-              <!-- :::::::::FORAGE ENTETE::::::::: -->
-        <!-- <thead >
-            <tr >
-             <th>Zone</th>
-             <th>Mètre</th>
-             <th>Equipement</th>
-             <th>Montant</th>
-            </tr>
-        </thead> -->
-
-         <!-- ::::::::SERVICE FROID::::::: -->
-         <tbody id="tableaufroid" style="display: none;">
-            <tr>
-                <td data-label="Service"  >Froid</td>
-                <td data-label="Problème"  >?</td>
-                <td data-label="Montant"  >?</td>
-            </tr>
-
-    </tbody>
-
-        <!-- :::::::::CLIMATISATION ENTRETIEN::::::::: -->
-        <tbody id="tableauentretien" style="display: none;">
-              <tr>
-                   <td data-label="Service"  >Climatisation</td>
-                   <td data-label="Problème"  >?</td>
-                   <td data-label="Nombre"  >?</td>
-                   <td data-label="Montant"  >?</td>
-              </tr>
-        </tbody>
-
-         <!-- :::::::::CLIMATISATION INSTALLATION::::::::: -->
-         <tbody id="tableauinstall" style="display: none;">
-            <tr>
-                 <td data-label="Service"  >Climatisation</td>
-                 <td data-label="Problème"  >?</td>
-                 <td data-label="Nombre"  >?</td>
-                 <td data-label="Montant"  >?</td>
-            </tr>
-      </tbody>
-
-        <!-- ::::::::CLIMATISATION REPARATION:::::::::: -->
-        <tbody id="tableaureparation" style="display: none;">
-          <tr>
-            <td data-label="Service"  >Climatisation</td>
-            <td data-label="Problème"  >?</td>
-            <td data-label="Montant"  >?</td>
-          </tr>
-
-      </table>
-
-
-      <hr style="border: 1px solid #3f0dca; margin-top: 10%; margin-bottom: 2%;">
-
-      <div class="condition">
-        <h5>Conditions et paiement</h5>
-        <div class="modalite">
-            <div class="tranche">Le payement est dû en 2 tranches</div>
-            <div class="num">
-                <p>Numéro : (+223) 74 24 00 74</p>
-                
-            </div>
-        </div>
-      </div>
-
-</section>
+<!-- ::::TABLEAU GRAVIER:::::: -->
+<div class="tabeaugravier" style="display: none;">
+    <p>gravier</p>
+</div>
+  
+<!-- ::::::::TABEAU ROCHEUSE::::: -->
+<div class="tabeaurocheuse" style="display: none;">
+    <p>rocheuse</p>
+</div>
+  
+  <!-- :: -->
+  <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <li>Arrêté la Facture pro-forma à la somme de
+      francs CFA.
+      </li>
+    </ul>
+    <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
+      <div class="accord" style=" font-weight: bold;">Pour accord</div>
+    <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
+  </div>
+   
+</div>
 </div>
 
-<!-- :::::::::::BUTTON TELECHARGEMENT:::::::::::::: -->
-<button type="button" id="telecharger" style="display: none;" >Télécharger PDF</button>
 
-
-
-
-
-
-
-
-
-
+  <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
+  <button  style="display: none;" id="telecharger" >
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+</button>
 
 
 
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>
+  // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
+function afficherDateDuJour() {
+      var dateElement = document.querySelector('.datejour');
+      var date = new Date();
+      var options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+      var dateString = date.toLocaleDateString(undefined, options);
+      dateElement.textContent ='Bamako le ' + dateString;
+    } 
+    // Appeler la fonction pour afficher la date du jour au chargement de la page
+    afficherDateDuJour();
 
-  // ::::::FONCTION QUI AFFICHE TOUT LE CONTENU S'IL Y'A UN EVENNEMENT DANS 1 DES INPUTS::::::::
-  function afficherContenu() {
-  var sectioncorps = document.getElementById('sectioncorps');
-  var telecharger = document.getElementById('telecharger');
 
-  // Événement pour les éléments d'entrée
-  var inputs = document.querySelectorAll('input');
-  for (var i = 0; i < inputs.length; i++) {
-    inputs[i].addEventListener('input', function() {
-    // // Appel de la fonction pour mettre à jour le montant dans le tableau
-    // multiplierNombre();
-      sectioncorps.style.display = 'block';
-      telecharger.style.display = 'block';
-    });
+
+// :::::RECUPERATION NOM-PRENOM::::::::::
+function recupererNomPrenom() {
+  var nom = document.getElementById("nom").value;
+  var prenom = document.getElementById("prenom").value;
+  var nomprenomElement = document.getElementById("nomprenom");
+  nomprenomElement.innerHTML = "Doit : " + nom + " " + prenom;
+}
+// Appeler la fonction lorsque les champs de saisie changent
+document.getElementById("nom").addEventListener("input", recupererNomPrenom);
+document.getElementById("prenom").addEventListener("input", recupererNomPrenom);
+// Appeler la fonction une fois au chargement de la page pour afficher les valeurs initiales
+recupererNomPrenom();
+
+// :::::::::::RECUPERATION CHAMPS VILLE SAISI::::::::::
+function recupererVille() {
+  var ville = document.getElementById("ville").value;
+  var villequartElement = document.getElementById("villequart");
+  villequartElement.innerHTML = "Ville/Quartier : " + ville;
+}
+document.getElementById("ville").addEventListener("input", recupererVille);
+recupererVille();
+
+
+// :::::::::::RECUPERATION CHAMPS NUMERO SAISI::::::::::
+function recupererNumero() {
+  var numero = document.getElementById("numero").value;
+  var telephoneElement = document.getElementById("telephone");
+  telephoneElement.innerHTML = "Téléphone : " + numero;
+}
+// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+document.getElementById("numero").addEventListener("input", recupererNumero);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
+recupererNumero();
+
+// :::::::::::::RECUPERATION CHAMPS SERVICE::::::::::
+// function afficherServiceClimatisation() {
+//   var selectService = document.getElementById("selectservice").value;
+//   var afficheSerciveElement = document.getElementById("afficheSercive");
+  
+//   if (selectService === "serviceclimatisation") {
+//     afficheSerciveElement.textContent = "Climatisation";
+//   } else {
+//     afficheSerciveElement.textContent = "";
+//   }
+// }
+// document.getElementById("selectservice").addEventListener("change", afficherServiceClimatisation);
+
+// :::::::::::::::RECUPERATION CHAMPS PROBLEME CLIMATISATION::::
+function afficherServiceSelectionne() {
+  var selectService = document.getElementById("problemeclimatisation");
+  var serviceSelectionne = selectService.options[selectService.selectedIndex].text;
+  var afficheServiceElement = document.getElementById("afficheProbleme");
+  afficheServiceElement.textContent = serviceSelectionne;
+}
+// Ajouter un écouteur d'événement pour déclencher la fonction lorsque la sélection du menu déroulant change
+document.getElementById("problemeclimatisation").addEventListener("change", afficherServiceSelectionne);
+
+
+// :::::::::::::::RECUPERATION CHAMPSNOMBRE  CLIMATISATION:::::::
+function recupererEtAfficherNombreAppareil() {
+    var nombreAppareil = document.getElementById("numberappareil").value;
+    var afficherNombreAppareilElement = document.getElementById("afficheNombre");
+    afficherNombreAppareilElement.textContent = nombreAppareil;
+  }
+  document.getElementById("numberappareil").addEventListener("input", recupererEtAfficherNombreAppareil);
+
+
+
+
+
+
+// ::::::::::::AFFICHER CHAMPS EN FONCTION SERVICE:::::
+// Fonction pour afficher les champs correspondants au service sélectionné
+function afficherChamps() {
+    var selectService = document.getElementById("selectservice");
+    var serviceClimatisation = document.getElementById("serviceclimatisation");
+    var serviceRefrigerateur = document.getElementById("servicerefigerateur");
+    var champsClimatisation1 = document.getElementById("champsclimatisation1");
+    var champsClimatisation2 = document.getElementById("champsclimatisation2");
+    var champsRefrigerateur1 = document.getElementById("champsrefrigerateur1");
+    var button = document.getElementById("buttonClimatisation");
+
+    if (selectService.value === "serviceclimatisation") {
+      champsClimatisation1.style.display = "block";
+      champsClimatisation2.style.display = "block";
+      champsRefrigerateur1.style.display = "none";
+      button.style.display = "block";
+    } else if (selectService.value === "servicerefigerateur") {
+      champsClimatisation1.style.display = "none";
+      champsClimatisation2.style.display = "none";
+      champsRefrigerateur1.style.display = "block";
+      button.style.display = "block";
+    } else {
+      // Si aucun service n'est sélectionné, masquer tous les champs
+      champsClimatisation1.style.display = "none";
+      champsClimatisation2.style.display = "none";
+      champsRefrigerateur1.style.display = "none";
+      button.style.display = "none";
+    }
+  }
+  // Ajoutez un écouteur d'événement pour détecter les changements de sélection du menu déroulant
+  document.getElementById("selectservice").addEventListener("change", afficherChamps);
+  // Appeler la fonction une fois au chargement de la page pour afficher les champs initiaux en fonction du service sélectionné (s'il y en a un)
+  afficherChamps();
+
+
+
+// :::::::::::::: CALCULE MONTANT::::::::::::
+function calculateMontantClimatisation() {
+  var selectProbleme = document.getElementById("problemeclimatisation").value;
+  var numberAppareil = parseFloat(document.getElementById("numberappareil").value);
+  var montantClimatssationElement = document.getElementById("montantClimatssation");
+  var containairpdfElement = document.getElementById("containairpdf");
+  var tabeauClimatisationElement = document.getElementById("tabeauClimatisation");
+
+  // Vérification des champs remplis
+  if (!selectProbleme || isNaN(numberAppareil)) {
+    // Afficher une alerte seulement si le bouton est cliqué
+    if (document.getElementById("buttonClimatisation").clicked) {
+      alert("Veuillez remplir nombre appareil !");
+    }
+    montantClimatssationElement.textContent = "Montant : ?";
+    containairpdfElement.style.display = "none";
+    tabeauClimatisationElement.style.display = "none";
+  } else {
+    if (selectProbleme === "entretienselect") {
+      var montant = numberAppareil * 15000;
+      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR') + " FCFA";
+    } else if (selectProbleme === "installationselect") {
+      var montant = numberAppareil * 25000;
+      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR') + " FCFA";
+    } else {
+      montantClimatssationElement.textContent = "Montant : ?";
+    }
+    // Afficher le tableau et le div uniquement si les champs sont remplis et le bouton est cliqué
+    if (document.getElementById("buttonClimatisation").clicked) {
+      containairpdfElement.style.display = "block";
+      tabeauClimatisationElement.style.display = "block";
+    }
   }
 }
-afficherContenu();
-
-
-// ::::::::::::::AFFICHER NOM DEVIS SELECTIONNER:::::::::::::
-function afficherDevis() {
-  var selectService = document.getElementById('selectservice');
-  var header = document.querySelector('.header');
-  var devisText = document.createElement('h3');
-
-  // Ajoute une image à l'élément header
-  var image = document.createElement('img');
-  image.src = 'image-services/logo.png';
-  header.appendChild(image);
-
-  selectService.addEventListener('change', function() {
-    var selectedOption = selectService.value;
-
-    if (selectedOption === 'Climatisation') {
-      devisText.textContent = 'Devis Climatisation';
-    } else if (selectedOption === 'Froid') {
-      devisText.textContent = 'Devis Froid';
-    } else {
-      devisText.textContent = 'Devis ?';
-    }
-
-    // Supprime les anciens éléments s'ils existent dans le header
-    while (header.firstChild) {
-      header.removeChild(header.firstChild);
-    }
-
-    // Ajoute le nouveau texte dans le header
-    header.appendChild(devisText);
-   // Ajoute l'image à l'élément header
-        header.appendChild(image);
-  });
-}
-// Appel de la fonction pour activer le comportement
-afficherDevis();
-
-
-
-// :::::::DANS LA FORM AFFICHER LES CONTENUS EN FONCTIONDE LA SELECT OPTION {[FORRAGE/ADDUCTION]} ::::::::::::
-function afficherContenuSelect() {
-  var selectservice = document.getElementById('selectservice');
-  var selectprobleme = document.getElementById('selectprobleme');
-  var inputNombre = document.getElementById('nombre');
-//   var selectEquipe = document.getElementById('selectequipe');
-  var selectAdduct = document.getElementById('selectadduct');
-
-  selectservice.addEventListener('change', function() {
-    if (selectservice.value === 'Climatisation') {
-        selectprobleme.style.display = 'block';
-      inputNombre.style.display = 'block';
-    //   selectEquipe.style.display = 'block';
-      selectAdduct.style.display = 'none';
-    } else if (selectservice.value === 'Froid') {
-        selectprobleme.style.display = 'none';
-      inputNombre.style.display = 'none';
-    //   selectEquipe.style.display = 'none';
-      selectAdduct.style.display = 'block';
-    } else {
-        selectprobleme.style.display = 'none';
-      inputNombre.style.display = 'none';
-    //   selectEquipe.style.display = 'none';
-      selectAdduct.style.display = 'none';
-    }
-  });
-}
-afficherContenuSelect();
-
-
-
-// :::::::DANS LE TABLEAU AFFICHER LES CONTENUS EN FONCTIONDE LA SELECT OPTION {[FORRAGE/ADDUCTION]} ::::::::::::
-function afficherContenuSelectTable() {
-    // CLIMATISATION "ENTRETIEN ET INSTALLATION"
-  var selectprobleme = document.getElementById('selectprobleme');
-  var selectservice = document.getElementById('selectservice');
-  var tableauentretien = document.getElementById('tableauentretien');
-  var tableauinstall = document.getElementById('tableauinstall');
-  var tableaureparation = document.getElementById('tableaureparation');
-
-  selectprobleme.addEventListener('change', function() {
-    if (selectprobleme.value === 'Entretien') {
-        tableauentretien.style.display = 'block';
-        tableauinstall.style.display = 'none';
-        tableaureparation.style.display = 'none';
-    } else if (selectprobleme.value === 'Installation') {
-        tableauinstall.style.display = 'block';
-        tableauentretien.style.display = 'none';
-        tableaureparation.style.display = 'none';
-    } else if (selectprobleme.value === 'Reparation') {
-        tableauentretien.style.display = 'none';
-        tableauinstall.style.display = 'none';
-        tableaureparation.style.display = 'block';
-    }else {
-        tableauentretien.style.display = 'none';
-        tableauinstall.style.display = 'none';
-        tableaureparation.style.display = 'none';
-    }
-  });
-
-
-
-//   DANS ID "selectservice" SI ON  SELECTIONNE "FROID" AFFICHE TABLEAU 
-  selectservice.addEventListener('change', function() {
-    if (selectservice.value === 'Froid') {
-        tableauentretien.style.display = 'none';
-        tableauinstall.style.display = 'none';
-        tableaureparation.style.display = 'none';
-        tableaufroid.style.display = 'block';
-    } else {
-        tableauentretien.style.display = 'none';
-        tableauinstall.style.display = 'none';
-        tableaureparation.style.display = 'none';
-        tableaufroid.style.display = 'none';
-
-    }
-  });
-}
-afficherContenuSelectTable();
-
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT NOM SAISI:::::::::::::
-function afficherNom() {
-  var nomInput = document.getElementById('nom');
-  var afficheNom = document.querySelector('.affichenom');
-
-  nomInput.addEventListener('input', function() {
-    var nom = nomInput.value;
-    afficheNom.textContent = nom;
-  });
-}
-afficherNom();
-
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT PRENOM SAISI:::::::::::::
-function afficherPrenom() {
-  var prenomInput = document.getElementById('prenom');
-  var affichePrenom = document.querySelector('.afficheprenom');
-
-  prenomInput.addEventListener('input', function() {
-    var prenom = prenomInput.value;
-    affichePrenom.textContent = prenom;
-  });
-}
-afficherPrenom();
-
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT VILLE SAISI:::::::::::::
-function afficherVille() {
-  var villeInput = document.getElementById('ville');
-  var afficheVille = document.querySelector('.afficheville');
-
-  // Événement pour l'élément de saisie
-  villeInput.addEventListener('input', function() {
-    afficheVille.innerHTML = '<p>' + villeInput.value + '</p>';
-  });
-}
-afficherVille();
-
-
-
-// :::::: FONCTION QUI RECUPERE AUTOMATIQUEMENT NUMERO SAISI:::::::::::::
-function afficherNumero() {
-  var numeroInput = document.getElementById('numero');
-  var afficheNumero = document.querySelector('.affichenum');
-
-  // Événement pour récupérer la saisie
-  numeroInput.addEventListener('input', function() {
-    var numero = numeroInput.value;
-    afficheNumero.textContent = numero;
-  });
-}
-afficherNumero();
-
-
-
-// :::::: FONCTION QUI RECUPERE LES PROBLEME CLIMATISATION:::::::::::::
-
-// <!-- :::::::::PROBLEME CLIMATISATION ENTRETIEN::::::::: -->
-var selectprobleme = document.getElementById('selectprobleme');
-var tdProbleme = document.querySelector('#tableauentretien td[data-label="Problème"]');
-// Écouter les changements de sélection
-selectprobleme.addEventListener('change', function() {
-  // Mettre à jour le contenu du <td> avec la sélection
-  tdProbleme.textContent = selectprobleme.value;
+// Ajouter des écouteurs d'événements pour déclencher le calcul lorsque les champs changent
+document.getElementById("problemeclimatisation").addEventListener("change", calculateMontantClimatisation);
+document.getElementById("numberappareil").addEventListener("input", calculateMontantClimatisation);
+// Masquer le tableau et le div au chargement de la page
+document.getElementById("tabeauClimatisation").style.display = "none";
+document.getElementById("containairpdf").style.display = "none";
+// Ajouter un écouteur d'événement pour déclencher le calcul lorsque le bouton est cliqué
+document.getElementById("buttonClimatisation").addEventListener("click", function () {
+  document.getElementById("buttonClimatisation").clicked = true;
+  calculateMontantClimatisation();
 });
 
 
 
-// <!-- :::::::::PROBLEME CLIMATISATION INSTALLATION::::::::: -->
-var selectprobleme = document.getElementById('selectprobleme');
-var tdinstall = document.querySelector('#tableauinstall td[data-label="Problème"]');
-// Écouter les changements de sélection
-selectprobleme.addEventListener('change', function() {
-  // Mettre à jour le contenu du <td> avec la sélection
-    tdinstall.textContent = selectprobleme.value;
-});
-
-
-
-// <!-- :::::::::PROBLEME CLIMATISATION REPARATION::::::::: -->
-var selectprobleme = document.getElementById('selectprobleme');
-var tdreparation = document.querySelector('#tableaureparation td[data-label="Problème"]');
-// Écouter les changements de sélection
-selectprobleme.addEventListener('change', function() {
-  // Mettre à jour le contenu du <td> avec la sélection
-    tdreparation.textContent = selectprobleme.value;
-});
-
-
-
-// :::::::::::: RECUPERER LA VALEUR DE INPUT NOMBRE SAISI::::::::::::::
-function afficherValeurNombre() {
-  var nombreInput = document.getElementById('nombre');
-  var valeursNombre = document.querySelectorAll('td[data-label="Nombre"]');
-
-  nombreInput.addEventListener('input', function() {
-    var valeur = nombreInput.value;
-
-    valeursNombre.forEach(function(element) {
-      element.textContent = valeur;
-    });
-  });
-}
-afficherValeurNombre();
-
-
-
-// :::::::::::::: FONCTION QUI MULTIPLIE DE "Entretien*15 000"ET"Installation*25 000"
-function calculerMontant() {
-  var selectprobleme = document.getElementById('selectprobleme');
-  var nombreInput = document.getElementById('nombre');
-
-  var montant = 0;
-
-  if (selectprobleme.value === 'Entretien') {
-    montant = nombreInput.value * 15000;
-    var montantAvecEspacement = montant.toLocaleString('fr-FR');
-    document.getElementById('tableauentretien').querySelector('td[data-label="Montant"]').textContent = montantAvecEspacement + ' fcfa';
-  } else if (selectprobleme.value === 'Installation') {
-    montant = nombreInput.value * 25000;
-    var montantAvecEspacement = montant.toLocaleString('fr-FR');
-    document.getElementById('tableauinstall').querySelector('td[data-label="Montant"]').textContent = montantAvecEspacement + ' fcfa';
-  }
-}
-// Appel de la fonction lorsqu'il y a un changement dans les éléments select et input
-document.getElementById('selectprobleme').addEventListener('change', calculerMontant);
-document.getElementById('nombre').addEventListener('input', calculerMontant);
 
 
 
@@ -538,7 +465,10 @@ document.getElementById('nombre').addEventListener('input', calculerMontant);
 
 
 
-// :::::::::::PDF TELECHARGEMENT::::::::::::::::::
+
+
+// ::::::TELECHARGEMENT::::::::::::::::
+// :::::::PDF TELECHARGEMENT/////////
 // Transformation en image
 window.html2canvas = html2canvas;
 window.jsPDF = window.jspdf.jsPDF;
@@ -553,7 +483,7 @@ function makePDF() {
 
     var doc = new jsPDF();
     doc.setFont('Arial');
-    doc.save("climatisationfroid.pdf");
+    doc.save("fosseptique.pdf");
   });
 }
 
@@ -573,15 +503,16 @@ function downloadPDF() {
     var height = pdf.internal.pageSize.getHeight();
 
     pdf.addImage(imgData, "PNG", 0, 0, width, height);
-    pdf.save("climatisationfroid.pdf");
+    pdf.save("fosseptique.pdf");
   });
 }
 document.getElementById("telecharger").addEventListener("click", function () {
   downloadPDF();
 });
 
-</script>
 
+
+</script>
 
  
 </body>
