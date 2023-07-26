@@ -470,7 +470,7 @@
   </button>
 
 
-<p  style="text-align: center;">xxc</p>
+<p  style="text-align: center;">qqq</p>
 
 
 
@@ -692,49 +692,35 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function downloadPDF() {
-    var pdf = new jsPDF("p", "mm", "a4");
+ // Fonction pour télécharger le contenu affiché sous forme de PDF
+ function telechargerPDF() {
+    // Créer une nouvelle instance de jsPDF
+    const doc = new jsPDF();
 
-    // Convertir le contenu de #t1 en PDF
-    html2canvas(document.querySelector("#t1"), {
-      scale: 2,
-      useCORS: true
-    }).then(function (canvas) {
-      var imgData1 = canvas.toDataURL("image/png", 1.0);
-      var width = pdf.internal.pageSize.getWidth();
-      var height = pdf.internal.pageSize.getHeight();
+    // Récupérer les divs contenant les deux pages
+    const page1 = document.getElementById('t1');
+    const page2 = document.getElementById('t2');
 
-      pdf.addImage(imgData1, "PNG", 0, 0, width, height);
+    // Générer la première page
+    const optionsPage1 = { margin: { top: 20, bottom: 20 } };
+    html2canvas(page1, { useCORS: true }).then((canvas) => {
+      const imageData = canvas.toDataURL('image/png');
+      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
+      doc.addPage(optionsPage1);
+    });
 
-      // Ajouter le contenu texte de #t1 au PDF
-      var text1 = document.querySelector("#t1").innerText;
-      pdf.text(text1, 10, 10); // Vous pouvez ajuster les coordonnées (10, 10) selon vos besoins.
-
-      // Passer à la deuxième partie après avoir ajouté #t1 au PDF
-      pdf.addPage();
-
-      // Convertir le contenu de #t2 en PDF
-      html2canvas(document.querySelector("#t2"), {
-        scale: 2,
-        useCORS: true
-      }).then(function (canvas) {
-        var imgData2 = canvas.toDataURL("image/png", 1.0);
-
-        pdf.addImage(imgData2, "PNG", 0, 0, width, height);
-
-        // Ajouter le contenu texte de #t2 au PDF
-        var text2 = document.querySelector("#t2").innerText;
-        pdf.text(text2, 10, 10); // Vous pouvez ajuster les coordonnées (10, 10) selon vos besoins.
-
-        // Enregistrer le PDF avec le nom "etancheite.pdf"
-        pdf.save("etancheite.pdf");
-      });
+    // Générer la deuxième page
+    const optionsPage2 = { margin: { top: 20, bottom: 20 } };
+    html2canvas(page2, { useCORS: true }).then((canvas) => {
+      const imageData = canvas.toDataURL('image/png');
+      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
+      doc.save('fiche.pdf'); // Télécharger le PDF avec le nom "fiche.pdf"
     });
   }
 
-  document.getElementById("telecharger").addEventListener("click", function () {
-    downloadPDF();
-  });
+  // Ajouter un écouteur d'événement au bouton "Télécharger PDF"
+  document.getElementById('telecharger').addEventListener('click', telechargerPDF);
+
 
 
 
