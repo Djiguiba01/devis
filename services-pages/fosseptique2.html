@@ -466,13 +466,13 @@
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;" onclick="downloadPDF()">
+  <button id="telecharger" style="display: none;">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
   </button>
 
 
-<p  style="text-align: center;">gg</p>
+<p  style="text-align: center;">fffg</p>
 
 
 
@@ -694,42 +694,36 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function downloadPDF() {
-            var pages = document.querySelectorAll(".telechargerpdf");
-            var pdf = new jsPDF("p", "mm", "a4", true);
+  // Fonction pour télécharger le contenu affiché sous forme de PDF
+  function telechargerPDF() {
+    // Créer une nouvelle instance de jsPDF
+    const doc = new jsPDF();
 
-            var processPage = function (index) {
-                var element = pages[index];
+    // Récupérer les divs contenant les deux pages
+    const page1 = document.getElementById('t1');
+    const page2 = document.getElementById('t2');
 
-                html2canvas(element, {
-                    scale: 2,
-                    scrollX: 0,
-                    scrollY: 0,
-                    windowWidth: document.documentElement.offsetWidth,
-                    windowHeight: document.documentElement.offsetHeight,
-                    useCORS: true
-                }).then(function (canvas) {
-                    var imgData = canvas.toDataURL("image/png", 1.0);
-                    var width = pdf.internal.pageSize.getWidth();
-                    var height = pdf.internal.pageSize.getHeight();
+    // Générer la première page
+    const optionsPage1 = { margin: { top: 20, bottom: 20 } };
+    html2canvas(page1, { useCORS: true }).then((canvas) => {
+      const imageData = canvas.toDataURL('image/png');
+      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
+      doc.addPage(optionsPage1);
+    });
 
-                    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    // Générer la deuxième page
+    const optionsPage2 = { margin: { top: 20, bottom: 20 } };
+    html2canvas(page2, { useCORS: true }).then((canvas) => {
+      const imageData = canvas.toDataURL('image/png');
+      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
+      doc.save('fiche.pdf'); // Télécharger le PDF avec le nom "fiche.pdf"
+    });
+  }
 
-                    // Si ce n'est pas la dernière page, ajouter une nouvelle page avant de passer à la suivante
-                    if (index !== pages.length - 1) {
-                        pdf.addPage();
-                        processPage(index + 1); // Passer à la page suivante
-                    } else {
-                        // Si c'est la dernière page, sauvegarder le PDF
-                        pdf.save("etancheite.pdf");
-                    }
-                });
-            };
+  // Ajouter un écouteur d'événement au bouton "Télécharger PDF"
+  document.getElementById('telecharger').addEventListener('click', telechargerPDF);
 
-            // Démarrer le processus en appelant automatiquement le bouton
-            document.getElementById("telecharger").disabled = true; // Désactiver le bouton pour éviter les clics multiples
-            processPage(0);
-        }
+
 
 
 </script>
