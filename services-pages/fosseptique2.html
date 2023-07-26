@@ -17,12 +17,12 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
    <!-- ::::PDF::::::::: -->
-   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script> -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
 
     <!-- Inclure les liens CDN pour jsPDF et html2canvas -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script> -->
 
 
 </head>
@@ -136,7 +136,7 @@
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
-<div class="telechargerpdf" style="padding-bottom: 8%;">
+<div class="telechargerpdf" id="capture" style="padding-bottom: 8%;">
 <div id="containairpdf" style="display: none; padding-bottom: 10px;">
 	
 
@@ -472,7 +472,7 @@
   </button>
 
 
-<p  style="text-align: center;">fffg</p>
+<p  style="text-align: center;">huhhh</p>
 
 
 
@@ -694,36 +694,47 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-  // Fonction pour télécharger le contenu affiché sous forme de PDF
-  function telechargerPDF() {
-    // Créer une nouvelle instance de jsPDF
-    const doc = new jsPDF();
+function downloadPDF() {
+    // Générer l'image de la première partie (id="t1")
+    html2canvas(document.querySelector("#t1"), {
+      scale: 2,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: document.querySelector("#t1").offsetWidth,
+      windowHeight: document.querySelector("#t1").offsetHeight,
+      useCORS: true
+    }).then(function (canvas1) {
+      // Générer l'image de la deuxième partie (id="t2")
+      html2canvas(document.querySelector("#t2"), {
+        scale: 2,
+        scrollX: 0,
+        scrollY: 0,
+        windowWidth: document.querySelector("#t2").offsetWidth,
+        windowHeight: document.querySelector("#t2").offsetHeight,
+        useCORS: true
+      }).then(function (canvas2) {
+        var imgData1 = canvas1.toDataURL("image/png", 1.0);
+        var imgData2 = canvas2.toDataURL("image/png", 1.0);
 
-    // Récupérer les divs contenant les deux pages
-    const page1 = document.getElementById('t1');
-    const page2 = document.getElementById('t2');
+        var pdf = new jsPDF("p", "mm", "a4", true);
+        var width = pdf.internal.pageSize.getWidth();
+        var height = pdf.internal.pageSize.getHeight();
 
-    // Générer la première page
-    const optionsPage1 = { margin: { top: 20, bottom: 20 } };
-    html2canvas(page1, { useCORS: true }).then((canvas) => {
-      const imageData = canvas.toDataURL('image/png');
-      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
-      doc.addPage(optionsPage1);
-    });
+        // Ajouter la première image à la page 1 du PDF
+        pdf.addImage(imgData1, "PNG", 0, 0, width, height);
+        // Ajouter la deuxième image à la page 2 du PDF
+        pdf.addPage();
+        pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-    // Générer la deuxième page
-    const optionsPage2 = { margin: { top: 20, bottom: 20 } };
-    html2canvas(page2, { useCORS: true }).then((canvas) => {
-      const imageData = canvas.toDataURL('image/png');
-      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
-      doc.save('fiche.pdf'); // Télécharger le PDF avec le nom "fiche.pdf"
+        // Enregistrer le PDF avec le nom "etancheite.pdf"
+        pdf.save("etancheite.pdf");
+      });
     });
   }
 
-  // Ajouter un écouteur d'événement au bouton "Télécharger PDF"
-  document.getElementById('telecharger').addEventListener('click', telechargerPDF);
-
-
+  document.getElementById("telecharger").addEventListener("click", function () {
+    downloadPDF();
+  });
 
 
 </script>
