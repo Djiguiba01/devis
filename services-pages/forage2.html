@@ -93,7 +93,7 @@
                        <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
                        <div id="champsForage" style=" display: none; width: 200%;">
                        <div class="input-field">
-                        <select required  id="problemeforage">
+                        <select required  id="zoneforage">
                             <option disabled selected>Zones</option>
                             <option value="sableuseselect">Sableuse</option>
                             <option value="rocheuseselect">Rocheuse</option>
@@ -183,29 +183,29 @@
   
 
   <!-- :::::::::CLIMATISATION ENTRETIEN::::::::: -->
-  <div id="tabeauClimatisation" style="">
+  <div id="tabeauforage" style="display: none;">
     <table>
       <tr>
         <td>
           <div class="opposes">
-            <div>fggggf</div>
-            <div > ?</div>
+            <div>Zone</div>
+            <div id="afficheZone"> ?</div>
           </div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="opposes">
-            <div >ddddd </div>
-            <div > ?</div>
+            <div >Mètre </div>
+            <div > 100 m</div>
           </div>
         </td>
       </tr>
       <tr>
         <td>
           <div class="opposes">
-            <div>fff </div>
-            <div > ?</div>
+            <div>Equipement </div>
+            <div > Non Equipé</div>
           </div>
         </td>
        
@@ -213,8 +213,8 @@
       <tr>
         <td>
           <div class="opposes">
-            <div >hzz </div>
-            <div > ?</div>
+            <div >Montant </div>
+            <div id="montantForage"> ?</div>
           </div>
         </td>
       </tr>
@@ -325,13 +325,73 @@ recupererNumero();
   champsForage();
 
 
+// :::::::::::::::::: RECUPERATION ZONE SELECTIONNE::::::::::
+function afficherZoneSelectionnee() {
+    const zoneForageElement = document.getElementById("zoneforage");
+    const afficheZoneElement = document.getElementById("afficheZone");
+
+    // Récupérer l'option sélectionnée dans zoneforage
+    const selectedOption = zoneForageElement.options[zoneForageElement.selectedIndex];
+
+    // Vérifier si l'option sélectionnée n'est pas l'option par défaut "Zones"
+    if (selectedOption.value !== "Zones") {
+      // Afficher le texte de l'option sélectionnée dans l'élément afficheZone
+      afficheZoneElement.innerText = selectedOption.text ;
+    } else {
+      // Si aucune option n'est sélectionnée, afficher un message d'erreur ou laisser l'élément afficheZone vide
+      afficheZoneElement.innerText = "";
+    }
+  }
+  // Appeler la fonction lorsque la sélection de zoneforage change
+  document.getElementById("zoneforage").addEventListener("change", afficherZoneSelectionnee);
 
 
 
 
 
-// ::::::::::::AFFICHER CHAMPS EN FONCTION TYPE:::::
 
+// ::::::::::::AFFICHER MONTANT EN FONCTION ZONE::::::::::::::::
+  // Fonction pour afficher les montants en fonction de la sélection
+  function afficherMontant() {
+    const zoneForageElement = document.getElementById("zoneforage");
+    const montantForageElement = document.getElementById("montantForage");
+
+    const selectedValue = zoneForageElement.value;
+    let montant = "";
+
+    switch (selectedValue) {
+      case "sableuseselect":
+      case "rocheuseselect":
+      case "terrefinselect":
+        montant = "1 000 000" + " fcfa";
+        break;
+      case "boueuseselect":
+        montant = "1 500 000" + " fcfa";
+        break;
+      default:
+        montant = " ?";
+    }
+    montantForageElement.innerText = montant;
+  }
+  // Appeler la fonction lorsque la sélection de zoneforage change
+  document.getElementById("zoneforage").addEventListener("change", afficherMontant);
+
+  // ::::::::::::::VERIFICATION CHAMPS ZONE SI C'EST REMPLIE::::::::::::
+  // Gestionnaire d'événement pour le boutonForage
+  document.getElementById("buttonForage").addEventListener("click", function() {
+    const zoneForageElement = document.getElementById("zoneforage");
+    const containairpdfElement = document.getElementById("containairpdf");
+    const tabeauforageElement = document.getElementById("tabeauforage");
+
+    if (zoneForageElement.value !== "Zones") {
+      // Si zoneforage est rempli, affichez les éléments
+      containairpdfElement.style.display = "block";
+      tabeauforageElement.style.display = "block";
+    } else {
+      // Si zoneforage n'est pas rempli, effectuez une autre action, par exemple, affichez un message d'erreur
+      alert("Veuillez sélectionner une zone de forage.");
+    }
+  });
 
 
 
