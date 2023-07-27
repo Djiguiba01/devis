@@ -90,11 +90,10 @@
                               </select>
                       </div>
 
-
                        <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
-                       <div id="champsclimatisation1" style="width: 200%;">
+                       <div id="champsForage" style=" display: none; width: 200%;">
                        <div class="input-field">
-                        <select required  id="problemeclimatisation">
+                        <select required  id="problemeforage">
                             <option disabled selected>Zones</option>
                             <option value="sableuseselect">Sableuse</option>
                             <option value="rocheuseselect">Rocheuse</option>
@@ -128,8 +127,8 @@
 
                     </div>
 
-                    <!-- ::::::::BUTTON CLIMATISATION::::::: -->
-                    <button id="buttonClimatisation" class="nextBtn" style="">
+                    <!-- ::::::::BUTTON FORAGE::::::: -->
+                    <button id="buttonForage" class="nextBtn" style="display: none;">
                         <span  class="btnText">Ajouter</span>
                         <i class="fa-solid fa-copy"></i>
                     </button>
@@ -307,6 +306,23 @@ document.getElementById("numero").addEventListener("input", recupererNumero);
 recupererNumero();
 
 
+ // ::::::::::::AFFICHE CHAMPS EN FONCTIONSELECT TYPE:::::::::
+  function champsForage() {
+    const selectElement = document.getElementById("selecttype");
+    const champsForageElement = document.getElementById("champsForage");
+    const buttonForageElement = document.getElementById("buttonForage");
+
+    if (selectElement.value === "serviceforage") {
+      champsForageElement.style.display = "block";
+      buttonForageElement.style.display = "block";
+    } else {
+      champsForageElement.style.display = "none";
+      buttonForageElement.style.display = "none";
+    }
+  }
+  document.getElementById("selecttype").addEventListener("change", champsForage);
+  // Appeler la fonction une fois au chargement de la page pour afficher les éléments correctement initialement
+  champsForage();
 
 
 
