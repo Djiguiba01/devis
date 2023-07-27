@@ -83,14 +83,14 @@
 
 
                         <div class="input-field">
-                            <select required id="selecttype">
+                            <select onchange="hideTelecharger()" required id="selecttype">
                                 <option disabled selected>Type</option>
                                 <option value="serviceforage">Forage</option>
-                                <option value="serviceadduction" disabled>Adduction d'eau</option>
+                                <option value="serviceadduction">Adduction d'eau</option>
                               </select>
                       </div>
 
-                       <!-- ::::::::::CHAMPS Climatisation:::::::::: -->
+                       <!-- ::::::::::CHAMPS FORAGE:::::::::: -->
                        <div id="champsForage" style=" display: none; width: 200%;">
                        <div class="input-field">
                         <select required  id="zoneforage">
@@ -103,11 +103,12 @@
                     </div>
                 </div>
 
-                <!-- <div id="champsclimatisation2" style="display: none;width: 200%;">
+                <!-- ::::::::::CHAMPS ADDUCTION:::::::::: -->
+                <div id="champsadduction" style="display: none;width: 200%;">
                 <div class="input-field">
-                    <input type="number" placeholder="Nombre appareil" id="numberappareil" >
+                    <input type="number" placeholder="Nombre d'hectar" id="numbrehectar" >
                 </div>
-            </div> -->
+            </div>
 
                                       
                         
@@ -128,10 +129,16 @@
                     </div>
 
                     <!-- ::::::::BUTTON FORAGE::::::: -->
-                    <button id="buttonForage" class="nextBtn" style="display: none;">
+                    <button onclick="showTelecharger()" id="buttonForage" class="nextBtn" style="display: none;">
                         <span  class="btnText">Ajouter</span>
                         <i class="fa-solid fa-copy"></i>
                     </button>
+
+                    <!-- ::::::::BUTTON ADDUCTION::::::: -->
+                    <button onclick="showTelecharger()" id="buttonAdduction" class="nextBtn" style="display: none;">
+                      <span  class="btnText">Ajouter</span>
+                      <i class="fa-solid fa-copy"></i>
+                  </button>
 
                  
             
@@ -176,13 +183,14 @@
     <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
     <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
     <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
+    <li id="service"><div class="coordtext">Sevice: </div> </li>
     </ul>
     <!-- :::::::::::::: -->
 
     
   
 
-  <!-- :::::::::CLIMATISATION ENTRETIEN::::::::: -->
+  <!-- :::::::::FORAGE::::::::: -->
   <div id="tabeauforage" style="display: none;">
     <table>
       <tr>
@@ -222,15 +230,38 @@
     </table>
   </div>
 
-<!-- ::::TABLEAU GRAVIER:::::: -->
-<div class="tabeaugravier" style="display: none;">
-    <p>gravier</p>
-</div>
-  
-<!-- ::::::::TABEAU ROCHEUSE::::: -->
-<div class="tabeaurocheuse" style="display: none;">
-    <p>rocheuse</p>
-</div>
+
+   <!-- :::::::::ADDUCTION::::::::: -->
+   <div id="tabeauadduction" style="display: none;">
+    <table>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Installation </div>
+            <div > Complète</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Nombre </div>
+            <div id="hectar"> ?</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div >Montant </div>
+            <div id="montantAdduction"> ?</div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
   
   <!-- :: -->
   <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
@@ -258,6 +289,8 @@
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>
+
+
   // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
 function afficherDateDuJour() {
       var dateElement = document.querySelector('.datejour');
@@ -306,23 +339,112 @@ document.getElementById("numero").addEventListener("input", recupererNumero);
 recupererNumero();
 
 
- // ::::::::::::AFFICHE CHAMPS EN FONCTIONSELECT TYPE:::::::::
+// ::::::::::::::RECUPERATION CHAMPS NOMBRE HECTAR:::::::::::::
+// Fonction pour afficher la valeur saisie dans l'élément avec l'ID "hectar"
+function afficherHectar() {
+  const hectarElement = document.getElementById("hectar");
+  const numbrehectarElement = document.getElementById("numbrehectar");
+
+  // Vérifier si le champ numbrehectar contient une valeur numérique valide
+  const numbrehectar = parseFloat(numbrehectarElement.value);
+
+  if (!isNaN(numbrehectar)) {
+    // Afficher la valeur saisie dans l'élément hectar
+    hectarElement.innerText = numbrehectar;
+  } else {
+    // Si le champ numbrehectar ne contient pas une valeur numérique valide, afficher un message d'erreur
+    hectarElement.innerText = "?";
+  }
+}
+// Appeler la fonction lorsque la valeur du champ numbrehectar change
+document.getElementById("numbrehectar").addEventListener("input", afficherHectar);
+
+
+// :::::::::::RECUPERATION CHAMPS SELECT TYPE::::::::::
+document.getElementById("selecttype").addEventListener("change", function() {
+      const selectTypeElement = document.getElementById("selecttype");
+      const serviceElement = document.getElementById("service");
+      const selectedOption = selectTypeElement.options[selectTypeElement.selectedIndex];
+
+      if (selectedOption.value !== "Type") {
+        serviceElement.innerText = "Service : " + selectedOption.text;
+      } else {
+        serviceElement.innerText = "";
+      }
+    });
+
+
+ // ::::::::::::AFFICHE CHAMPS EN FONCTION SELECT FORAGE:::::::::
   function champsForage() {
     const selectElement = document.getElementById("selecttype");
     const champsForageElement = document.getElementById("champsForage");
     const buttonForageElement = document.getElementById("buttonForage");
+    const champsadductionElement = document.getElementById("champsadduction");
 
     if (selectElement.value === "serviceforage") {
       champsForageElement.style.display = "block";
       buttonForageElement.style.display = "block";
+      containairpdfElement.style.display = "none";
+      tabeauadductionElement.style.display = "none";
+      champsadductionElement.style.display = "none";
+
     } else {
       champsForageElement.style.display = "none";
       buttonForageElement.style.display = "none";
+      champsadductionElement.style.display = "none";
     }
   }
   document.getElementById("selecttype").addEventListener("change", champsForage);
   // Appeler la fonction une fois au chargement de la page pour afficher les éléments correctement initialement
   champsForage();
+
+
+  // ::::::::::::::AFFICHE CHAMPS EN FONCTION SELECT ADDUCTION:::::::
+  function afficherElementsAdduction() {
+  const numbrehectarElement = document.getElementById("numbrehectar");
+  if (numbrehectarElement.value === "") {
+    // Champ "numbrehectar" est vide, afficher une alerte
+    alert("Veuillez remplir le champ nombre d'hectar !");
+    return; // Arrêter la fonction car le champ est vide
+  }
+
+  const containairpdfElement = document.getElementById("containairpdf");
+  const tabeauadductionElement = document.getElementById("tabeauadduction");
+  // Afficher les éléments pour l'adduction d'eau lorsque le bouton est cliqué
+  containairpdfElement.style.display = "block";
+  tabeauadductionElement.style.display = "block";
+}
+
+function afficherElementsEnFonctionSelection() {
+  const selectTypeElement = document.getElementById("selecttype");
+  const buttonAdductionElement = document.getElementById("buttonAdduction");
+  const containairpdfElement = document.getElementById("containairpdf");
+  const tabeauadductionElement = document.getElementById("tabeauadduction");
+  const tabeauforageElement = document.getElementById("tabeauforage");
+  const champsadductionElement = document.getElementById("champsadduction");
+  const telechargerElement = document.getElementById("telecharger");
+
+  if (selectTypeElement.value === "serviceadduction") {
+    // Afficher le bouton et les éléments pour l'adduction d'eau
+    buttonAdductionElement.style.display = "block";
+    champsadductionElement.style.display = "block";
+    tabeauforageElement.style.display = "none";
+    containairpdfElement.style.display = "none";
+    tabeauadductionElement.style.display = "none"; // Pour masquer tabeauadduction aussi
+  } else {
+    // Masquer le bouton et les éléments pour l'adduction d'eau
+    buttonAdductionElement.style.display = "none";
+    containairpdfElement.style.display = "none";
+    tabeauadductionElement.style.display = "none";
+    champsadductionElement.style.display = "none";
+    tabeauforageElement.style.display = "block"; // Pour afficher tabeauforage dans d'autres cas
+  }
+}
+// Gestionnaire d'événement pour le changement de sélection dans selecttype
+document.getElementById("selecttype").addEventListener("change", afficherElementsEnFonctionSelection);
+// Gestionnaire d'événement pour le clic sur le boutonAdduction
+document.getElementById("buttonAdduction").addEventListener("click", afficherElementsAdduction);
+
 
 
 // :::::::::::::::::: RECUPERATION ZONE SELECTIONNE::::::::::
@@ -376,6 +498,7 @@ function afficherZoneSelectionnee() {
   // Appeler la fonction lorsque la sélection de zoneforage change
   document.getElementById("zoneforage").addEventListener("change", afficherMontant);
 
+
   // ::::::::::::::VERIFICATION CHAMPS ZONE SI C'EST REMPLIE::::::::::::
   // Gestionnaire d'événement pour le boutonForage
   document.getElementById("buttonForage").addEventListener("click", function() {
@@ -394,12 +517,39 @@ function afficherZoneSelectionnee() {
   });
 
 
+// :::::::::::::MONTANT ADDUCTION:::::::::::::
+// Fonction pour calculer le montant en fonction du nombre d'hectares saisi
+function calculerMontant() {
+  const montantAdductionElement = document.getElementById("montantAdduction");
+  const numbrehectarElement = document.getElementById("numbrehectar");
+
+  // Vérifier si le champ numbrehectar contient une valeur numérique valide
+  const numbrehectar = parseFloat(numbrehectarElement.value);
+
+  if (!isNaN(numbrehectar)) {
+    // Calculer le montant en multipliant le nombre d'hectares par 1 500 000
+    const montant = numbrehectar * 1500000;
+
+    // Afficher le montant calculé dans l'élément montantAdduction
+    montantAdductionElement.innerText = montant.toLocaleString() + " fcfa";
+  } else {
+    // Si le champ numbrehectar ne contient pas une valeur numérique valide, afficher un message d'erreur
+    montantAdductionElement.innerText = "?";
+  }
+}
+// Appeler la fonction lorsque la valeur du champ numbrehectar change
+document.getElementById("numbrehectar").addEventListener("input", calculerMontant);
 
 
-
-
-
-
+// :::::::::::ACTIVER OU DESACTIVER BUTTON TELECHARGEMENT:::::::
+function showTelecharger() {
+      const telechargerElement = document.getElementById("telecharger");
+      telechargerElement.style.display = "block";
+    }
+    function hideTelecharger() {
+      const telechargerElement = document.getElementById("telecharger");
+      telechargerElement.style.display = "none";
+    }
 
 
 
