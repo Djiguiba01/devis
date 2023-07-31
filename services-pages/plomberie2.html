@@ -117,7 +117,7 @@
               <!-- ::::::::::CHAMPS  DECORATION:::::::::: -->
               <div id="champsdecoration" style="display: none; width: 200%;">
                 <div class="input-field">
-                 <select required  id="zoneforage">
+                 <select required  id="selectdecoration">
                      <option disabled selected>Décoration</option>
                      <option value="standartselect">Standart</option>
                      <option value="luxeselect">Luxe</option>
@@ -138,7 +138,7 @@
               <!-- ::::::::::CHAMPS TYPE DECORATION:::::::::: -->
           <div id="champstypedecoration" style="display: none; width: 200%;">
             <div class="input-field">
-             <select required  id="zoneforage">
+             <select required  id="typedecotionAvecSans">
                  <option disabled selected>Type Décoration</option>
                  <option value="sanselect">Sans Chauffage</option>
                  <option value="avecselect">Avec Chauffage</option>
@@ -195,7 +195,7 @@
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
-<div class="telechargerpdf" style=" display: none; padding-bottom: 8%;">
+<div class="telechargerpdf" style=" padding-bottom: 8%;">
 <div id="containairpdf" style=" padding-bottom: 10px;">
 		
   <!-- :::::::::ENTETE::::::::::::: -->
@@ -226,52 +226,189 @@
     <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
     <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
     <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-    <li id="service"><div class="coordtext">Sevice: </div> </li>
+    <li id="service"><div class="coordtext">Toilette: </div> </li>
     </ul>
     <!-- :::::::::::::: -->
 
     
   
 
-  <!-- :::::::::FORAGE::::::::: -->
-  <div id="tabeauforage" style="">
-    <table>
-      <tr>
-        <td>
-          <div class="opposes">
-            <div>Zone</div>
-            <div id="afficheZone"> ?</div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="opposes">
-            <div >Mètre </div>
-            <div > 100 m</div>
-          </div>
-        </td>
-      </tr>
-      <tr>
-        <td>
-          <div class="opposes">
-            <div>Equipement </div>
-            <div > Non Equipé</div>
-          </div>
-        </td>
-       
-      </tr>
-      <tr>
-        <td>
-          <div class="opposes">
-            <div >Montant </div>
-            <div id="montantForage"> ?</div>
-          </div>
-        </td>
-      </tr>
+  <!-- :::::::::TABLEAU TOILETTE STANDART SANS CHAUFFAGE ::::::::: -->
+    <div  id="tabeautoilsans" style="display: none;">
+        <table class="tableau" >
+          <tr id="header">
+            <th>N°</th>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th id="colonnetoit">Montant</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>Lavabaux tabeautoilavec</td>
+            <td  id="utoit1">1  </td>
+            <td id="qtoit1">- </td>
+            <td id="mtoit1">- </td>
+          </tr>
+          <tr>
+            <td>2 </td>
+            <td>WVC </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          <tr>
+            <td>3 </td>
+            <td>Douche </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          
+          <tr>
+            <td>4 </td>
+            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+            <td id="moeuvres">- </td>
+          </tr>
+          <tr style="background-color: #5f7acb;">
+            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+            <td id="montanttoit"> 80 000</td>
+          </tr>
+        </table>
+      </div>
 
-    </table>
-  </div>
+      <!-- :::::::::TABLEAU TOILETTE STANDART AVEC CHAUFFAGE::::::::: -->
+    <div  id="tabeautoilavec" style="display: none;">
+        <table class="tableau" >
+          <tr id="header">
+            <th>N°</th>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th id="colonnetoit">Montant</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>tabeautoilavec </td>
+            <td  id="utoit1">1  </td>
+            <td id="qtoit1">- </td>
+            <td id="mtoit1">- </td>
+          </tr>
+          <tr>
+            <td>2 </td>
+            <td>WVC </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          <tr>
+            <td>3 </td>
+            <td>Douche </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          
+          <tr>
+            <td>4 </td>
+            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+            <td id="moeuvres">- </td>
+          </tr>
+          <tr style="background-color: #5f7acb;">
+            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+            <td id="montanttoit"> 80 000</td>
+          </tr>
+        </table>
+      </div>
+
+     <!-- :::::::::TABLEAU CUISINE STANDART SANS CHAUFFAGE::::::::: -->
+    <div  id="tabeaucuisans" style="display: none;">
+        <table class="tableau" >
+          <tr id="header">
+            <th>N°</th>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th id="colonnetoit">Montant</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>tabeaucuisans </td>
+            <td  id="utoit1">1  </td>
+            <td id="qtoit1">- </td>
+            <td id="mtoit1">- </td>
+          </tr>
+          <tr>
+            <td>2 </td>
+            <td>WVC </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          <tr>
+            <td>3 </td>
+            <td>Douche </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          
+          <tr>
+            <td>4 </td>
+            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+            <td id="moeuvres">- </td>
+          </tr>
+          <tr style="background-color: #5f7acb;">
+            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+            <td id="montanttoit"> 80 000</td>
+          </tr>
+        </table>
+      </div>
+
+     <!-- :::::::::TABLEAU CUISINE STANDART AVEC CHAUFFAGE::::::::: -->
+    <div  id="tabeaucuiavec" style="display: none;">
+        <table class="tableau" >
+          <tr id="header">
+            <th>N°</th>
+            <th>Désignation</th>
+            <th>Quantité</th>
+            <th>Prix Unitaire</th>
+            <th id="colonnetoit">Montant</th>
+          </tr>
+          <tr>
+            <td>1</td>
+            <td>tabeaucuiavec </td>
+            <td  id="utoit1">1  </td>
+            <td id="qtoit1">- </td>
+            <td id="mtoit1">- </td>
+          </tr>
+          <tr>
+            <td>2 </td>
+            <td>WVC </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          <tr>
+            <td>3 </td>
+            <td>Douche </td>
+            <td id="utoit2">1  </td>
+            <td id="qtoit2">- </td>
+            <td id="mtoit2">- </td>
+          </tr>
+          
+          <tr>
+            <td>4 </td>
+            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+            <td id="moeuvres">- </td>
+          </tr>
+          <tr style="background-color: #5f7acb;">
+            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+            <td id="montanttoit"> 80 000</td>
+          </tr>
+        </table>
+      </div>
+  
 
   
   <!-- :: -->
@@ -420,6 +557,81 @@ function afficherEnFonctionSelection() {
 document.getElementById("problemeplomberie").addEventListener("change", afficherEnFonctionSelection);
 
 
+// :::::::::::::::::CHAMPS TYPE DECORATION AFFICHAGE EN FONCTION DE SELECT::
+function afficherChampsDecorationEtNombre() {
+  var problemePlomberie = document.getElementById("problemeplomberie").value;
+  var selectDecoration = document.getElementById("selectdecoration").value;
+  var champstypedecoration = document.getElementById("champstypedecoration");
+  var champsnombre = document.getElementById("champsnombre");
+
+  // Vérifier si les sélections correspondent aux valeurs spécifiées
+  if ((problemePlomberie === "toiltteselect" || problemePlomberie === "cuisieselect") && selectDecoration === "standartselect") {
+    // Afficher l'id "champstypedecoration"
+    champstypedecoration.style.display = "block";
+    // Afficher l'id "champsnombre"
+    champsnombre.style.display = "block";
+  } else {
+    // Masquer l'id "champstypedecoration"
+    champstypedecoration.style.display = "none";
+    // Masquer l'id "champsnombre"
+    champsnombre.style.display = "none";
+  }
+}
+
+// Appeler la fonction lorsque les sélections des menus déroulants "problemeplomberie" et "selectdecoration" changent
+document.getElementById("problemeplomberie").addEventListener("change", afficherChampsDecorationEtNombre);
+document.getElementById("selectdecoration").addEventListener("change", afficherChampsDecorationEtNombre);
+
+// Appeler la fonction une fois au chargement de la page pour afficher/masquer les éléments en fonction des valeurs initiales des menus déroulants
+afficherChampsDecorationEtNombre();
+
+
+
+// :::::::::::::::::::TOILT:::::::::::::::::::::::
+function afficherElement() {
+  var problemePlomberie = document.getElementById("problemeplomberie").value;
+  var selectDecoration = document.getElementById("selectdecoration").value;
+  var typeDecoration = document.getElementById("typedecotionAvecSans").value;
+
+  // Vérifier les conditions pour afficher les éléments
+  if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "sanselect") {
+    document.getElementById("tabeautoilsans").style.display = "block";
+    document.getElementById("tabeautoilavec").style.display = "none";
+  } else if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "avecselect") {
+    document.getElementById("tabeautoilavec").style.display = "block";
+    document.getElementById("tabeautoilsans").style.display = "none";
+  }
+}
+// Appeler la fonction lorsque les sélections des menus déroulants changent
+document.getElementById("problemeplomberie").addEventListener("change", afficherElement);
+document.getElementById("selectdecoration").addEventListener("change", afficherElement);
+document.getElementById("typedecotionAvecSans").addEventListener("change", afficherElement);
+// Appeler la fonction une fois au chargement de la page pour afficher/masquer les éléments en fonction des valeurs initiales des menus déroulants
+afficherElement();
+
+// :::::::::::::
+function afficherTabeaucuisans() {
+  var problemePlomberie = document.getElementById("problemeplomberie").value;
+  var selectDecoration = document.getElementById("selectdecoration").value;
+  var selectTypeDecoration = document.getElementById("typedecotionAvecSans").value;
+  var tabeaucuisans = document.getElementById("tabeaucuisans");
+  var tabeaucuiavec = document.getElementById("tabeaucuiavec");
+
+  if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "sanselect") {
+    tabeaucuisans.style.display = "block";
+    tabeaucuiavec.style.display = "none";
+  } else if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "avecselect") {
+    tabeaucuisans.style.display = "none";
+    tabeaucuiavec.style.display = "block";
+  } else {
+    tabeaucuisans.style.display = "none";
+    tabeaucuiavec.style.display = "none";
+  }
+}
+// Appeler la fonction lorsque les sélections des menus déroulants changent
+document.getElementById("problemeplomberie").addEventListener("change", afficherTabeaucuisans);
+document.getElementById("selectdecoration").addEventListener("change", afficherTabeaucuisans);
+document.getElementById("typedecotionAvecSans").addEventListener("change", afficherTabeaucuisans);
 
 
 
