@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FORAGE ADDUCTION D'EAU</title>
+
+  <!-- ::CSS::::::: -->
+  <link rel="stylesheet" href="servicepages2.css">
+  <link rel="stylesheet" href="tableau.css">
+  <!-- <link rel="stylesheet" href="fossetancheite.css"> -->
+
+<!-- CSS de Bootstrap -->
+<!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+
+  <!----===== Iconscout CSS ===== -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
+
+  <!-- ::::::cdn icon:::::::: -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" integrity="sha512-iecdLmaskl7CVkqkXNQ/ZH/XLlvWZOJyj7Yy7tcenmpD1ypASozpmT/E0iPtmFIB46ZmdtAc9eNBvH0H/ZpiBw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+   <!-- ::::PDF::::::::: -->
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.0/jspdf.umd.min.js"></script>
+   <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.3.2/html2canvas.min.js"></script>
+   <style>
+    table {
+      width: 90%;
+      border-collapse: collapse;
+    }
+  
+    td {
+      border: 1px solid black;
+      padding: 10px;
+    }
+  
+    .opposes {
+      display: flex;
+      justify-content: space-between;
+    }
+  </style>
+  </head>
+<body>
+
+
+  <!-- ::::::::::::::::::::::::::::: -->
+  <div class="toutcontainer" >
+    <div class="container">
+        <div class="enteteform" style="display: flex; justify-content: space-between; ">
+          <div class="dd">
+            <header>DEVIS FORAGE ADDUCTION D'EAU</header>
+          </div>
+
+              <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
+              style="width: 10%; margin-top: -2%;"
+              >
+        </div>
+
+        <form action="#" class="form">
+            <div class="form first" >
+              <!-- Input Rang 1 ::::::::: -->
+                <div class="details personal" >
+                    <span class="title"> </span>
+
+                    <div class="fields">
+                      
+                        <div class="input-field">
+                            <input type="text" placeholder="Votre nom" id="nom" >
+                        </div>
+                        
+
+                        <div class="input-field">
+                          <input type="text" placeholder="Votre prenom" id="prenom" >
+                       </div>
+
+                       <div class="input-field">
+                        <input type="text" placeholder="Votre quartier" id="ville" >
+                       </div>
+
+                        <div class="input-field">
+                            <input type="number" placeholder="Votre téléphone" id="numero">
+                        </div>
+
+
+                        <div class="input-field">
+                            <select required id="selectservice">
+                                <option disabled selected>Service</option>
+                                <option value="serviceinstallation">Installation</option>
+                                <option value="serviceentretien">Entretien</option>
+                              </select>
+                      </div>
+
+                       <!-- ::::::::::CHAMPS TYPE:::::::::: -->
+                       <div id="champsType" style=" display: none; width: 200%;">
+                       <div class="input-field">
+                        <select required  id="typeplomberie">
+                            <option disabled selected>Type</option>
+                            <option value="batimentselect">Bâtiment</option>
+                            <option value="champselect">Champs</option>
+                            <option value="usineselect">Usine</option>
+                        </select>
+                    </div>
+                </div>
+
+                 <!-- ::::::::::CHAMPS PROBLEME:::::::::: -->
+                 <div id="champsForage" style=" display: none; width: 200%;">
+                    <div class="input-field">
+                     <select required  id="problemeplomberie">
+                         <option disabled selected>Problème</option>
+                         <option value="toiltteselect">Toilette</option>
+                         <option value="cuisieselect">Cuisine</option>
+                         <option value="chateauselect">Château</option>
+                     </select>
+                 </div>
+             </div>
+
+              <!-- ::::::::::CHAMPS  DECORATION:::::::::: -->
+              <div id="champsdecoration" style="display: none; width: 200%;">
+                <div class="input-field">
+                 <select required  id="zoneforage">
+                     <option disabled selected>Décoration</option>
+                     <option value="standartselect">Standart</option>
+                     <option value="luxeselect">Luxe</option>
+                 </select>
+             </div>
+         </div>
+
+        
+
+                <!-- ::::::::::CHAMPS NIVEAU ETAGE:::::::::: -->
+                <div id="champsnombreetage" style="display: none; width: 200%;">
+                <div class="input-field">
+                    <input type="number" min="1" placeholder="Niveau Maison" id="numbremaison" >
+                </div>
+            </div>
+
+
+              <!-- ::::::::::CHAMPS TYPE DECORATION:::::::::: -->
+          <div id="champstypedecoration" style="display: none; width: 200%;">
+            <div class="input-field">
+             <select required  id="zoneforage">
+                 <option disabled selected>Type Décoration</option>
+                 <option value="sanselect">Sans Chauffage</option>
+                 <option value="avecselect">Avec Chauffage</option>
+             </select>
+         </div>
+     </div>
+
+             <!-- ::::::::::CHAMPS NOMBRE TOILETTE OU CUISINE:::::::::: -->
+             <div id="champsnombre" style="display: none; width: 200%;">
+                <div class="input-field">
+                    <input type="number" min="1" placeholder="Nombre" id="numbre" >
+                </div>
+            </div>
+
+            
+
+            </div>
+                </div>
+
+                <!-- Input Rang 2 ::::::::: -->
+                <div class="details ID">
+
+                    <div class="fields">
+                        
+                      
+                        <!-- <div class="input-field">
+                            <input type="text" placeholder="Enter ID type" required>
+                        </div> -->
+
+
+                    </div>
+
+                    <!-- ::::::::BUTTON FORAGE::::::: -->
+                    <button  id="buttonForage" class="nextBtn" style="display: none;">
+                        <span  class="btnText">Ajouter</span>
+                        <i class="fa-solid fa-copy"></i>
+                    </button>
+
+                    <!-- ::::::::BUTTON ADDUCTION::::::: -->
+                    <button  id="buttonAdduction" class="nextBtn" style="display: none;">
+                      <span  class="btnText">Ajouter</span>
+                      <i class="fa-solid fa-copy"></i>
+                  </button>
+
+                 
+            
+                </div> 
+            </div>
+        </form>
+       
+    </div>
+</div>
+<!--FORM::::::::::::::::::::::  -->
+
+
+<!-- :::::::::::TABLEAU:::::::::::::::::: -->
+<div class="telechargerpdf" style=" display: none; padding-bottom: 8%;">
+<div id="containairpdf" style=" padding-bottom: 10px;">
+		
+  <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+    <div class="entete-text">
+    <h1>IKA PLOMBIER SARL</h1>
+    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+    <p>Email: ctraore@ikaplombier.com</p>
+    <p>Tel: 74 24 00 74</p>
+    </div>
+    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+  </div>
+  <!-- :::::::::ENTETE::::::::::::: -->
+  
+  <!-- ::::::::::::::: -->
+  <hr class="hr1" >
+  <hr class="hr2" >
+  
+  <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
+    <h1>Facture Pro-format N°04.03.07.23</h1>
+    </div>
+    
+  
+  <!-- :: -->
+  <ul class="coordonees" >
+    <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
+    <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
+    <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
+    <li id="service"><div class="coordtext">Sevice: </div> </li>
+    </ul>
+    <!-- :::::::::::::: -->
+
+    
+  
+
+  <!-- :::::::::FORAGE::::::::: -->
+  <div id="tabeauforage" style="">
+    <table>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Zone</div>
+            <div id="afficheZone"> ?</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div >Mètre </div>
+            <div > 100 m</div>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div>Equipement </div>
+            <div > Non Equipé</div>
+          </div>
+        </td>
+       
+      </tr>
+      <tr>
+        <td>
+          <div class="opposes">
+            <div >Montant </div>
+            <div id="montantForage"> ?</div>
+          </div>
+        </td>
+      </tr>
+
+    </table>
+  </div>
+
+  
+  <!-- :: -->
+  <ul class="arretfacture" style=" margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <li>Arrêté la Facture pro-forma à la somme de <span id="lesmontant"></span>
+      .
+      </li>
+    </ul>
+    <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
+      <div class="accord" style=" font-weight: bold;">Pour accord</div>
+    <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
+  </div>
+   
+</div>
+</div>
+
+
+  <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
+  <button  style="display: none;" id="telecharger" >
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+</button>
+
+
+
+
+<!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
+<script>
+
+
+  // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
+function afficherDateDuJour() {
+      var dateElement = document.querySelector('.datejour');
+      var date = new Date();
+      var options = {  year: 'numeric', month: 'numeric', day: 'numeric' };
+      var dateString = date.toLocaleDateString(undefined, options);
+      dateElement.textContent ='Bamako le ' + dateString;
+    } 
+    // Appeler la fonction pour afficher la date du jour au chargement de la page
+    afficherDateDuJour();
+
+
+// :::::RECUPERATION NOM-PRENOM::::::::::
+function recupererNomPrenom() {
+  var nom = document.getElementById("nom").value;
+  var prenom = document.getElementById("prenom").value;
+  var nomprenomElement = document.getElementById("nomprenom");
+  nomprenomElement.innerHTML = "Doit : " + nom + " " + prenom;
+}
+// Appeler la fonction lorsque les champs de saisie changent
+document.getElementById("nom").addEventListener("input", recupererNomPrenom);
+document.getElementById("prenom").addEventListener("input", recupererNomPrenom);
+// Appeler la fonction une fois au chargement de la page pour afficher les valeurs initiales
+recupererNomPrenom();
+
+
+
+// :::::::::::RECUPERATION CHAMPS VILLE SAISI::::::::::
+function recupererVille() {
+  var ville = document.getElementById("ville").value;
+  var villequartElement = document.getElementById("villequart");
+  villequartElement.innerHTML = "Ville/Quartier : " + ville;
+}
+document.getElementById("ville").addEventListener("input", recupererVille);
+recupererVille();
+
+
+// :::::::::::RECUPERATION CHAMPS NUMERO SAISI::::::::::
+function recupererNumero() {
+  var numero = document.getElementById("numero").value;
+  var telephoneElement = document.getElementById("telephone");
+  telephoneElement.innerHTML = "Téléphone : " + numero;
+}
+// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+document.getElementById("numero").addEventListener("input", recupererNumero);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
+recupererNumero();
+
+
+// ::::::::::::::::CHAMPS TYPE AFFICHAGE EN FONCTION SELECTION::::::::::::
+function afficherChampsType() {
+    var selectService = document.getElementById("selectservice");
+    var champsType = document.getElementById("champsType");
+
+    // Récupérer la valeur sélectionnée dans le menu déroulant
+    var selectedValue = selectService.value;
+
+    // Vérifier si la valeur sélectionnée est "serviceinstallation"
+    if (selectedValue === "serviceinstallation") {
+      // Afficher le champ "champsType"
+      champsType.style.display = "block";
+    } else {
+      // Masquer le champ "champsType"
+      champsType.style.display = "none";
+    }
+  }
+  // Appeler la fonction lorsque la sélection du menu déroulant change
+  document.getElementById("selectservice").addEventListener("change", afficherChampsType);
+  // Appeler la fonction une fois au chargement de la page pour afficher/masquer le champ "champsType" en fonction de la valeur initiale du menu déroulant
+  afficherChampsType();
+
+
+// ::::::::::::::::CHAMPS TYPE PLOMBERIE AFFICHAGE EN FONCTION SELECTION::::::::::::
+  function afficherChampsBatiment() {
+  var selectChampsType = document.getElementById("typeplomberie");
+  var champsForage = document.getElementById("champsForage");
+
+  // Récupérer la valeur sélectionnée dans le menu déroulant
+  var selectedValue = selectChampsType.value;
+
+  // Vérifier si la valeur sélectionnée est "batimentselect"
+  if (selectedValue === "batimentselect") {
+    // Afficher le champ "champsForage"
+    champsForage.style.display = "block";
+  } else {
+    // Masquer le champ "champsForage"
+    champsForage.style.display = "none";
+  }
+}
+// Appeler la fonction lorsque la sélection du menu déroulant "typeplomberie" change
+document.getElementById("typeplomberie").addEventListener("change", afficherChampsBatiment);
+// Appeler la fonction une fois au chargement de la page pour afficher/masquer le champ "champsForage" en fonction de la valeur initiale du menu déroulant "typeplomberie"
+afficherChampsBatiment();
+
+
+// ::::::::::::::::CHAMPS PROBLEME AFFICHAGE AFFICHAGE EN FONCTION SELECTION::::::::::::
+function afficherEnFonctionSelection() {
+    var problemePlomberie = document.getElementById("problemeplomberie").value;
+    var champsDecoration = document.getElementById("champsdecoration");
+    var champsNombreEtage = document.getElementById("champsnombreetage");
+
+    // Vérifier si la sélection est "toiltteselect" ou "cuisieselect"
+    if (problemePlomberie === "toiltteselect" || problemePlomberie === "cuisieselect") {
+        // Afficher l'id "champsdecoration"
+        champsDecoration.style.display = "block";
+        // Masquer l'id "champsnombreetage"
+        champsNombreEtage.style.display = "none";
+    } else if (problemePlomberie === "chateauselect") {
+        // Afficher l'id "champsnombreetage"
+        champsNombreEtage.style.display = "block";
+        // Masquer l'id "champsdecoration"
+        champsDecoration.style.display = "none";
+    }
+}
+// Appeler la fonction lorsque la sélection du menu déroulant "problemeplomberie" change
+document.getElementById("problemeplomberie").addEventListener("change", afficherEnFonctionSelection);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// ::::::TELECHARGEMENT::::::::::::::::
+// :::::::PDF TELECHARGEMENT/////////
+// Transformation en image
+window.html2canvas = html2canvas;
+window.jsPDF = window.jspdf.jsPDF;
+
+function makePDF() {
+  html2canvas(document.querySelector("#capture"), {
+    allowTaint: true,
+    useCORS: true,
+    scale: 1
+  }).then(canvas => {
+    var img = canvas.toDataURL("image/png");
+
+    var doc = new jsPDF();
+    doc.setFont('Arial');
+    doc.save("fosseptique.pdf");
+  });
+}
+
+function downloadPDF() {
+  var element = document.querySelector(".telechargerpdf");
+  html2canvas(element, {
+    scale: 2,
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: document.documentElement.offsetWidth,
+    windowHeight: document.documentElement.offsetHeight,
+    useCORS: true
+  }).then(function (canvas) {
+    var imgData = canvas.toDataURL("image/png", 1.0);
+    var pdf = new jsPDF("p", "mm", "a4", true);
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
+
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+    pdf.save("fosseptique.pdf");
+  });
+}
+document.getElementById("telecharger").addEventListener("click", function () {
+  downloadPDF();
+});
+
+
+
+</script>
+
+ 
+</body>
+</html>
