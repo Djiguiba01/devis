@@ -260,19 +260,19 @@
           <tr>
             <td>3 </td>
             <td>Douche </td>
-            <td id="nombreToilSans3">1  </td>
-            <td id="pUnittoilSans3">2 </td>
+            <td id="nombreToilSans3">  </td>
+            <td id="pUnittoilSans3">1 </td>
             <td id="montantProduitoilSans3">- </td>
           </tr>
           
           <tr>
             <td>4 </td>
             <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-            <td id="moeuvres">- </td>
+            <td id="moeuvresToilSans">100000 </td>
           </tr>
           <tr style="background-color: #5f7acb;">
             <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-            <td id="montanttoit"> 80 000</td>
+            <td id="montanttoilSans"> -</td>
           </tr>
         </table>
       </div>
@@ -293,21 +293,21 @@
           <td>lac </td>
           <td  id="nombreCuiAvec1">1  </td>
           <td id="pUnittoilAvec1">5 </td>
-          <td id="montantProduitoilAvec1">- </td>
+          <td id="montantProduitoilAvec1"> </td>
         </tr>
         <tr>
           <td>2 </td>
           <td>WVC </td>
           <td id="nombreCuiAvec2">1  </td>
           <td id="pUnittoilAvec2">20 </td>
-          <td id="montantProduitoilAvec2">- </td>
+          <td id="montantProduitoilAvec2"> </td>
         </tr>
         <tr>
           <td>3 </td>
           <td>Douche </td>
           <td id="nombreCuiAvec3">1  </td>
           <td id="pUnittoilAvec3">1 </td>
-          <td id="montantProduitoilAvec3">- </td>
+          <td id="montantProduitoilAvec3"> </td>
         </tr>
 
         <tr>
@@ -315,17 +315,17 @@
           <td>Chauffage </td>
           <td id="nombreCuiAvec4">1  </td>
           <td id="pUnittoilAvec4">2 </td>
-          <td id="montantProduitoilAvec4">- </td>
+          <td id="montantProduitoilAvec4"> </td>
         </tr>
         
         <tr>
           <td>5 </td>
           <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-          <td id="moeuvres">- </td>
+          <td id="moeuvresToilAvec">200000</td>
         </tr>
         <tr style="background-color: #5f7acb;">
           <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-          <td id="montanttoit"> 80 000</td>
+          <td id="montanttoilAvec"> </td>
         </tr>
       </table>
     </div>
@@ -789,10 +789,6 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
   document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculateMontantProduicuisAvec);
 
 
-
-
-
-
   
 
    // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT SANS CHAUF CUISINE
@@ -825,8 +821,10 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
 
 
 
+// ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF TOILETTE
 
 
+//   // ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS AVEC CHAUF TOILETTE
 
 
 
