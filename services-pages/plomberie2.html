@@ -149,7 +149,7 @@
              <!-- ::::::::::CHAMPS NOMBRE TOILETTE OU CUISINE:::::::::: -->
              <div id="champsnombre" style="display: none; width: 200%;">
                 <div class="input-field">
-                    <input type="number" min="1" placeholder="Nombre" id="numbre" >
+                    <input type="number" min="1" placeholder="Nombre" id="numbre" oninput="afficherValeurSaisie()">
                 </div>
             </div>
 
@@ -171,8 +171,8 @@
 
                     </div>
 
-                    <!-- ::::::::BUTTON FORAGE::::::: -->
-                    <button  id="buttonForage" class="nextBtn" style="display: none;">
+                    <!-- ::::::::BUTTON TOILETTE CUISINE::::::: -->
+                    <button  id="buttonToilCuisine" class="nextBtn" style="display: none;">
                         <span  class="btnText">Ajouter</span>
                         <i class="fa-solid fa-copy"></i>
                     </button>
@@ -245,24 +245,24 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>Lavabaux tabeautoilavec</td>
-            <td  id="utoit1">1  </td>
-            <td id="qtoit1">- </td>
-            <td id="mtoit1">- </td>
+            <td>Lavabaux</td>
+            <td  id="nombreToilSans1">1  </td>
+            <td id="pUnittoilSans1">10 </td>
+            <td id="montantProduitoilSans1">- </td>
           </tr>
           <tr>
             <td>2 </td>
             <td>WVC </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
+            <td id="nombreToilSans2">1  </td>
+            <td id="pUnittoilSans2">1 </td>
+            <td id="montantProduitoilSans2">- </td>
           </tr>
           <tr>
             <td>3 </td>
             <td>Douche </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
+            <td id="nombreToilSans3">1  </td>
+            <td id="pUnittoilSans3">2 </td>
+            <td id="montantProduitoilSans3">- </td>
           </tr>
           
           <tr>
@@ -277,95 +277,105 @@
         </table>
       </div>
 
-      <!-- :::::::::TABLEAU TOILETTE STANDART AVEC CHAUFFAGE::::::::: -->
-    <div  id="tabeautoilavec" style="display: none;">
-        <table class="tableau" >
-          <tr id="header">
-            <th>N°</th>
-            <th>Désignation</th>
-            <th>Quantité</th>
-            <th>Prix Unitaire</th>
-            <th id="colonnetoit">Montant</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>tabeautoilavec </td>
-            <td  id="utoit1">1  </td>
-            <td id="qtoit1">- </td>
-            <td id="mtoit1">- </td>
-          </tr>
-          <tr>
-            <td>2 </td>
-            <td>WVC </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
-          </tr>
-          <tr>
-            <td>3 </td>
-            <td>Douche </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
-          </tr>
-          
-          <tr>
-            <td>4 </td>
-            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-            <td id="moeuvres">- </td>
-          </tr>
-          <tr style="background-color: #5f7acb;">
-            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-            <td id="montanttoit"> 80 000</td>
-          </tr>
-        </table>
-      </div>
 
-     <!-- :::::::::TABLEAU CUISINE STANDART SANS CHAUFFAGE::::::::: -->
-    <div  id="tabeaucuisans" style="display: none;">
-        <table class="tableau" >
-          <tr id="header">
-            <th>N°</th>
-            <th>Désignation</th>
-            <th>Quantité</th>
-            <th>Prix Unitaire</th>
-            <th id="colonnetoit">Montant</th>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>tabeaucuisans </td>
-            <td  id="utoit1">1  </td>
-            <td id="qtoit1">- </td>
-            <td id="mtoit1">- </td>
-          </tr>
-          <tr>
-            <td>2 </td>
-            <td>WVC </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
-          </tr>
-          <tr>
-            <td>3 </td>
-            <td>Douche </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
-          </tr>
-          
-          <tr>
-            <td>4 </td>
-            <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-            <td id="moeuvres">- </td>
-          </tr>
-          <tr style="background-color: #5f7acb;">
-            <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-            <td id="montanttoit"> 80 000</td>
-          </tr>
-        </table>
-      </div>
+        <!-- :::::::::TABLEAU TOILETTE STANDART AVEC CHAUFFAGE::::::::: -->
+     <div id="tabeautoilavec"  style="display: none;">
+      <table class="tableau" >
+        <tr id="header">
+          <th>N°</th>
+          <th>Désignation</th>
+          <th>Quantité</th>
+          <th>Prix Unitaire</th>
+          <th id="colonnetoit">Montant</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>lac </td>
+          <td  id="nombreCuiAvec1">1  </td>
+          <td id="pUnittoilAvec1">5 </td>
+          <td id="montantProduitoilAvec1">- </td>
+        </tr>
+        <tr>
+          <td>2 </td>
+          <td>WVC </td>
+          <td id="nombreCuiAvec2">1  </td>
+          <td id="pUnittoilAvec2">20 </td>
+          <td id="montantProduitoilAvec2">- </td>
+        </tr>
+        <tr>
+          <td>3 </td>
+          <td>Douche </td>
+          <td id="nombreCuiAvec3">1  </td>
+          <td id="pUnittoilAvec3">1 </td>
+          <td id="montantProduitoilAvec3">- </td>
+        </tr>
 
-     <!-- :::::::::TABLEAU CUISINE STANDART AVEC CHAUFFAGE::::::::: -->
+        <tr>
+          <td>4 </td>
+          <td>Chauffage </td>
+          <td id="nombreCuiAvec4">1  </td>
+          <td id="pUnittoilAvec4">2 </td>
+          <td id="montantProduitoilAvec4">- </td>
+        </tr>
+        
+        <tr>
+          <td>5 </td>
+          <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+          <td id="moeuvres">- </td>
+        </tr>
+        <tr style="background-color: #5f7acb;">
+          <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+          <td id="montanttoit"> 80 000</td>
+        </tr>
+      </table>
+    </div>
+
+
+    <!-- :::::::::TABLEAU CUISINE STANDART SANS CHAUFFAGE::::::::: -->
+    <div id="tabeaucuisans"  style="display: none;">
+      <table class="tableau" >
+        <tr id="header">
+          <th>N°</th>
+          <th>Désignation</th>
+          <th>Quantité</th>
+          <th>Prix Unitaire</th>
+          <th id="colonnetoit">Montant</th>
+        </tr>
+        <tr>
+          <td>1</td>
+          <td>Lav </td>
+          <td  id="tabeaucuisans1">1  </td>
+          <td id="pUnitcuisiSans1">3 </td>
+          <td id="montantProduitCuiSans1">- </td>
+        </tr>
+        <tr>
+          <td>2 </td>
+          <td>WVC </td>
+          <td id="tabeaucuisans2">1  </td>
+          <td id="pUnitcuisiSans2">4 </td>
+          <td id="montantProduitCuiSans2">- </td>
+        </tr>
+        <tr>
+          <td>3 </td>
+          <td>Douche </td>
+          <td id="tabeaucuisans3">1  </td>
+          <td id="pUnitcuisiSans3">6 </td>
+          <td id="montantProduitCuiSans3">'' </td>
+        </tr>
+        
+        <tr>
+          <td>4 </td>
+          <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
+          <td id="moeuvres">- </td>
+        </tr>
+        <tr style="background-color: #5f7acb;">
+          <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
+          <td id="montanttoit"> 80 000</td>
+        </tr>
+      </table>
+  </div>
+
+    <!-- :::::::::TABLEAU CUISINE STANDART AVEC CHAUFFAGE::::::::: -->
     <div  id="tabeaucuiavec" style="display: none;">
         <table class="tableau" >
           <tr id="header">
@@ -377,28 +387,36 @@
           </tr>
           <tr>
             <td>1</td>
-            <td>tabeaucuiavec </td>
-            <td  id="utoit1">1  </td>
-            <td id="qtoit1">- </td>
-            <td id="mtoit1">- </td>
+            <td>tabeautoilavec </td>
+            <td  id="nombreToilAvec1">1  </td>
+            <td id="pUnitcuisiAvec1">3 </td>
+            <td id="montantProduitCuiAvec1">- </td>
           </tr>
           <tr>
             <td>2 </td>
             <td>WVC </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
+            <td id="nombreToilAvec2">1  </td>
+            <td id="pUnitcuisiAvec2">10 </td>
+            <td id="montantProduitCuiAvec2">- </td>
           </tr>
           <tr>
             <td>3 </td>
             <td>Douche </td>
-            <td id="utoit2">1  </td>
-            <td id="qtoit2">- </td>
-            <td id="mtoit2">- </td>
+            <td id="nombreToilAvec3">1  </td>
+            <td id="pUnitcuisiAvec3">3 </td>
+            <td id="montantProduitCuiAvec3">- </td>
+          </tr>
+
+          <tr>
+            <td>4 </td>
+            <td>Chauffage </td>
+            <td id="nombreToilAvec4">1  </td>
+            <td id="pUnitcuisiAvec4">4 </td>
+            <td id="montantProduitCuiAvec4">- </td>
           </tr>
           
           <tr>
-            <td>4 </td>
+            <td>5 </td>
             <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
             <td id="moeuvres">- </td>
           </tr>
@@ -407,7 +425,10 @@
             <td id="montanttoit"> 80 000</td>
           </tr>
         </table>
-      </div>
+    </div>
+
+
+    
   
 
   
@@ -577,29 +598,36 @@ function afficherChampsDecorationEtNombre() {
     champsnombre.style.display = "none";
   }
 }
-
 // Appeler la fonction lorsque les sélections des menus déroulants "problemeplomberie" et "selectdecoration" changent
 document.getElementById("problemeplomberie").addEventListener("change", afficherChampsDecorationEtNombre);
 document.getElementById("selectdecoration").addEventListener("change", afficherChampsDecorationEtNombre);
-
 // Appeler la fonction une fois au chargement de la page pour afficher/masquer les éléments en fonction des valeurs initiales des menus déroulants
 afficherChampsDecorationEtNombre();
 
 
 
-// :::::::::::::::::::TOILT:::::::::::::::::::::::
+// :::::::::::::::::::AFFICHE TABLEAU TOILETTE:::::::::::::::::::::::
 function afficherElement() {
   var problemePlomberie = document.getElementById("problemeplomberie").value;
   var selectDecoration = document.getElementById("selectdecoration").value;
   var typeDecoration = document.getElementById("typedecotionAvecSans").value;
+  var tabeaucuisans = document.getElementById("tabeaucuisans");
+  var tabeaucuiavec = document.getElementById("tabeaucuiavec");
+  var buttonToilCuisine = document.getElementById("buttonToilCuisine");
 
   // Vérifier les conditions pour afficher les éléments
   if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "sanselect") {
     document.getElementById("tabeautoilsans").style.display = "block";
+    buttonToilCuisine.style.display = "block";
     document.getElementById("tabeautoilavec").style.display = "none";
+    document.getElementById("tabeaucuisans").style.display = "none";
+    document.getElementById("tabeaucuiavec").style.display = "none";
   } else if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "avecselect") {
     document.getElementById("tabeautoilavec").style.display = "block";
+    buttonToilCuisine.style.display = "block";
     document.getElementById("tabeautoilsans").style.display = "none";
+    document.getElementById("tabeaucuisans").style.display = "none";
+    document.getElementById("tabeaucuiavec").style.display = "none";
   }
 }
 // Appeler la fonction lorsque les sélections des menus déroulants changent
@@ -609,20 +637,30 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
 // Appeler la fonction une fois au chargement de la page pour afficher/masquer les éléments en fonction des valeurs initiales des menus déroulants
 afficherElement();
 
-// :::::::::::::
+
+// :::::::::::::::::::AFFICHE TABLEAU CUISINE:::::::::::::::::::::::
 function afficherTabeaucuisans() {
   var problemePlomberie = document.getElementById("problemeplomberie").value;
   var selectDecoration = document.getElementById("selectdecoration").value;
   var selectTypeDecoration = document.getElementById("typedecotionAvecSans").value;
   var tabeaucuisans = document.getElementById("tabeaucuisans");
   var tabeaucuiavec = document.getElementById("tabeaucuiavec");
+  var buttonToilCuisine = document.getElementById("buttonToilCuisine");
 
   if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "sanselect") {
     tabeaucuisans.style.display = "block";
+    buttonToilCuisine.style.display = "block";
     tabeaucuiavec.style.display = "none";
+    document.getElementById("tabeautoilsans").style.display = "none";
+    document.getElementById("tabeautoilavec").style.display = "none";
+    
   } else if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "avecselect") {
     tabeaucuisans.style.display = "none";
     tabeaucuiavec.style.display = "block";
+        buttonToilCuisine.style.display = "block";
+    document.getElementById("tabeautoilsans").style.display = "none";
+    document.getElementById("tabeautoilavec").style.display = "none";
+    
   } else {
     tabeaucuisans.style.display = "none";
     tabeaucuiavec.style.display = "none";
@@ -632,6 +670,170 @@ function afficherTabeaucuisans() {
 document.getElementById("problemeplomberie").addEventListener("change", afficherTabeaucuisans);
 document.getElementById("selectdecoration").addEventListener("change", afficherTabeaucuisans);
 document.getElementById("typedecotionAvecSans").addEventListener("change", afficherTabeaucuisans);
+
+
+// :::::::::::AFFICHE NOMBRE (QUANTITE) DES PRODUITS DE TOILETTE ET CUISINE::::::::::
+ // Fonction pour afficher la valeur saisie dans "numbre" dans les autres éléments
+ function afficherValeurSaisie() {
+    var valeurSaisie = document.getElementById("numbre").value;
+
+    // Affichage dans les éléments avec les ids spécifiés
+    document.getElementById("nombreToilSans1").textContent = valeurSaisie;
+    document.getElementById("nombreToilSans2").textContent = valeurSaisie;
+    document.getElementById("nombreToilSans3").textContent = valeurSaisie;
+    document.getElementById("nombreToilAvec1").textContent = valeurSaisie;
+    document.getElementById("nombreToilAvec2").textContent = valeurSaisie;
+    document.getElementById("nombreToilAvec3").textContent = valeurSaisie;
+    document.getElementById("nombreToilAvec4").textContent = valeurSaisie;
+    document.getElementById("nombreCuiAvec1").textContent = valeurSaisie;
+    document.getElementById("nombreCuiAvec2").textContent = valeurSaisie;
+    document.getElementById("nombreCuiAvec3").textContent = valeurSaisie;
+    document.getElementById("nombreCuiAvec4").textContent = valeurSaisie;
+    document.getElementById("tabeaucuisans1").textContent = valeurSaisie;
+    document.getElementById("tabeaucuisans2").textContent = valeurSaisie;
+    document.getElementById("tabeaucuisans3").textContent = valeurSaisie;
+  }
+
+
+  // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT SANS CHAUF TOILETTE
+  function calculateMontantProduitOilSans() {
+    // Obtenir les valeurs des éléments "numbre" et "pUnittoilSans"
+    var numbre = parseFloat(document.getElementById("numbre").value);
+    var pUnittoilSans1 = parseFloat(document.getElementById("pUnittoilSans1").textContent);
+    var pUnittoilSans2 = parseFloat(document.getElementById("pUnittoilSans2").textContent);
+    var pUnittoilSans3 = parseFloat(document.getElementById("pUnittoilSans3").textContent);
+
+    // Calculer le résultat
+    var montantProduitOilSans1 = numbre * pUnittoilSans1;
+    var montantProduitOilSans2 = numbre * pUnittoilSans2;
+    var montantProduitOilSans3 = numbre * pUnittoilSans3;
+
+    // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
+    document.getElementById("montantProduitoilSans1").textContent = montantProduitOilSans1;
+    document.getElementById("montantProduitoilSans2").textContent = montantProduitOilSans2;
+    document.getElementById("montantProduitoilSans3").textContent = montantProduitOilSans3;
+  }
+  // Appeler la fonction pour effectuer le calcul initial
+  calculateMontantProduitOilSans();
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+  document.getElementById("numbre").addEventListener("input", calculateMontantProduitOilSans);
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id "pUnittoilSans"
+  document.getElementById("pUnittoilSans1").addEventListener("input", calculateMontantProduitOilSans);
+  document.getElementById("pUnittoilSans2").addEventListener("input", calculateMontantProduitOilSans);
+  document.getElementById("pUnittoilSans3").addEventListener("input", calculateMontantProduitOilSans);
+
+
+
+  // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT AVEC CHAUF TOILETTE
+  function calculateMontantProduitOilAvec() {
+    // Obtenir les valeurs des éléments "numbre" et "pUnittoilSans"
+    var numbre = parseFloat(document.getElementById("numbre").value);
+    var pUnittoilAvec1 = parseFloat(document.getElementById("pUnittoilAvec1").textContent);
+    var pUnittoilAvec2 = parseFloat(document.getElementById("pUnittoilAvec2").textContent);
+    var pUnittoilAvec3 = parseFloat(document.getElementById("pUnittoilAvec3").textContent);
+    var pUnittoilAvec4 = parseFloat(document.getElementById("pUnittoilAvec4").textContent);
+
+    // Calculer le résultat
+    var montantProduitOilSans1 = numbre * pUnittoilAvec1;
+    var montantProduitOilSans2 = numbre * pUnittoilAvec2;
+    var montantProduitOilSans3 = numbre * pUnittoilAvec3;
+    var montantProduitOilSans4 = numbre * pUnittoilAvec4;
+
+    // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
+    document.getElementById("montantProduitoilAvec1").textContent = montantProduitOilSans1;
+    document.getElementById("montantProduitoilAvec2").textContent = montantProduitOilSans2;
+    document.getElementById("montantProduitoilAvec3").textContent = montantProduitOilSans3;
+    document.getElementById("montantProduitoilAvec4").textContent = montantProduitOilSans4;
+  }
+  // Appeler la fonction pour effectuer le calcul initial
+  calculateMontantProduitOilAvec();
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+  document.getElementById("numbre").addEventListener("input", calculateMontantProduitOilAvec);
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id 
+  document.getElementById("pUnittoilAvec1").addEventListener("input", calculateMontantProduitOilAvec);
+  document.getElementById("pUnittoilAvec2").addEventListener("input", calculateMontantProduitOilAvec);
+  document.getElementById("pUnittoilAvec3").addEventListener("input", calculateMontantProduitOilAvec);
+  document.getElementById("pUnittoilAvec4").addEventListener("input", calculateMontantProduitOilAvec);
+
+
+
+   // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT AVEC CHAUF CUISINE
+   function calculateMontantProduicuisAvec() {
+    // Obtenir les valeurs des éléments "numbre" et "pUnittoilSans"
+    var numbre = parseFloat(document.getElementById("numbre").value);
+    var pUnitcuisiAvec1 = parseFloat(document.getElementById("pUnitcuisiAvec1").textContent);
+    var pUnitcuisiAvec2 = parseFloat(document.getElementById("pUnitcuisiAvec2").textContent);
+    var pUnitcuisiAvec3 = parseFloat(document.getElementById("pUnitcuisiAvec3").textContent);
+    var pUnitcuisiAvec4 = parseFloat(document.getElementById("pUnitcuisiAvec4").textContent);
+
+    // Calculer le résultat
+    var montantProduitCuisans1 = numbre * pUnitcuisiAvec1;
+    var montantProduitCuisans2 = numbre * pUnitcuisiAvec2;
+    var montantProduitCuisans3 = numbre * pUnitcuisiAvec3;
+    var montantProduitCuisans4 = numbre * pUnitcuisiAvec4;
+
+    // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
+    document.getElementById("montantProduitCuiAvec1").textContent = montantProduitCuisans1;
+    document.getElementById("montantProduitCuiAvec2").textContent = montantProduitCuisans2;
+    document.getElementById("montantProduitCuiAvec3").textContent = montantProduitCuisans3;
+    document.getElementById("montantProduitCuiAvec4").textContent = montantProduitCuisans4;
+  }
+  // Appeler la fonction pour effectuer le calcul initial
+  calculateMontantProduicuisAvec();
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+  document.getElementById("numbre").addEventListener("input", calculateMontantProduicuisAvec);
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id 
+  document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculateMontantProduicuisAvec);
+  document.getElementById("pUnitcuisiAvec2").addEventListener("input", calculateMontantProduicuisAvec);
+  document.getElementById("pUnitcuisiAvec3").addEventListener("input", calculateMontantProduicuisAvec);
+  document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculateMontantProduicuisAvec);
+
+
+
+
+
+
+  
+
+   // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT SANS CHAUF CUISINE
+   function calculateMontantProduicuisSans() {
+    // Obtenir les valeurs des éléments "numbre" et "pUnittoilSans"
+    var numbre = parseFloat(document.getElementById("numbre").value);
+    var pUnitcuisiSans1 = parseFloat(document.getElementById("pUnitcuisiSans1").textContent);
+    var pUnitcuisiSans2 = parseFloat(document.getElementById("pUnitcuisiSans2").textContent);
+    var pUnitcuisiSans3 = parseFloat(document.getElementById("pUnitcuisiSans3").textContent);
+
+    // Calculer le résultat
+    var montantProduitCuisans1 = numbre * pUnitcuisiSans1;
+    var montantProduitCuisans2 = numbre * pUnitcuisiSans2;
+    var montantProduitCuisans3 = numbre * pUnitcuisiSans3;
+
+    // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
+    document.getElementById("montantProduitCuiSans1").textContent = montantProduitCuisans1;
+    document.getElementById("montantProduitCuiSans2").textContent = montantProduitCuisans2;
+    document.getElementById("montantProduitCuiSans3").textContent = montantProduitCuisans3;
+  }
+  // Appeler la fonction pour effectuer le calcul initial
+  calculateMontantProduicuisSans();
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+  document.getElementById("numbre").addEventListener("input", calculateMontantProduicuisSans);
+  // Attacher la fonction à l'événement "input" de l'élément avec l'id 
+  document.getElementById("pUnitcuisiSans1").addEventListener("input", calculateMontantProduicuisSans);
+  document.getElementById("pUnitcuisiSans2").addEventListener("input", calculateMontantProduicuisSans);
+  document.getElementById("pUnitcuisiSans3").addEventListener("input", calculateMontantProduicuisSans);
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
