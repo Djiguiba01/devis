@@ -321,7 +321,7 @@
         <tr>
           <td>5 </td>
           <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-          <td id="moeuvresToilAvec">200000</td>
+          <td id="moeuvresToilAvec">200 000</td>
         </tr>
         <tr style="background-color: #5f7acb;">
           <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
@@ -360,20 +360,21 @@
           <td>Douche </td>
           <td id="tabeaucuisans3">1  </td>
           <td id="pUnitcuisiSans3">6 </td>
-          <td id="montantProduitCuiSans3">'' </td>
+          <td id="montantProduitCuiSans3">3 </td>
         </tr>
         
         <tr>
           <td>4 </td>
           <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-          <td id="moeuvres">- </td>
+          <td id="moeuvresCuiSans">100 000 </td>
         </tr>
         <tr style="background-color: #5f7acb;">
           <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-          <td id="montanttoit"> 80 000</td>
+          <td id="montantCuiSans"> 80 000</td>
         </tr>
       </table>
   </div>
+
 
     <!-- :::::::::TABLEAU CUISINE STANDART AVEC CHAUFFAGE::::::::: -->
     <div  id="tabeaucuiavec" style="display: none;">
@@ -404,7 +405,7 @@
             <td>Douche </td>
             <td id="nombreToilAvec3">1  </td>
             <td id="pUnitcuisiAvec3">3 </td>
-            <td id="montantProduitCuiAvec3">- </td>
+            <td id="montantProduitCuiAvec3"> </td>
           </tr>
 
           <tr>
@@ -412,17 +413,17 @@
             <td>Chauffage </td>
             <td id="nombreToilAvec4">1  </td>
             <td id="pUnitcuisiAvec4">4 </td>
-            <td id="montantProduitCuiAvec4">- </td>
+            <td id="montantProduitCuiAvec4"> </td>
           </tr>
           
           <tr>
             <td>5 </td>
             <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-            <td id="moeuvres">- </td>
+            <td id="moeuvresCuiAvec">200 000 </td>
           </tr>
           <tr style="background-color: #5f7acb;">
             <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-            <td id="montanttoit"> 80 000</td>
+            <td id="montantTotalCuiAvec"> 80 000</td>
           </tr>
         </table>
     </div>
@@ -709,9 +710,9 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     var montantProduitOilSans3 = numbre * pUnittoilSans3;
 
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
-    document.getElementById("montantProduitoilSans1").textContent = montantProduitOilSans1;
-    document.getElementById("montantProduitoilSans2").textContent = montantProduitOilSans2;
-    document.getElementById("montantProduitoilSans3").textContent = montantProduitOilSans3;
+    document.getElementById("montantProduitoilSans1").textContent = montantProduitOilSans1.toLocaleString();
+    document.getElementById("montantProduitoilSans2").textContent = montantProduitOilSans2.toLocaleString();
+    document.getElementById("montantProduitoilSans3").textContent = montantProduitOilSans3.toLocaleString();
   }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduitOilSans();
@@ -740,10 +741,10 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     var montantProduitOilSans4 = numbre * pUnittoilAvec4;
 
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
-    document.getElementById("montantProduitoilAvec1").textContent = montantProduitOilSans1;
-    document.getElementById("montantProduitoilAvec2").textContent = montantProduitOilSans2;
-    document.getElementById("montantProduitoilAvec3").textContent = montantProduitOilSans3;
-    document.getElementById("montantProduitoilAvec4").textContent = montantProduitOilSans4;
+    document.getElementById("montantProduitoilAvec1").textContent = montantProduitOilSans1.toLocaleString();
+    document.getElementById("montantProduitoilAvec2").textContent = montantProduitOilSans2.toLocaleString();
+    document.getElementById("montantProduitoilAvec3").textContent = montantProduitOilSans3.toLocaleString();
+    document.getElementById("montantProduitoilAvec4").textContent = montantProduitOilSans4.toLocaleString();
   }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduitOilAvec();
@@ -773,10 +774,10 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     var montantProduitCuisans4 = numbre * pUnitcuisiAvec4;
 
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
-    document.getElementById("montantProduitCuiAvec1").textContent = montantProduitCuisans1;
-    document.getElementById("montantProduitCuiAvec2").textContent = montantProduitCuisans2;
-    document.getElementById("montantProduitCuiAvec3").textContent = montantProduitCuisans3;
-    document.getElementById("montantProduitCuiAvec4").textContent = montantProduitCuisans4;
+    document.getElementById("montantProduitCuiAvec1").textContent = montantProduitCuisans1.toLocaleString();
+    document.getElementById("montantProduitCuiAvec2").textContent = montantProduitCuisans2.toLocaleString();
+    document.getElementById("montantProduitCuiAvec3").textContent = montantProduitCuisans3.toLocaleString();
+    document.getElementById("montantProduitCuiAvec4").textContent = montantProduitCuisans4.toLocaleString();
   }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduicuisAvec();
@@ -805,9 +806,9 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     var montantProduitCuisans3 = numbre * pUnitcuisiSans3;
 
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
-    document.getElementById("montantProduitCuiSans1").textContent = montantProduitCuisans1;
-    document.getElementById("montantProduitCuiSans2").textContent = montantProduitCuisans2;
-    document.getElementById("montantProduitCuiSans3").textContent = montantProduitCuisans3;
+    document.getElementById("montantProduitCuiSans1").textContent = montantProduitCuisans1.toLocaleString();
+    document.getElementById("montantProduitCuiSans2").textContent = montantProduitCuisans2.toLocaleString();
+    document.getElementById("montantProduitCuiSans3").textContent = montantProduitCuisans3.toLocaleString();
   }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduicuisSans();
@@ -822,7 +823,7 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
 
 
 // ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF TOILETTE
-function calculerMontantTotal() {
+function calculerSommeToilSansChauf() {
   // Obtenir les valeurs saisies pour les différents éléments
   var numbre = parseFloat(document.getElementById("numbre").value);
   var pUnittoilSans1 = parseFloat(document.getElementById("pUnittoilSans1").textContent.trim().replace(/\s+/g, ''));
@@ -845,19 +846,125 @@ function calculerMontantTotal() {
 
 }
 // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
-document.getElementById("numbre").addEventListener("input", calculerMontantTotal);
+document.getElementById("numbre").addEventListener("input", calculerSommeToilSansChauf);
 // Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
-// Exemple :
-document.getElementById("pUnittoilSans1").addEventListener("input", calculerMontantTotal);
-document.getElementById("pUnittoilSans2").addEventListener("input", calculerMontantTotal);
-document.getElementById("pUnittoilSans3").addEventListener("input", calculerMontantTotal);
-document.getElementById("moeuvresToilSans").addEventListener("input", calculerMontantTotal);
+document.getElementById("pUnittoilSans1").addEventListener("input", calculerSommeToilSansChauf);
+document.getElementById("pUnittoilSans2").addEventListener("input", calculerSommeToilSansChauf);
+document.getElementById("pUnittoilSans3").addEventListener("input", calculerSommeToilSansChauf);
+document.getElementById("moeuvresToilSans").addEventListener("input", calculerSommeToilSansChauf);
 // Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
-calculerMontantTotal();
+calculerSommeToilSansChauf();
+
 
 
 //   // ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS AVEC CHAUF TOILETTE
+function calculerSommeToilAvecChauf() {
+  // Obtenir les valeurs saisies pour les différents éléments
+  var numbre = parseFloat(document.getElementById("numbre").value);
+  var pUnittoilAvec1 = parseFloat(document.getElementById("pUnittoilAvec1").textContent.trim().replace(/\s+/g, ''));
+  var pUnittoilAvec2 = parseFloat(document.getElementById("pUnittoilAvec2").textContent.trim().replace(/\s+/g, ''));
+  var pUnittoilAvec3 = parseFloat(document.getElementById("pUnittoilAvec3").textContent.trim().replace(/\s+/g, ''));
+  var pUnittoilAvec4 = parseFloat(document.getElementById("pUnittoilAvec4").textContent.trim().replace(/\s+/g, ''));
+  var moeuvresToilAvec = parseFloat(document.getElementById("moeuvresToilAvec").textContent.trim().replace(/\s+/g, ''));
 
+  // Calculer la somme des produits
+  var montantProduitOilAvec1 = numbre * pUnittoilAvec1;
+  var montantProduitOilAvec2 = numbre * pUnittoilAvec2;
+  var montantProduitOilAvec3 = numbre * pUnittoilAvec3;
+  var montantProduitOilAvec4 = numbre * pUnittoilAvec4;
+
+  // Calculer le montant total
+  var montantTotalToilAvec = montantProduitOilAvec1 + montantProduitOilAvec2 + montantProduitOilAvec3 +montantProduitOilAvec4 + moeuvresToilAvec;
+
+  // Mettre à jour l'élément avec l'id "montanttoilSans" avec le montant total calculé
+  document.getElementById("montanttoilAvec").textContent = montantTotalToilAvec.toLocaleString();
+  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
+  document.getElementById("lesmontant").textContent = montantTotalToilAvec.toLocaleString() + " fcfa";
+
+}
+// Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+document.getElementById("numbre").addEventListener("input", calculerSommeToilAvecChauf);
+// Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
+document.getElementById("pUnittoilAvec1").addEventListener("input", calculerSommeToilAvecChauf);
+document.getElementById("pUnittoilAvec2").addEventListener("input", calculerSommeToilAvecChauf);
+document.getElementById("pUnittoilAvec3").addEventListener("input", calculerSommeToilAvecChauf);
+document.getElementById("pUnittoilAvec4").addEventListener("input", calculerSommeToilAvecChauf);
+document.getElementById("moeuvresToilAvec").addEventListener("input", calculerSommeToilAvecChauf);
+// Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
+calculerSommeToilAvecChauf();
+
+
+
+// ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF TOILETTE
+function calculerSommeCuiSansChauf() {
+  // Obtenir les valeurs saisies pour les différents éléments
+  var numbre = parseFloat(document.getElementById("numbre").value);
+  var pUnitcuisiSans1 = parseFloat(document.getElementById("pUnitcuisiSans1").textContent.trim().replace(/\s+/g, ''));
+  var pUnitcuisiSans2 = parseFloat(document.getElementById("pUnitcuisiSans2").textContent.trim().replace(/\s+/g, ''));
+  var pUnitcuisiSans3 = parseFloat(document.getElementById("pUnitcuisiSans3").textContent.trim().replace(/\s+/g, ''));
+  var moeuvresCuiSans = parseFloat(document.getElementById("moeuvresCuiSans").textContent.trim().replace(/\s+/g, ''));
+
+  // Calculer la somme des produits
+  var montantProduitCuiSans1 = numbre * pUnitcuisiSans1;
+  var montantProduitCuiSans2 = numbre * pUnitcuisiSans2;
+  var montantProduitCuiSans3 = numbre * pUnitcuisiSans3;
+
+  // Calculer le montant total
+  var montantTotalCuiSans = montantProduitCuiSans1 + montantProduitCuiSans2 + montantProduitCuiSans3 + moeuvresCuiSans;
+
+  // Mettre à jour l'élément avec l'id "montantCuiSans" avec le montant total calculé
+  document.getElementById("montantCuiSans").textContent = montantTotalCuiSans.toLocaleString();
+  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
+  document.getElementById("lesmontant").textContent = montantTotalCuiSans.toLocaleString() + " fcfa";
+
+}
+// Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+document.getElementById("numbre").addEventListener("input", calculerSommeCuiSansChauf);
+// Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
+document.getElementById("pUnitcuisiSans1").addEventListener("input", calculerSommeCuiSansChauf);
+document.getElementById("pUnitcuisiSans2").addEventListener("input", calculerSommeCuiSansChauf);
+document.getElementById("pUnitcuisiSans3").addEventListener("input", calculerSommeCuiSansChauf);
+document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSommeCuiSansChauf);
+// Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
+calculerSommeCuiSansChauf();
+
+
+
+// ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS AVEC CHAUF TOILETTE
+function calculerSommeCuiAvecChauf() {
+  // Obtenir les valeurs saisies pour les différents éléments
+  var numbre = parseFloat(document.getElementById("numbre").value);
+  var pUnitcuisiAvec1 = parseFloat(document.getElementById("pUnitcuisiAvec1").textContent.trim().replace(/\s+/g, ''));
+  var pUnitcuisiAvec2 = parseFloat(document.getElementById("pUnitcuisiAvec2").textContent.trim().replace(/\s+/g, ''));
+  var pUnitcuisiAvec3 = parseFloat(document.getElementById("pUnitcuisiAvec3").textContent.trim().replace(/\s+/g, ''));
+  var pUnitcuisiAvec4 = parseFloat(document.getElementById("pUnitcuisiAvec4").textContent.trim().replace(/\s+/g, ''));
+  var moeuvresCuiAvec = parseFloat(document.getElementById("moeuvresCuiAvec").textContent.trim().replace(/\s+/g, ''));
+
+  // Calculer la somme des produits
+  var montantProduitCuiAvec1 = numbre * pUnitcuisiAvec1;
+  var montantProduitCuiAvec2 = numbre * pUnitcuisiAvec2;
+  var montantProduitCuiAvec3 = numbre * pUnitcuisiAvec3;
+  var montantProduitCuiAvec4 = numbre * pUnitcuisiAvec4;
+
+  // Calculer le montant total
+  var montantTotalCuiAvec = montantProduitCuiAvec1 + montantProduitCuiAvec2 + montantProduitCuiAvec3 + montantProduitCuiAvec4 + moeuvresCuiAvec;
+
+  // Mettre à jour l'élément avec l'id "montantProduitCuiAvec" avec le montant total calculé
+  document.getElementById("montantTotalCuiAvec").textContent = montantTotalCuiAvec.toLocaleString();
+  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
+  document.getElementById("lesmontant").textContent = montantTotalCuiAvec.toLocaleString() + " fcfa";
+
+}
+// Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+document.getElementById("numbre").addEventListener("input", calculerSommeCuiAvecChauf);
+// Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
+document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculerSommeCuiAvecChauf);
+document.getElementById("pUnitcuisiAvec2").addEventListener("input", calculerSommeCuiAvecChauf);
+document.getElementById("pUnitcuisiAvec3").addEventListener("input", calculerSommeCuiAvecChauf);
+document.getElementById("pUnitcuisiAvec4").addEventListener("input", calculerSommeCuiAvecChauf);
+document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSommeCuiAvecChauf);
+// Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
+calculerSommeCuiAvecChauf();
 
 
 
