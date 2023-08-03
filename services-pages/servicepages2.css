@@ -129,7 +129,7 @@ form .fields .input-field{
     margin-right: auto;
 }
 /* ::::PDF BUTTON */
- #telecharger{
+ #telecharger, #telecharger2{
     display: flex;
     align-items: center;
     justify-content: center;

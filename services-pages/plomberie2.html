@@ -580,7 +580,7 @@
     <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture1"></span>.
       </li>
     </ul>
-    <ul class="arretfacture"id="ToitAvec1" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <ul class="arretfacture" id="ToitAvec1" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
       <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture2"></span>.
         </li>
       </ul>
@@ -625,7 +625,8 @@
 <script>
 
 
-function afficherContenu() {
+// :::::::::::::::::::AFFICHE TABLEAU CHATEAU:::::::::::::::::::::::
+function afficherContenuchateau() {
   const typePlomberie = document.getElementById("typeplomberie").value;
   const problemePlomberie = document.getElementById("problemeplomberie").value;
   const numeroMaison = document.getElementById("numbremaison").value;
@@ -635,23 +636,22 @@ function afficherContenu() {
   const chateauFacture = document.getElementById("chateaufacture");
   const telechargerBtn = document.getElementById("telecharger");
   const telecharger2Btn = document.getElementById("telecharger2");
+  const buttonToilCuisine = document.getElementById("buttonToilCuisine");
   const buttonchateau = document.getElementById("buttonchateau");
-// :::::::::::::::::::::::
-// var tabeautoilsans = document.getElementById("tabeautoilsans");
-// var tabeautoilavec = document.getElementById("tabeautoilavec");
-// var tabeaucuisans = document.getElementById("tabeaucuisans");
-// var tabeaucuiavec = document.getElementById("tabeaucuiavec");
-// var buttonToilCuisine = document.getElementById("buttonToilCuisine");
-//   var ToitSans1 = document.getElementById("ToitSans1");
-//   var ToitAvec1 = document.getElementById("ToitAvec1");
-//   var CuiSans2 = document.getElementById("CuiSans2");
-//   var CuiAvec2 = document.getElementById("CuiAvec2");
+  const tabeautoilsans = document.getElementById("tabeautoilsans");
+  const tabeautoilavec = document.getElementById("tabeautoilavec");
+  const tabeaucuisans = document.getElementById("tabeaucuisans");
+  const tabeaucuiavec = document.getElementById("tabeaucuiavec");
+  const ToitSans1 = document.getElementById("ToitSans1");
+  const ToitAvec1 = document.getElementById("ToitAvec1");
+  const CuiSans2 = document.getElementById("CuiSans2");
+  const CuiAvec2 = document.getElementById("CuiAvec2");
 
   if (typePlomberie === "batimentselect" && problemePlomberie === "chateauselect" && numeroMaison !== "") {
     containairPdf.style.display = "block";
     tableauChateau.style.display = "block";
     chateauFacture.style.display = "block";
-    telechargerBtn.style.display = "block";
+    // telechargerBtn.style.display = "block";
     telecharger2Btn.style.display = "block";
     buttonchateau.style.display = "block";
   } else {
@@ -660,26 +660,22 @@ function afficherContenu() {
     chateauFacture.style.display = "none";
     telechargerBtn.style.display = "none";
     telecharger2Btn.style.display = "none";
+    buttonToilCuisine.style.display = "none";
     buttonchateau.style.display = "none";
-    // ::::::::::::::::::
-  //   document.getElementById("tabeautoilavec").style.display = "none";
-  //   buttonToilCuisine.style.display = "none";
-  //   ToitAvec1.style.display = "none";
-  //   ToitSans1.style.display = "none";
-  //   CuiAvec2.style.display = "none";
-  //   CuiSans2.style.display = "none";
-  //   document.getElementById("tabeautoilsans").style.display = "none";
-  //   document.getElementById("tabeautoilavec").style.display = "none";
-  //   document.getElementById("tabeaucuisans").style.display = "none";
-  //   document.getElementById("tabeaucuiavec").style.display = "none";
-  //
- }
+    tabeautoilsans.style.display = "none";
+    tabeautoilavec.style.display = "none";
+    tabeaucuisans.style.display = "none";
+    tabeaucuiavec.style.display = "none";
+    ToitSans1.style.display = "none";
+    ToitAvec1.style.display = "none";
+    CuiSans2.style.display = "none";
+    CuiAvec2.style.display = "none";
   }
-
+}
 // Événements onchange pour les balises <select>
-document.getElementById("typeplomberie").addEventListener("change", afficherContenu);
-document.getElementById("problemeplomberie").addEventListener("change", afficherContenu);
-document.getElementById("numbremaison").addEventListener("input", afficherContenu);
+document.getElementById("typeplomberie").addEventListener("change", afficherContenuchateau);
+document.getElementById("problemeplomberie").addEventListener("change", afficherContenuchateau);
+document.getElementById("numbremaison").addEventListener("input", afficherContenuchateau);
 
 
 
