@@ -86,7 +86,7 @@
                             <select required id="selectservice">
                                 <option disabled selected>Service</option>
                                 <option value="serviceinstallation">Installation</option>
-                                <option value="serviceentretien">Entretien</option>
+                                <option disabled value="serviceentretien" >Entretien</option>
                               </select>
                       </div>
 
@@ -96,8 +96,8 @@
                         <select required  id="typeplomberie">
                             <option disabled selected>Type</option>
                             <option value="batimentselect">Bâtiment</option>
-                            <option value="champselect">Champs</option>
-                            <option value="usineselect">Usine</option>
+                            <option disabled value="champselect">Champs</option>
+                            <option disabled value="usineselect">Usine</option>
                         </select>
                     </div>
                 </div>
@@ -226,7 +226,8 @@
     <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
     <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
     <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-    <li id="service"><div class="coordtext">Toilette: </div> </li>
+    <li id="service"><div class="coordtext">Service: </div> </li>
+    <li id="nombre"><div class="coordtext">Nombre: </div> </li>
     </ul>
     <!-- :::::::::::::: -->
 
@@ -433,12 +434,23 @@
   
 
   
-  <!-- :: -->
-  <ul class="arretfacture" style=" margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-    <li>Arrêté la Facture pro-forma à la somme de <span id="lesmontant"></span>
-      .
+  <!-- :::::: -->
+  <ul class="arretfacture" id="ToitSans1" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+    <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture1"></span>.
       </li>
     </ul>
+    <ul class="arretfacture"id="ToitAvec1" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+      <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture2"></span>.
+        </li>
+      </ul>
+      <ul class="arretfacture" id="CuiSans2" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+        <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture3"></span>.
+          </li>
+        </ul>
+        <ul class="arretfacture" id="CuiAvec2" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
+          <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture4"></span>.
+            </li>
+          </ul>
     <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
       <div class="accord" style=" font-weight: bold;">Pour accord</div>
     <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
@@ -508,6 +520,71 @@ function recupererNumero() {
 document.getElementById("numero").addEventListener("input", recupererNumero);
 // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
 recupererNumero();
+
+// ::::::::::::RECUPERATION CHAMPS TYPE PLOMBERIE EN FONCTION SELECT::
+function afficherService() {
+    // Récupérer l'élément avec l'id "typeplomberie"
+    var typePlomberieElement = document.getElementById("typeplomberie");
+
+    // Récupérer l'élément avec l'id "service"
+    var serviceElement = document.getElementById("service");
+
+    // Vérifier si l'élément avec l'id "typeplomberie" et une valeur sélectionnée existe
+    if (typePlomberieElement && typePlomberieElement.selectedIndex !== -1) {
+        // Récupérer la valeur sélectionnée de l'élément "typeplomberie"
+        var selectedOption = typePlomberieElement.options[typePlomberieElement.selectedIndex].text;
+
+        // Afficher le contenu de "selectedOption" dans l'élément "service"
+        if (serviceElement) {
+            serviceElement.innerHTML = "Service: " + selectedOption;
+        }
+    } else {
+        // Si aucune valeur n'est sélectionnée, masquer le contenu de l'élément "service"
+        if (serviceElement) {
+            serviceElement.innerHTML = "";
+        }
+    }
+}
+// Appeler la fonction lorsque la liste déroulante change de valeur
+document.getElementById("typeplomberie").addEventListener("change", afficherService);
+// Appeler la fonction au chargement de la page
+afficherService();
+
+
+// ::::::::::::RECUPERATION CHAMPS NOMBRE ET PROBLEME::::::::::::::::::
+function afficherNombre() {
+    // Récupérer l'élément avec l'id "problemeplomberie"
+    var problemeplomberieElement = document.getElementById("problemeplomberie");
+
+    // Récupérer l'élément avec l'id "nombre"
+    var nombreElement = document.getElementById("nombre");
+
+    // Vérifier si l'élément avec l'id "problemeplomberie" et une valeur sélectionnée existe
+    if (problemeplomberieElement && problemeplomberieElement.selectedIndex !== -1) {
+        // Récupérer la valeur sélectionnée de l'élément "problemeplomberie"
+        var selectedOption = problemeplomberieElement.options[problemeplomberieElement.selectedIndex].text;
+
+        // Récupérer la valeur saisie dans l'élément avec l'id "numbre"
+        var valeurSaisie = document.getElementById("numbre").value;
+
+        // Afficher le contenu de "selectedOption" et la valeur saisie dans l'élément "nombre"
+        if (nombreElement) {
+            nombreElement.innerHTML = "Nombre: " + valeurSaisie + " " + selectedOption;
+        }
+    } else {
+        // Si aucune valeur n'est sélectionnée, masquer le contenu de l'élément "nombre"
+        if (nombreElement) {
+            nombreElement.innerHTML = "";
+        }
+    }
+}
+// Appeler la fonction lorsque la liste déroulante change de valeur
+document.getElementById("problemeplomberie").addEventListener("change", afficherNombre);
+// Appeler la fonction lorsque la valeur saisie change dans l'élément "numbre"
+document.getElementById("numbre").addEventListener("input", afficherNombre);
+// Appeler la fonction au chargement de la page
+afficherNombre();
+
 
 
 // ::::::::::::::::CHAMPS TYPE AFFICHAGE EN FONCTION SELECTION::::::::::::
@@ -579,6 +656,7 @@ function afficherEnFonctionSelection() {
 document.getElementById("problemeplomberie").addEventListener("change", afficherEnFonctionSelection);
 
 
+
 // :::::::::::::::::CHAMPS TYPE DECORATION AFFICHAGE EN FONCTION DE SELECT::
 function afficherChampsDecorationEtNombre() {
   var problemePlomberie = document.getElementById("problemeplomberie").value;
@@ -615,17 +693,28 @@ function afficherElement() {
   var tabeaucuisans = document.getElementById("tabeaucuisans");
   var tabeaucuiavec = document.getElementById("tabeaucuiavec");
   var buttonToilCuisine = document.getElementById("buttonToilCuisine");
-
+  var ToitSans1 = document.getElementById("ToitSans1");
+  var ToitAvec1 = document.getElementById("ToitAvec1");
+  var CuiSans2 = document.getElementById("CuiSans2");
+  var CuiAvec2 = document.getElementById("CuiAvec2");
   // Vérifier les conditions pour afficher les éléments
   if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "sanselect") {
     document.getElementById("tabeautoilsans").style.display = "block";
     buttonToilCuisine.style.display = "block";
+    ToitSans1.style.display = "block";
+    ToitAvec1.style.display = "none";
+    CuiAvec2.style.display = "none";
+    CuiSans2.style.display = "none";
     document.getElementById("tabeautoilavec").style.display = "none";
     document.getElementById("tabeaucuisans").style.display = "none";
     document.getElementById("tabeaucuiavec").style.display = "none";
   } else if (problemePlomberie === "toiltteselect" && selectDecoration === "standartselect" && typeDecoration === "avecselect") {
     document.getElementById("tabeautoilavec").style.display = "block";
     buttonToilCuisine.style.display = "block";
+    ToitAvec1.style.display = "block";
+    ToitSans1.style.display = "none";
+    CuiAvec2.style.display = "none";
+    CuiSans2.style.display = "none";
     document.getElementById("tabeautoilsans").style.display = "none";
     document.getElementById("tabeaucuisans").style.display = "none";
     document.getElementById("tabeaucuiavec").style.display = "none";
@@ -647,18 +736,30 @@ function afficherTabeaucuisans() {
   var tabeaucuisans = document.getElementById("tabeaucuisans");
   var tabeaucuiavec = document.getElementById("tabeaucuiavec");
   var buttonToilCuisine = document.getElementById("buttonToilCuisine");
+  var CuiSans2 = document.getElementById("CuiSans2");
+  var CuiAvec2 = document.getElementById("CuiAvec2");
+  var ToitSans1 = document.getElementById("ToitSans1");
+  var ToitAvec1 = document.getElementById("ToitAvec1");
 
   if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "sanselect") {
     tabeaucuisans.style.display = "block";
     buttonToilCuisine.style.display = "block";
+    CuiSans2.style.display = "block";
+    CuiAvec2.style.display = "none";
     tabeaucuiavec.style.display = "none";
+    ToitSans1.style.display = "none";
+    ToitAvec1.style.display = "none";
     document.getElementById("tabeautoilsans").style.display = "none";
     document.getElementById("tabeautoilavec").style.display = "none";
     
   } else if (problemePlomberie === "cuisieselect" && selectDecoration === "standartselect" && selectTypeDecoration === "avecselect") {
     tabeaucuisans.style.display = "none";
     tabeaucuiavec.style.display = "block";
-        buttonToilCuisine.style.display = "block";
+    buttonToilCuisine.style.display = "block";
+    CuiAvec2.style.display = "block";
+    CuiSans2.style.display = "none";
+    ToitSans1.style.display = "none";
+    ToitAvec1.style.display = "none";
     document.getElementById("tabeautoilsans").style.display = "none";
     document.getElementById("tabeautoilavec").style.display = "none";
     
@@ -837,12 +938,12 @@ function calculerSommeToilSansChauf() {
   var montantProduitOilSans3 = numbre * pUnittoilSans3;
 
   // Calculer le montant total
-  var montantTotal = montantProduitOilSans1 + montantProduitOilSans2 + montantProduitOilSans3 + moeuvresToilSans;
+  var montantTotalToilSans = montantProduitOilSans1 + montantProduitOilSans2 + montantProduitOilSans3 + moeuvresToilSans;
 
   // Mettre à jour l'élément avec l'id "montanttoilSans" avec le montant total calculé
-  document.getElementById("montanttoilSans").textContent = montantTotal.toLocaleString();
-  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
-  document.getElementById("lesmontant").textContent = montantTotal.toLocaleString() + " fcfa";
+  document.getElementById("montanttoilSans").textContent = montantTotalToilSans.toLocaleString();
+  // Mettre à jour l'élément avec l'id "arretfacture1" avec le montant total calculé
+  document.getElementById("arretfacture1").textContent = montantTotalToilSans.toLocaleString() + " fcfa";
 
 }
 // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
@@ -878,8 +979,8 @@ function calculerSommeToilAvecChauf() {
 
   // Mettre à jour l'élément avec l'id "montanttoilSans" avec le montant total calculé
   document.getElementById("montanttoilAvec").textContent = montantTotalToilAvec.toLocaleString();
-  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
-  document.getElementById("lesmontant").textContent = montantTotalToilAvec.toLocaleString() + " fcfa";
+  // Mettre à jour l'élément avec id="arretfacture2" pour afficher le résultat dans le span
+  document.getElementById("arretfacture2").textContent = montantTotalToilAvec.toLocaleString() + " fcfa";
 
 }
 // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
@@ -895,7 +996,7 @@ calculerSommeToilAvecChauf();
 
 
 
-// ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF TOILETTE
+// ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF CUISINE
 function calculerSommeCuiSansChauf() {
   // Obtenir les valeurs saisies pour les différents éléments
   var numbre = parseFloat(document.getElementById("numbre").value);
@@ -914,8 +1015,8 @@ function calculerSommeCuiSansChauf() {
 
   // Mettre à jour l'élément avec l'id "montantCuiSans" avec le montant total calculé
   document.getElementById("montantCuiSans").textContent = montantTotalCuiSans.toLocaleString();
-  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
-  document.getElementById("lesmontant").textContent = montantTotalCuiSans.toLocaleString() + " fcfa";
+  // Mettre à jour l'élément avec id="arretfacture3" pour afficher le résultat dans le span
+  document.getElementById("arretfacture3").textContent = montantTotalCuiSans.toLocaleString() + " fcfa";
 
 }
 // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
@@ -951,8 +1052,8 @@ function calculerSommeCuiAvecChauf() {
 
   // Mettre à jour l'élément avec l'id "montantProduitCuiAvec" avec le montant total calculé
   document.getElementById("montantTotalCuiAvec").textContent = montantTotalCuiAvec.toLocaleString();
-  // Mettre à jour l'élément avec id="lesmontant" pour afficher le résultat dans le span
-  document.getElementById("lesmontant").textContent = montantTotalCuiAvec.toLocaleString() + " fcfa";
+  // Mettre à jour l'élément avec id="arretfacture4" pour afficher le résultat dans le span
+  document.getElementById("arretfacture4").textContent = montantTotalCuiAvec.toLocaleString() + " fcfa";
 
 }
 // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
@@ -965,11 +1066,6 @@ document.getElementById("pUnitcuisiAvec4").addEventListener("input", calculerSom
 document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSommeCuiAvecChauf);
 // Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
 calculerSommeCuiAvecChauf();
-
-
-
-
-
 
 
 
@@ -1013,6 +1109,9 @@ function afficherElements() {
 
 
 
+
+
+    
 
 
 
