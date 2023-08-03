@@ -130,7 +130,7 @@
                 <!-- ::::::::::CHAMPS NIVEAU ETAGE:::::::::: -->
                 <div id="champsnombreetage" style="display: none; width: 200%;">
                 <div class="input-field">
-                    <input type="number" min="1" placeholder="Niveau Maison" id="numbremaison" >
+                    <input type="number" min="1" placeholder="Niveau étage" id="numbremaison" >
                 </div>
             </div>
 
@@ -565,7 +565,7 @@
     </tr>
     <tr style="background-color: #5f7acb;">
       <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-      <td id="montantTotalCuiAvec"> 383 250</td>
+      <td id="montantTotalChateau"> 383 250</td>
     </tr>
   </table>
 </div>
@@ -593,7 +593,7 @@
             </li>
           </ul>
           <ul class="arretfacture" id="chateaufacture" style="display: none; margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-            <li>Arrêté la Facture pro-forma à la somme de <span id="arretfacture4"></span>.
+            <li>Arrêté la Facture pro-forma à la somme de <span id="chateaufacturemontant"></span> fcfa.
               </li>
             </ul>
     <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
@@ -681,7 +681,25 @@ document.getElementById("numbremaison").addEventListener("input", afficherConten
 
 
 // ::::::::::::::::::::::::::
+function afficherMontantchateau() {
+    const numbreMaison = parseInt(document.getElementById("numbremaison").value);
+    const montantTotalChateau = document.getElementById("montantTotalChateau");
+    const chateaufacturemontant = document.getElementById("chateaufacturemontant");
 
+    if (numbreMaison === 1) {
+      montantTotalChateau.textContent = "383 250";
+      chateaufacturemontant.textContent = "383 250"; 
+    } else {
+      const montantCalcule = numbreMaison * 10000 + 383250;
+      const montantCalculeFormate = montantCalcule.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+      montantTotalChateau.textContent = montantCalculeFormate;
+      chateaufacturemontant.textContent = montantCalculeFormate;
+    }
+  }
+  document.getElementById("numbremaison").addEventListener("input", afficherMontantchateau);
+
+
+  
 
 </script>
 
