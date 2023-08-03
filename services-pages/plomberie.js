@@ -1,7 +1,6 @@
 
 
 
-
   // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
 function afficherDateDuJour() {
       var dateElement = document.querySelector('.datejour');
@@ -314,16 +313,12 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     document.getElementById("nombreToilSans3").textContent = valeurSaisie;
     document.getElementById("nombreToilAvec1").textContent = valeurSaisie;
     document.getElementById("nombreToilAvec2").textContent = valeurSaisie;
-    document.getElementById("nombreToilAvec3").textContent = valeurSaisie;
-    document.getElementById("nombreToilAvec4").textContent = valeurSaisie;
-    document.getElementById("nombreCuiAvec1").textContent = valeurSaisie;
+      document.getElementById("nombreCuiAvec1").textContent = valeurSaisie;
     document.getElementById("nombreCuiAvec2").textContent = valeurSaisie;
     document.getElementById("nombreCuiAvec3").textContent = valeurSaisie;
     document.getElementById("nombreCuiAvec4").textContent = valeurSaisie;
     document.getElementById("tabeaucuisans1").textContent = valeurSaisie;
-    document.getElementById("tabeaucuisans2").textContent = valeurSaisie;
-    document.getElementById("tabeaucuisans3").textContent = valeurSaisie;
-  }
+   }
 
 
   // ::::::CALCUL PAR LIGNE LE MONTANT DES PRODUIT SANS CHAUF TOILETTE
@@ -394,21 +389,14 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     var numbre = parseFloat(document.getElementById("numbre").value);
     var pUnitcuisiAvec1 = parseFloat(document.getElementById("pUnitcuisiAvec1").textContent.trim().replace(/\s+/g, ''));
     var pUnitcuisiAvec2 = parseFloat(document.getElementById("pUnitcuisiAvec2").textContent.trim().replace(/\s+/g, ''));
-    var pUnitcuisiAvec3 = parseFloat(document.getElementById("pUnitcuisiAvec3").textContent.trim().replace(/\s+/g, ''));
-    var pUnitcuisiAvec4 = parseFloat(document.getElementById("pUnitcuisiAvec4").textContent.trim().replace(/\s+/g, ''));
-
     // Calculer le résultat
     var montantProduitCuisans1 = numbre * pUnitcuisiAvec1;
     var montantProduitCuisans2 = numbre * pUnitcuisiAvec2;
-    var montantProduitCuisans3 = numbre * pUnitcuisiAvec3;
-    var montantProduitCuisans4 = numbre * pUnitcuisiAvec4;
-
+  
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
     document.getElementById("montantProduitCuiAvec1").textContent = montantProduitCuisans1.toLocaleString();
     document.getElementById("montantProduitCuiAvec2").textContent = montantProduitCuisans2.toLocaleString();
-    document.getElementById("montantProduitCuiAvec3").textContent = montantProduitCuisans3.toLocaleString();
-    document.getElementById("montantProduitCuiAvec4").textContent = montantProduitCuisans4.toLocaleString();
-  }
+     }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduicuisAvec();
   // Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
@@ -416,7 +404,7 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
   // Attacher la fonction à l'événement "input" de l'élément avec l'id 
   document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculateMontantProduicuisAvec);
   document.getElementById("pUnitcuisiAvec2").addEventListener("input", calculateMontantProduicuisAvec);
-  document.getElementById("pUnitcuisiAvec3").addEventListener("input", calculateMontantProduicuisAvec);
+  // document.getElementById("pUnitcuisiAvec3").addEventListener("input", calculateMontantProduicuisAvec);
   document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculateMontantProduicuisAvec);
 
 
@@ -427,18 +415,10 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
     // Obtenir les valeurs des éléments "numbre" et "pUnittoilSans"
     var numbre = parseFloat(document.getElementById("numbre").value);
     var pUnitcuisiSans1 = parseFloat(document.getElementById("pUnitcuisiSans1").textContent.trim().replace(/\s+/g, ''));
-    var pUnitcuisiSans2 = parseFloat(document.getElementById("pUnitcuisiSans2").textContent.trim().replace(/\s+/g, ''));
-    var pUnitcuisiSans3 = parseFloat(document.getElementById("pUnitcuisiSans3").textContent.trim().replace(/\s+/g, ''));
-
     // Calculer le résultat
     var montantProduitCuisans1 = numbre * pUnitcuisiSans1;
-    var montantProduitCuisans2 = numbre * pUnitcuisiSans2;
-    var montantProduitCuisans3 = numbre * pUnitcuisiSans3;
-
     // Mettre à jour l'élément avec l'id "montantProduitoilSans" avec le résultat calculé
     document.getElementById("montantProduitCuiSans1").textContent = montantProduitCuisans1.toLocaleString();
-    document.getElementById("montantProduitCuiSans2").textContent = montantProduitCuisans2.toLocaleString();
-    document.getElementById("montantProduitCuiSans3").textContent = montantProduitCuisans3.toLocaleString();
   }
   // Appeler la fonction pour effectuer le calcul initial
   calculateMontantProduicuisSans();
@@ -446,10 +426,7 @@ document.getElementById("typedecotionAvecSans").addEventListener("change", affic
   document.getElementById("numbre").addEventListener("input", calculateMontantProduicuisSans);
   // Attacher la fonction à l'événement "input" de l'élément avec l'id 
   document.getElementById("pUnitcuisiSans1").addEventListener("input", calculateMontantProduicuisSans);
-  document.getElementById("pUnitcuisiSans2").addEventListener("input", calculateMontantProduicuisSans);
-  document.getElementById("pUnitcuisiSans3").addEventListener("input", calculateMontantProduicuisSans);
-
-
+  
 
 
 // ::::::CALCUL LA SOMME DE TOUTES LES LIGNES DES PRODUITS SANS CHAUF TOILETTE
@@ -530,17 +507,12 @@ function calculerSommeCuiSansChauf() {
   // Obtenir les valeurs saisies pour les différents éléments
   var numbre = parseFloat(document.getElementById("numbre").value);
   var pUnitcuisiSans1 = parseFloat(document.getElementById("pUnitcuisiSans1").textContent.trim().replace(/\s+/g, ''));
-  var pUnitcuisiSans2 = parseFloat(document.getElementById("pUnitcuisiSans2").textContent.trim().replace(/\s+/g, ''));
-  var pUnitcuisiSans3 = parseFloat(document.getElementById("pUnitcuisiSans3").textContent.trim().replace(/\s+/g, ''));
   var moeuvresCuiSans = parseFloat(document.getElementById("moeuvresCuiSans").textContent.trim().replace(/\s+/g, ''));
 
   // Calculer la somme des produits
   var montantProduitCuiSans1 = numbre * pUnitcuisiSans1;
-  var montantProduitCuiSans2 = numbre * pUnitcuisiSans2;
-  var montantProduitCuiSans3 = numbre * pUnitcuisiSans3;
-
   // Calculer le montant total
-  var montantTotalCuiSans = montantProduitCuiSans1 + montantProduitCuiSans2 + montantProduitCuiSans3 + moeuvresCuiSans;
+  var montantTotalCuiSans = montantProduitCuiSans1 + moeuvresCuiSans;
 
   // Mettre à jour l'élément avec l'id "montantCuiSans" avec le montant total calculé
   document.getElementById("montantCuiSans").textContent = montantTotalCuiSans.toLocaleString();
@@ -552,8 +524,6 @@ function calculerSommeCuiSansChauf() {
 document.getElementById("numbre").addEventListener("input", calculerSommeCuiSansChauf);
 // Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
 document.getElementById("pUnitcuisiSans1").addEventListener("input", calculerSommeCuiSansChauf);
-document.getElementById("pUnitcuisiSans2").addEventListener("input", calculerSommeCuiSansChauf);
-document.getElementById("pUnitcuisiSans3").addEventListener("input", calculerSommeCuiSansChauf);
 document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSommeCuiSansChauf);
 // Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
 calculerSommeCuiSansChauf();
@@ -566,18 +536,13 @@ function calculerSommeCuiAvecChauf() {
   var numbre = parseFloat(document.getElementById("numbre").value);
   var pUnitcuisiAvec1 = parseFloat(document.getElementById("pUnitcuisiAvec1").textContent.trim().replace(/\s+/g, ''));
   var pUnitcuisiAvec2 = parseFloat(document.getElementById("pUnitcuisiAvec2").textContent.trim().replace(/\s+/g, ''));
-  var pUnitcuisiAvec3 = parseFloat(document.getElementById("pUnitcuisiAvec3").textContent.trim().replace(/\s+/g, ''));
-  var pUnitcuisiAvec4 = parseFloat(document.getElementById("pUnitcuisiAvec4").textContent.trim().replace(/\s+/g, ''));
   var moeuvresCuiAvec = parseFloat(document.getElementById("moeuvresCuiAvec").textContent.trim().replace(/\s+/g, ''));
 
   // Calculer la somme des produits
   var montantProduitCuiAvec1 = numbre * pUnitcuisiAvec1;
   var montantProduitCuiAvec2 = numbre * pUnitcuisiAvec2;
-  var montantProduitCuiAvec3 = numbre * pUnitcuisiAvec3;
-  var montantProduitCuiAvec4 = numbre * pUnitcuisiAvec4;
-
   // Calculer le montant total
-  var montantTotalCuiAvec = montantProduitCuiAvec1 + montantProduitCuiAvec2 + montantProduitCuiAvec3 + montantProduitCuiAvec4 + moeuvresCuiAvec;
+  var montantTotalCuiAvec = montantProduitCuiAvec1 + montantProduitCuiAvec2 + moeuvresCuiAvec;
 
   // Mettre à jour l'élément avec l'id "montantProduitCuiAvec" avec le montant total calculé
   document.getElementById("montantTotalCuiAvec").textContent = montantTotalCuiAvec.toLocaleString();
@@ -590,8 +555,6 @@ document.getElementById("numbre").addEventListener("input", calculerSommeCuiAvec
 // Vous pouvez également attacher la fonction aux événements "input" des autres éléments si leur valeur peut changer et influencer le montant total.
 document.getElementById("pUnitcuisiAvec1").addEventListener("input", calculerSommeCuiAvecChauf);
 document.getElementById("pUnitcuisiAvec2").addEventListener("input", calculerSommeCuiAvecChauf);
-document.getElementById("pUnitcuisiAvec3").addEventListener("input", calculerSommeCuiAvecChauf);
-document.getElementById("pUnitcuisiAvec4").addEventListener("input", calculerSommeCuiAvecChauf);
 document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSommeCuiAvecChauf);
 // Si vous souhaitez afficher automatiquement le montant total dès le chargement de la page, vous pouvez appeler la fonction directement.
 calculerSommeCuiAvecChauf();
