@@ -49,6 +49,18 @@ document.getElementById("numero").addEventListener("input", recupererNumero);
 // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
 recupererNumero();
 
+// :::::::::::RECUPERATION CHAMPS NOMBRE ETAGE SAISI::::::::::
+function recupererNombEtatage() {
+  var numbremaison = document.getElementById("numbremaison").value;
+  var Tuyaux63pressionElement = document.getElementById("Tuyaux63pression");
+  Tuyaux63pressionElement.innerHTML = numbremaison;
+}
+// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+document.getElementById("numbremaison").addEventListener("input", recupererNombEtatage);
+// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
+recupererNombEtatage();
+
+
 // ::::::::::::RECUPERATION CHAMPS TYPE PLOMBERIE EN FONCTION SELECT::
 function afficherService() {
     // Récupérer l'élément avec l'id "typeplomberie"
