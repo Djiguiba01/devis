@@ -687,15 +687,21 @@ function afficherMontantchateau() {
     const numbreMaison = parseInt(document.getElementById("numbremaison").value);
     const montantTotalChateau = document.getElementById("montantTotalChateau");
     const chateaufacturemontant = document.getElementById("chateaufacturemontant");
+    const montantTuyaux63 = document.getElementById("MontanTuyaux63");
 
     if (numbreMaison === 1) {
-      montantTotalChateau.textContent = "383 250";
-      chateaufacturemontant.textContent = "383 250"; 
+      montantTotalChateau.textContent = "383 250";// Montant Total
+      chateaufacturemontant.textContent = "383 250";// Affiche Montant Totalm dans Facture
+      montantTuyaux63.textContent = "12 500";// La ligne de (Tuyaux 63 pression)
     } else {
-      const montantCalcule = numbreMaison * 12500 + 383250;
+      const montantCalcule = numbreMaison * 12500 + 383250; 
+      const montantTuyaux63Calcule = numbreMaison * 12500 ;
       const montantCalculeFormate = montantCalcule.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
-      montantTotalChateau.textContent = montantCalculeFormate;
-      chateaufacturemontant.textContent = montantCalculeFormate;
+      const montantTuyaux63CalculeFormate = montantTuyaux63Calcule.toString().replace(/\B(?=(\d{3})+(?!\d))/g, " ");
+
+      montantTotalChateau.textContent = montantCalculeFormate; 
+      chateaufacturemontant.textContent = montantCalculeFormate; 
+      montantTuyaux63.textContent = montantTuyaux63CalculeFormate; 
     }
   }
   document.getElementById("numbremaison").addEventListener("input", afficherMontantchateau);
@@ -712,8 +718,8 @@ function afficherMontantchateau() {
         element1.style.paddingBottom = "4%";
 
         // Appliquer le padding-top et padding-bottom à chateauPage2
-        element2.style.paddingTop = "2%";
-        element2.style.paddingBottom = "6%";
+        element2.style.paddingTop = "1%";
+        element2.style.paddingBottom = "8%";
 
         html2canvas(element1, {
             scale: 2,
