@@ -707,7 +707,8 @@ function afficherMontantchateau() {
   document.getElementById("numbremaison").addEventListener("input", afficherMontantchateau);
 
 
-  // ::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // ::::::TELECHARGEMENT::::::::::::::::
+// :::::::PDF TELECHARGEMENT/////////
   // Fonction pour créer le PDF à deux pages
    function telechargerPDFDeuxPages() {
         var element1 = document.querySelector(".chateauPage1");
@@ -753,11 +754,10 @@ function afficherMontantchateau() {
                 pdf.addPage();
                 pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-                pdf.save("plomberie_deux_pages.pdf");
+                pdf.save("plomberie.pdf");
             });
         });
     }
-
     // Ajouter un écouteur d'événement pour le bouton "telecharger2"
     document.getElementById("telecharger2").addEventListener("click", function () {
         telechargerPDFDeuxPages();
