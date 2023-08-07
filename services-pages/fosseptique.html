@@ -140,7 +140,7 @@
 
 <!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
 
-<div class="chateauPage1">	
+<div class="fossePage1">	
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -263,7 +263,7 @@
 
 
 <!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
-<div  class="chateauPage2"  style=" margin-top: 1%;">
+<div  class="fossePage2"  style=" margin-top: 1%;">
 
   <!-- :::::::::TABLEAU STANDART::::::::::: -->
   <div class="tabeaustandart">
@@ -470,7 +470,7 @@
   </button> -->
 
  <!-- :::::::::::::BUTTON TELECHARGEMENT2::::::::::: -->
-  <button  style="display: none;" id="telecharger2" >
+  <button  style="display: none;" id="telecharger" >
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
 </button>
@@ -690,60 +690,49 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
- // Fonction pour créer le PDF à deux pages
- function telechargerPDFDeuxPages() {
-        var element1 = document.querySelector(".chateauPage1");
-        var element2 = document.querySelector(".chateauPage2");
+function downloadPDF() {
+  var elementPage1 = document.querySelector(".fossePage1");
+  var elementPage2 = document.querySelector(".fossePage2");
 
-        // Appliquer le padding-top et padding-bottom à chateauPage1
-        element1.style.paddingTop = "2%";
-        element1.style.paddingBottom = "2%";
+  // Créer le PDF pour la page 1
+  html2canvas(elementPage1, {
+    scale: 2,
+    scrollX: 0,
+    scrollY: 0,
+    windowWidth: document.documentElement.offsetWidth,
+    windowHeight: document.documentElement.offsetHeight,
+    useCORS: true
+  }).then(function (canvas1) {
+    var imgData1 = canvas1.toDataURL("image/png", 1.0);
+    var pdf = new jsPDF("p", "mm", "a4", true);
+    var width = pdf.internal.pageSize.getWidth();
+    var height = pdf.internal.pageSize.getHeight();
 
-        // Appliquer le padding-top et padding-bottom à chateauPage2
-        element2.style.paddingTop = "2%";
-        element2.style.paddingBottom = "2%";
+    pdf.addImage(imgData1, "PNG", 0, 0, width, height);
 
-        html2canvas(element1, {
-            scale: 2,
-            scrollX: 0,
-            scrollY: 0,
-            windowWidth: document.documentElement.offsetWidth,
-            windowHeight: document.documentElement.offsetHeight,
-            useCORS: true
-        }).then(function (canvas1) {
-            html2canvas(element2, {
-                scale: 2,
-                scrollX: 0,
-                scrollY: 0,
-                windowWidth: document.documentElement.offsetWidth,
-                windowHeight: document.documentElement.offsetHeight,
-                useCORS: true
-            }).then(function (canvas2) {
-                // Réinitialiser le padding à zéro après la conversion en image
-                element1.style.paddingTop = "0";
-                element1.style.paddingBottom = "0";
-                element2.style.paddingTop = "0";
-                element2.style.paddingBottom = "0";
+    // Créer une nouvelle page pour la page 2
+    pdf.addPage();
 
-                var imgData1 = canvas1.toDataURL("image/png", 1.0);
-                var imgData2 = canvas2.toDataURL("image/png", 1.0);
-                var pdf = new jsPDF("p", "mm", "a4", true);
-                var width = pdf.internal.pageSize.getWidth();
-                var height = pdf.internal.pageSize.getHeight();
+    // Créer le PDF pour la page 2
+    html2canvas(elementPage2, {
+      scale: 2,
+      scrollX: 0,
+      scrollY: 0,
+      windowWidth: document.documentElement.offsetWidth,
+      windowHeight: document.documentElement.offsetHeight,
+      useCORS: true
+    }).then(function (canvas2) {
+      var imgData2 = canvas2.toDataURL("image/png", 1.0);
+      pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-                pdf.addImage(imgData1, "PNG", 0, 0, width, height);
-                pdf.addPage();
-                pdf.addImage(imgData2, "PNG", 0, 0, width, height);
-
-                pdf.save("plomberie_deux_pages.pdf");
-            });
-        });
-    }
-
-    // Ajouter un écouteur d'événement pour le bouton "telecharger2"
-    document.getElementById("telecharger2").addEventListener("click", function () {
-        telechargerPDFDeuxPages();
+      // Enregistrement du PDF téléchargé
+      pdf.save("fosseptique.pdf");
     });
+  });
+}
+document.getElementById("telecharger").addEventListener("click", function () {
+  downloadPDF();
+});
 
 
 
