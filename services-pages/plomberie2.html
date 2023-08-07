@@ -201,6 +201,8 @@
 <div class="telechargerpdf" style=" padding-bottom: 8%;">
 <div id="containairpdf" style="display: none; padding-bottom: 10px;">
 		
+
+  <div class="chateauPage1">
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -485,6 +487,32 @@
       <td id="">10 000 </td>
       <td id=""> 10 000</td>
     </tr>
+   
+  </table>
+</div>
+</div>
+
+<div class="chateauPage2">
+<div  id="tabeauchateau2" style="display: none;">
+  <table class="tableau" >
+     <!-- :::::::::ENTETE::::::::::::: -->
+  <div class="entete">
+    <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
+    <div class="entete-text">
+    <h1>IKA PLOMBIER SARL</h1>
+    <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
+    <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
+    <p>Email: ctraore@ikaplombier.com</p>
+    <p>Tel: 74 24 00 74</p>
+    </div>
+    <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
+  </div>
+  <!-- :::::::::ENTETE::::::::::::: -->
+  
+  <!-- ::::::::::::::: -->
+  <hr class="hr1" >
+  <hr class="hr2" >
+    
     <tr>
       <td>11 </td>
       <td>Collier 63 </td>
@@ -540,8 +568,7 @@
     </tr>
   </table>
 </div>
-
-
+</div>
     
   
 
@@ -604,6 +631,7 @@ function afficherContenuchateau() {
 
   const containairPdf = document.getElementById("containairpdf");
   const tableauChateau = document.getElementById("tabeauchateau");
+  const tableauChateau2 = document.getElementById("tabeauchateau2");
   const chateauFacture = document.getElementById("chateaufacture");
   const telechargerBtn = document.getElementById("telecharger");
   const telecharger2Btn = document.getElementById("telecharger2");
@@ -621,6 +649,7 @@ function afficherContenuchateau() {
   if (typePlomberie === "batimentselect" && problemePlomberie === "chateauselect" && numeroMaison !== "") {
     containairPdf.style.display = "block";
     tableauChateau.style.display = "block";
+    tableauChateau2.style.display = "block";
     chateauFacture.style.display = "block";
     // telechargerBtn.style.display = "block";
     telecharger2Btn.style.display = "block";
@@ -669,6 +698,48 @@ function afficherMontantchateau() {
   }
   document.getElementById("numbremaison").addEventListener("input", afficherMontantchateau);
 
+
+  // ::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // Fonction pour créer le PDF à deux pages
+  function telechargerPDFDeuxPages() {
+        var element1 = document.querySelector(".chateauPage1");
+        var element2 = document.querySelector(".chateauPage2");
+
+        html2canvas(element1, {
+            scale: 2,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: document.documentElement.offsetWidth,
+            windowHeight: document.documentElement.offsetHeight,
+            useCORS: true
+        }).then(function (canvas1) {
+            html2canvas(element2, {
+                scale: 2,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight,
+                useCORS: true
+            }).then(function (canvas2) {
+                var imgData1 = canvas1.toDataURL("image/png", 1.0);
+                var imgData2 = canvas2.toDataURL("image/png", 1.0);
+                var pdf = new jsPDF("p", "mm", "a4", true);
+                var width = pdf.internal.pageSize.getWidth();
+                var height = pdf.internal.pageSize.getHeight();
+
+                pdf.addImage(imgData1, "PNG", 0, 0, width, height);
+                pdf.addPage();
+                pdf.addImage(imgData2, "PNG", 0, 0, width, height);
+
+                pdf.save("plomberie_deux_pages.pdf");
+            });
+        });
+    }
+
+    // Ajouter un écouteur d'événement pour le bouton "telecharger2"
+    document.getElementById("telecharger2").addEventListener("click", function () {
+        telechargerPDFDeuxPages();
+    });
 
   
 
