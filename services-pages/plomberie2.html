@@ -700,8 +700,8 @@ function afficherMontantchateau() {
 
 
   // ::::::::::::::::::::::::::::::::::::::::::::::::::::
-  // Fonction pour créer le PDF à deux pages
-  function telechargerPDFDeuxPages() {
+  // Fonction pour créer le PDF à deux pages avec des marges en haut et en bas
+  function telechargerPDFDeuxPagesAvecMarges() {
         var element1 = document.querySelector(".chateauPage1");
         var element2 = document.querySelector(".chateauPage2");
 
@@ -729,16 +729,19 @@ function afficherMontantchateau() {
 
                 pdf.addImage(imgData1, "PNG", 0, 0, width, height);
                 pdf.addPage();
-                pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-                pdf.save("plomberie_deux_pages.pdf");
+                // Ajouter une marge en haut pour la deuxième page
+                var marginTopForPage2 = 20; // Vous pouvez ajuster la valeur de la marge ici
+                pdf.addImage(imgData2, "PNG", 0, marginTopForPage2, width, height);
+
+                pdf.save("plomberie_deux_pages_avec_marges.pdf");
             });
         });
     }
 
     // Ajouter un écouteur d'événement pour le bouton "telecharger2"
     document.getElementById("telecharger2").addEventListener("click", function () {
-        telechargerPDFDeuxPages();
+        telechargerPDFDeuxPagesAvecMarges();
     });
 
   
