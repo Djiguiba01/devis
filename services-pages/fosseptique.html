@@ -139,8 +139,8 @@
 	
 
 <!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
-<div id="t1">
 
+<div class="chateauPage1">
   	
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
@@ -259,12 +259,13 @@
   </table>
 
 </div>
-
 </div>
 
 
+
 <!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
-<div id="t2" style=" margin-top: 1%;">
+<div class="chateauPage2">
+<div  style=" margin-top: 1%;">
 
   <!-- :::::::::TABLEAU STANDART::::::::::: -->
   <div class="tabeaustandart">
@@ -458,17 +459,24 @@
       <div class="accord" style=" font-weight: bold;">Pour accord</div>
     <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
   </div>
+
+</div>
    
 </div>
 </div>
 
 
   <!-- :::::::::::::BUTTON TELECHARGEMENT::::::::::: -->
-  <button id="telecharger" style="display: none;">
+  <!-- <button id="telecharger" style="display: none;">
     <span class="btnText">Télécharger PDF</span>
     <i class="fa-solid fa-download"></i>
-  </button>
+  </button> -->
 
+ <!-- :::::::::::::BUTTON TELECHARGEMENT2::::::::::: -->
+  <button  style="display: none;" id="telecharger2" >
+    <span class="btnText">Télécharger PDF</span>
+    <i class="fa-solid fa-download"></i>
+</button>
 
 
 
@@ -685,40 +693,66 @@ function afficherButtonEnFonctionDeSelection() {
 
 
 
+ // ::::::::::::::::::::::::::::::::::::::::::::::::::::
+  // Fonction pour créer le PDF à deux pages
+  function telechargerPDFDeuxPages() {
+        var element1 = document.querySelector(".chateauPage1");
+        var element2 = document.querySelector(".chateauPage2");
 
+        // Appliquer le padding-top et padding-bottom à chateauPage1
+        element1.style.paddingTop = "1%";
+        element1.style.paddingBottom = "4%";
 
+        // Appliquer le padding-top et padding-bottom à chateauPage2
+        element2.style.paddingTop = "1%";
+        element2.style.paddingBottom = "8%";
 
+        html2canvas(element1, {
+            scale: 2,
+            scrollX: 0,
+            scrollY: 0,
+            windowWidth: document.documentElement.offsetWidth,
+            windowHeight: document.documentElement.offsetHeight,
+            useCORS: true
+        }).then(function (canvas1) {
+            html2canvas(element2, {
+                scale: 2,
+                scrollX: 0,
+                scrollY: 0,
+                windowWidth: document.documentElement.offsetWidth,
+                windowHeight: document.documentElement.offsetHeight,
+                useCORS: true
+            }).then(function (canvas2) {
+                // Réinitialiser le padding à zéro après la conversion en image
+                element1.style.paddingTop = "0";
+                element1.style.paddingBottom = "0";
+                element2.style.paddingTop = "0";
+                element2.style.paddingBottom = "0";
 
-// ::::::TELECHARGEMENT::::::::::::::::
-// :::::::PDF TELECHARGEMENT/////////
- // Fonction pour télécharger le contenu affiché sous forme de PDF
- function telechargerPDF() {
-    // Créer une nouvelle instance de jsPDF
-    const doc = new jsPDF();
+                var imgData1 = canvas1.toDataURL("image/png", 1.0);
+                var imgData2 = canvas2.toDataURL("image/png", 1.0);
+                var pdf = new jsPDF("p", "mm", "a4", true);
+                var width = pdf.internal.pageSize.getWidth();
+                var height = pdf.internal.pageSize.getHeight();
 
-    // Récupérer les divs contenant les deux pages
-    const page1 = document.getElementById('t1');
-    const page2 = document.getElementById('t2');
+                pdf.addImage(imgData1, "PNG", 0, 0, width, height);
+                pdf.addPage();
+                pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-    // Générer la première page
-    const optionsPage1 = { margin: { top: 20, bottom: 20 } };
-    html2canvas(page1, { useCORS: true }).then((canvas) => {
-      const imageData = canvas.toDataURL('image/png');
-      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
-      doc.addPage(optionsPage1);
+                pdf.save("fosseseptique.pdf");
+            });
+        });
+    }
+
+    // Ajouter un écouteur d'événement pour le bouton "telecharger2"
+    document.getElementById("telecharger2").addEventListener("click", function () {
+        telechargerPDFDeuxPages();
     });
 
-    // Générer la deuxième page
-    const optionsPage2 = { margin: { top: 20, bottom: 20 } };
-    html2canvas(page2, { useCORS: true }).then((canvas) => {
-      const imageData = canvas.toDataURL('image/png');
-      doc.addImage(imageData, 'PNG', 10, 10, 190, 277, undefined, 'FAST');
-      doc.save('fiche.pdf'); // Télécharger le PDF avec le nom "fiche.pdf"
-    });
-  }
 
-  // Ajouter un écouteur d'événement au bouton "Télécharger PDF"
-  document.getElementById('telecharger').addEventListener('click', telechargerPDF);
+
+
+
 
 
 
