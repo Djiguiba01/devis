@@ -140,8 +140,7 @@
 
 <!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
 
-<div class="chateauPage1">
-  	
+<div class="chateauPage1">	
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -264,8 +263,7 @@
 
 
 <!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
-<div class="chateauPage2">
-<div  style=" margin-top: 1%;">
+<div  class="chateauPage2"  style=" margin-top: 1%;">
 
   <!-- :::::::::TABLEAU STANDART::::::::::: -->
   <div class="tabeaustandart">
@@ -445,7 +443,7 @@
  </table>
 </div>
   
-</div>
+
 
 
   
@@ -459,7 +457,6 @@
       <div class="accord" style=" font-weight: bold;">Pour accord</div>
     <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
   </div>
-
 </div>
    
 </div>
@@ -693,18 +690,18 @@ function afficherButtonEnFonctionDeSelection() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-  // Fonction pour créer le PDF à deux pages
-  function telechargerPDFDeuxPages() {
+ // Fonction pour créer le PDF à deux pages
+ function telechargerPDFDeuxPages() {
         var element1 = document.querySelector(".chateauPage1");
         var element2 = document.querySelector(".chateauPage2");
 
         // Appliquer le padding-top et padding-bottom à chateauPage1
-        element1.style.paddingTop = "1%";
-        element1.style.paddingBottom = "4%";
+        element1.style.paddingTop = "2%";
+        element1.style.paddingBottom = "2%";
 
         // Appliquer le padding-top et padding-bottom à chateauPage2
-        element2.style.paddingTop = "1%";
-        element2.style.paddingBottom = "8%";
+        element2.style.paddingTop = "2%";
+        element2.style.paddingBottom = "2%";
 
         html2canvas(element1, {
             scale: 2,
@@ -738,7 +735,7 @@ function afficherButtonEnFonctionDeSelection() {
                 pdf.addPage();
                 pdf.addImage(imgData2, "PNG", 0, 0, width, height);
 
-                pdf.save("fosseseptique.pdf");
+                pdf.save("plomberie_deux_pages.pdf");
             });
         });
     }
@@ -747,6 +744,7 @@ function afficherButtonEnFonctionDeSelection() {
     document.getElementById("telecharger2").addEventListener("click", function () {
         telechargerPDFDeuxPages();
     });
+
 
 
 
