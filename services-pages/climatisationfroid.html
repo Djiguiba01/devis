@@ -105,7 +105,7 @@
 
                 <div id="champsclimatisation2" style="display: none;width: 200%;">
                 <div class="input-field">
-                    <input type="number" placeholder="Nombre appareil" id="numberappareil" >
+                    <input type="number" min="1" placeholder="Nombre appareil" id="numberappareil" >
                 </div>
             </div>
 
@@ -254,12 +254,12 @@
     </table>
   </div>
 
-<!-- ::::TABLEAU GRAVIER:::::: -->
+<!-- ::::TABLEAU :::::: -->
 <div class="tabeaugravier" style="display: none;">
     <p>gravier</p>
 </div>
   
-<!-- ::::::::TABEAU ROCHEUSE::::: -->
+<!-- ::::::::TABEAU ::::: -->
 <div class="tabeaurocheuse" style="display: none;">
     <p>rocheuse</p>
 </div>
@@ -290,6 +290,8 @@
 
 <!-- ::::::::::::::::::::SCRIPT:::::::::::::::::: -->
 <script>
+
+
   // :::::::::::::::AFFICHER LA DATE DU JOURS::::::::::::::
 function afficherDateDuJour() {
       var dateElement = document.querySelector('.datejour');
@@ -369,6 +371,38 @@ function recupererEtAfficherNombreAppareil() {
   }
   document.getElementById("numberappareil").addEventListener("input", recupererEtAfficherNombreAppareil);
 
+
+// :::::AFFICHAGE AUTOMATIQUE SI (id="problemeclimatisation" Et id="numberappareil") SONT REMPLIE
+function gestionProblemeClimatisation() {
+    // Récupérer les éléments par leur ID
+    var problemeClimatisation = document.getElementById("problemeclimatisation");
+    var numberAppareil = document.getElementById("numberappareil");
+    var containAirPDF = document.getElementById("containairpdf");
+    var telecharger = document.getElementById("telecharger");
+    var tableauClimatisation = document.getElementById("tabeauClimatisation");
+
+    // Vérifier si la sélection de "problemeclimatisation" n'est pas l'option désactivée
+    if (problemeClimatisation.value !== "Problème" && numberAppareil.value !== "") {
+        // Afficher les éléments requis
+        containAirPDF.style.display = "block";
+        telecharger.style.display = "block";
+        tableauClimatisation.style.display = "block";
+    } else {
+        // Masquer les éléments si les conditions ne sont pas remplies
+        containAirPDF.style.display = "none";
+        telecharger.style.display = "none";
+        tableauClimatisation.style.display = "none";
+    }
+}
+// Appeler la fonction lorsqu'il y a des changements pertinents
+document.addEventListener("DOMContentLoaded", function() {
+    gestionProblemeClimatisation();
+    // Écouter les changements d'éléments pertinents
+    var problemeClimatisation = document.getElementById("problemeclimatisation");
+    var numberAppareil = document.getElementById("numberappareil");
+    problemeClimatisation.addEventListener("change", gestionProblemeClimatisation);
+    numberAppareil.addEventListener("input", gestionProblemeClimatisation);
+});
 
 
 
@@ -455,9 +489,6 @@ document.getElementById("buttonClimatisation").addEventListener("click", functio
   document.getElementById("buttonClimatisation").clicked = true;
   calculateMontantClimatisation();
 });
-
-
-
 
 
 

@@ -10,6 +10,7 @@
   <link rel="stylesheet" href="servicepages2.css">
   <link rel="stylesheet" href="tableau.css">
 
+
   <!----===== Iconscout CSS ===== -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap-grid.min.css">
 
@@ -66,7 +67,7 @@
                         <div class="input-field">
                           <select required id="selectetancheite">
                               <option disabled selected>Produit</option>
-                              <option>Etancheité toît</option>
+                              <option >Etancheité toît</option>
                               <option disabled>Etancheité sur mur(encours...)</option>
                               <option disabled>Etancheité toilette(encours...)</option>
                           </select>
@@ -88,7 +89,7 @@
                     </div> -->
 
                     <div class="input-field" >
-                      <input type="number" placeholder="surface" id="champsurface">
+                      <input type="number" min="1" placeholder="surface" id="champsurface">
                   </div>
                   </div>
 
@@ -577,10 +578,49 @@ document.getElementById("mvivellem").addEventListener("DOMSubtreeModified", calc
 document.getElementById("moeuvres").addEventListener("DOMSubtreeModified", calculerMontantTotalToit);
 
 
+// ::::::::::::::::
+// Fonction pour gérer les affichages en fonction de la sélection de produit et de la surface
+function handleSelections() {
+    var selectEtancheite = document.getElementById("selectetancheite");
+    var champsurface = document.getElementById("champsurface");
+    var containairPDF = document.getElementById("containairpdf");
+    var tabeauToit = document.getElementById("tabeautoit");
+    var tabeauMur = document.getElementById("tabeaumur");
+    var tabeauToilette = document.getElementById("tabeautoilette");
+
+    // Réinitialiser les affichages
+    containairPDF.style.display = "none";
+    tabeauToit.style.display = "none";
+    tabeauMur.style.display = "none";
+    tabeauToilette.style.display = "none";
+
+    var selectedOption = selectEtancheite.options[selectEtancheite.selectedIndex];
+
+    // Vérifier si les sélections ne sont pas vides
+    if (selectedOption.textContent !== "" && champsurface.value !== "") {
+      if (!selectedOption.disabled) {
+        if (selectedOption.textContent === "Etancheité toît") {
+          containairPDF.style.display = "block";
+          tabeauToit.style.display = "block";
+        } else if (selectedOption.textContent === "Etancheité sur mur") {
+          containairPDF.style.display = "block";
+          tabeauMur.style.display = "block";
+        } else if (selectedOption.textContent === "Etancheité toilette") {
+          containairPDF.style.display = "block";
+          tabeauToilette.style.display = "block";
+        }
+      }
+    }
+  }
+  // Ajouter des écouteurs d'événement pour la sélection de produit et la surface
+  document.getElementById("selectetancheite").addEventListener("change", handleSelections);
+  document.getElementById("champsurface").addEventListener("input", handleSelections);
+  // Appeler la fonction une fois au chargement de la page pour initialiser les affichages
+  handleSelections();
 
 
-
-
+  // ::::::::::::::::::::::::::::::::::::::::
+ 
 
 
 

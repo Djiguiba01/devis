@@ -266,7 +266,7 @@
   <p id="conditforage" style="">
     Si la profondeur dépasse 100 m vous allez payer 10 000 fcfa par mètre.
   </p>
-  <p id="prixtuyaux" style="">
+  <p id="prixtuyaux" style="margin-top: 2%;">
     Le prix du tuyaux (PVC) est 30 000 fcfa les 3 mètres.
   </p>
  </div>
@@ -578,6 +578,55 @@ function showTelecharger() {
       const telechargerElement = document.getElementById("telecharger");
       telechargerElement.style.display = "none";
     }
+
+
+
+
+// :::::AFFICHAGE AUTOMATIQUE SI (id="numbrehectar" Et id="zoneforage") SONT REMPLIE
+function showElementsForZone() {
+  var zoneForage = document.getElementById("zoneforage").value;
+  var numbreHectar = document.getElementById("numbrehectar").value;
+  var containairpdfElement = document.getElementById("containairpdf");
+  var tabeauForageElement = document.getElementById("tabeauforage");
+  var tabeauAdductionElement = document.getElementById("tabeauadduction");
+  var telechargerElement = document.getElementById("telecharger");
+  var conditionElement = document.getElementById("condition");
+
+  // Masquer tous les éléments au début
+  containairpdfElement.style.display = "none";
+  tabeauForageElement.style.display = "none";
+  tabeauAdductionElement.style.display = "none";
+  telechargerElement.style.display = "none";
+  conditionElement.style.display = "none";
+
+  if (zoneForage) {
+    // Si zoneforage n'est pas vide, afficher les éléments de forage
+    containairpdfElement.style.display = "block";
+    tabeauForageElement.style.display = "block";
+    telechargerElement.style.display = "block";
+    conditionElement.style.display = "block";
+    tabeauAdductionElement.style.display = "none"; // Masquer les éléments d'adduction
+
+  } else if (numbreHectar) {
+    // Si numbrehectar n'est pas vide, afficher les éléments d'adduction
+    containairpdfElement.style.display = "block";
+    tabeauAdductionElement.style.display = "block";
+    telechargerElement.style.display = "block";
+    tabeauForageElement.style.display = "none"; // Masquer les éléments de forage
+
+  }else {
+    // Si aucun des champs n'est rempli, masquer tous les éléments
+  containairpdfElement.style.display = "none";
+  tabeauForageElement.style.display = "none";
+  tabeauAdductionElement.style.display = "none";
+  telechargerElement.style.display = "none";
+  conditionElement.style.display = "none";
+  }
+}
+
+// Ajouter un écouteur d'événement pour déclencher la fonction lorsque le champ change
+document.getElementById("zoneforage").addEventListener("input", showElementsForZone);
+document.getElementById("numbrehectar").addEventListener("input", showElementsForZone);
 
 
 
