@@ -458,6 +458,7 @@ function calculerSommeToilSansChauf() {
   // Calculer le montant total
   var montantTotalToilSans = montantProduitOilSans1 + montantProduitOilSans2 + montantProduitOilSans3 + moeuvresToilSans;
 
+
   // Mettre à jour l'élément avec l'id "montanttoilSans" avec le montant total calculé
   document.getElementById("montanttoilSans").textContent = montantTotalToilSans.toLocaleString();
   // Mettre à jour l'élément avec l'id "arretfacture1" avec le montant total calculé
@@ -572,6 +573,24 @@ document.getElementById("moeuvresCuiSans").addEventListener("input", calculerSom
 calculerSommeCuiAvecChauf();
 
 
+// ::::::::CALCUL MONTANT MAIN D'OEUVRES DES DIFFERENTS TABLEAUX::::
+function calculerEtAfficherMontant() {
+  var numbre = parseFloat(document.getElementById("numbre").value);
+
+  // Effectuer la multiplication par 
+  var resultatmoeuvresToilSans = numbre * 30000;
+  var resultatmoeuvresToilAvec = numbre * 75000;
+  var resultatmoeuvresCuiSans = numbre * 20000;
+  var resultatmoeuvresCuiAvec = numbre * 45000;
+
+  // Afficher le résultat dans l'élément avec l'id 
+  document.getElementById("moeuvresToilSans").textContent = resultatmoeuvresToilSans.toLocaleString();
+  document.getElementById("moeuvresToilAvec").textContent = resultatmoeuvresToilAvec.toLocaleString();
+  document.getElementById("moeuvresCuiSans").textContent = resultatmoeuvresCuiSans.toLocaleString();
+  document.getElementById("moeuvresCuiAvec").textContent = resultatmoeuvresCuiAvec.toLocaleString();
+}
+// Attacher la fonction à l'événement "input" de l'élément avec l'id "numbre"
+document.getElementById("numbre").addEventListener("input", calculerEtAfficherMontant);
 
 
 
@@ -610,9 +629,6 @@ function afficherElements() {
         afficherAlerte();
       }
     });
-
-
-
 
 
     
