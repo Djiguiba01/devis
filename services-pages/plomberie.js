@@ -126,6 +126,18 @@ document.getElementById("numbre").addEventListener("input", afficherNombre);
 afficherNombre();
 
 
+// ::::::::::::RECUPERATION CHAMPS NOMBRE ETAGE::::::::::::::::::
+function afficherNiveauChateau() {
+  var numbremaison = parseFloat(document.getElementById("numbremaison").value);
+  
+  // Afficher la valeur dans l'élément avec l'id "niveauchateau"
+  document.getElementById("niveauchateau").textContent = "Niveau Maison: " + numbremaison;
+}
+// Attacher la fonction à l'événement "input" de l'élément avec l'id "numbremaison"
+document.getElementById("numbremaison").addEventListener("input", afficherNiveauChateau);
+
+
+
 
 // ::::::::::::::::CHAMPS TYPE AFFICHAGE EN FONCTION SELECTION::::::::::::
 function afficherChampsType() {
@@ -631,6 +643,27 @@ function afficherElements() {
     });
 
 
+    
+    // ::::::::AFFICHER CONTENUE SI(numbremaison OU Nombre) EST REMPLIE :::::::
+    function numbremaisonNombre() {
+      var elementNombre = document.getElementById("nombre");
+      var elementNumbreMaison = document.getElementById("numbremaison");
+      var elementNiveauChateau = document.getElementById("niveauchateau");
+  
+      if (elementNombre && elementNombre.value !== "") {
+          elementNombre.style.display = "block";
+          elementNiveauChateau.style.display = "none";
+      } else if (elementNumbreMaison && elementNumbreMaison.value !== "") {
+          elementNiveauChateau.style.display = "block";
+          elementNombre.style.display = "none";
+      } else {
+          elementNiveauChateau.style.display = "none";
+          elementNombre.style.display = "none";
+      }
+  } 
+  // Appeler la fonction automatiquement lorsque la page se charge
+  window.onload = numbremaisonNombre;
+  
     
 
 
