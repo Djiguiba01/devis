@@ -266,8 +266,8 @@
   
   <!-- :: -->
   <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-    <li>Arrêté la Facture pro-forma à la somme de
-      francs CFA.
+    <li>Arrêté la Facture pro-forma à la somme de <span id="factureclimat"></span>
+      fcfa.
       </li>
     </ul>
     <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
@@ -449,6 +449,7 @@ function calculateMontantClimatisation() {
   var selectProbleme = document.getElementById("problemeclimatisation").value;
   var numberAppareil = parseFloat(document.getElementById("numberappareil").value);
   var montantClimatssationElement = document.getElementById("montantClimatssation");
+  var factureclimatElement = document.getElementById("factureclimat");
   var containairpdfElement = document.getElementById("containairpdf");
   var tabeauClimatisationElement = document.getElementById("tabeauClimatisation");
 
@@ -459,17 +460,21 @@ function calculateMontantClimatisation() {
       alert("Veuillez remplir nombre appareil !");
     }
     montantClimatssationElement.textContent = "Montant : ?";
+    factureclimatElement.textContent = "Montant : ?";
     containairpdfElement.style.display = "none";
     tabeauClimatisationElement.style.display = "none";
   } else {
     if (selectProbleme === "entretienselect") {
       var montant = numberAppareil * 15000;
-      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR') + " FCFA";
+      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR');
+      factureclimatElement.textContent = montant.toLocaleString('fr-FR');
     } else if (selectProbleme === "installationselect") {
       var montant = numberAppareil * 25000;
-      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR') + " FCFA";
+      montantClimatssationElement.textContent = montant.toLocaleString('fr-FR');
+      factureclimatElement.textContent = montant.toLocaleString('fr-FR') ;
     } else {
       montantClimatssationElement.textContent = "Montant : ?";
+      factureclimatElement.textContent = "Montant : ?";
     }
     // Afficher le tableau et le div uniquement si les champs sont remplis et le bouton est cliqué
     if (document.getElementById("buttonClimatisation").clicked) {

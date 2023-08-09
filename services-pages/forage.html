@@ -91,8 +91,8 @@
                       </div>
 
                        <!-- ::::::::::CHAMPS FORAGE:::::::::: -->
-                       <div id="champsForage" style=" display: none; width: 200%;">
-                       <div class="input-field">
+                       <div id="champsForage" style=" display: none; width: 200%;"> 
+                       <div class="input-field"> 
                         <select required  id="zoneforage">
                             <option disabled selected>Zones</option>
                             <option value="sableuseselect">Sableuse</option>
@@ -100,7 +100,7 @@
                             <option value="terrefinselect">Terre fin</option>
                             <option value="boueuseselect">Boueuse</option>
                         </select>
-                    </div>
+                    </div>  
                 </div>
 
                 <!-- ::::::::::CHAMPS ADDUCTION:::::::::: -->
@@ -273,7 +273,7 @@
   
   <!-- :: -->
   <ul class="arretfacture" style=" margin-top: 4%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-    <li>Arrêté la Facture pro-forma à la somme de <span id="lesmontant"></span>
+    <li>Arrêté la Facture pro-forma à la somme de <span id="lesmontant"></span>fcfa
       .
       </li>
     </ul>
@@ -554,10 +554,10 @@ function calculerMontant() {
     const montant = numbrehectar * 1500000;
 
     // Afficher le montant calculé dans l'élément montantAdduction
-    montantAdductionElement.innerText = montant.toLocaleString() + " fcfa";
+    montantAdductionElement.innerText = montant.toLocaleString();
 
     // Afficher le montant calculé dans l'élément ayant l'ID "lesmontant" avec la classe "arretfacture"
-    lesmontantElement.innerText = montant.toLocaleString() + " fcfa";
+    lesmontantElement.innerText = montant.toLocaleString();
   } else {
     // Si le champ numbrehectar ne contient pas une valeur numérique valide, afficher un message d'erreur
     montantAdductionElement.innerText = "?";
@@ -566,7 +566,6 @@ function calculerMontant() {
 }
 // Appeler la fonction lorsque la valeur du champ numbrehectar change
 document.getElementById("numbrehectar").addEventListener("input", calculerMontant);
-
 
 
 // :::::::::::ACTIVER OU DESACTIVER BUTTON TELECHARGEMENT:::::::
@@ -581,52 +580,40 @@ function showTelecharger() {
 
 
 
-
 // :::::AFFICHAGE AUTOMATIQUE SI (id="numbrehectar" Et id="zoneforage") SONT REMPLIE
-function showElementsForZone() {
+// Fonction pour vérifier les conditions et afficher/masquer les éléments
+function checkSelection() {
+  var selectType = document.getElementById("selecttype").value;
   var zoneForage = document.getElementById("zoneforage").value;
   var numbreHectar = document.getElementById("numbrehectar").value;
-  var containairpdfElement = document.getElementById("containairpdf");
-  var tabeauForageElement = document.getElementById("tabeauforage");
-  var tabeauAdductionElement = document.getElementById("tabeauadduction");
-  var telechargerElement = document.getElementById("telecharger");
-  var conditionElement = document.getElementById("condition");
 
-  // Masquer tous les éléments au début
-  containairpdfElement.style.display = "none";
-  tabeauForageElement.style.display = "none";
-  tabeauAdductionElement.style.display = "none";
-  telechargerElement.style.display = "none";
-  conditionElement.style.display = "none";
+  var containairPdf = document.getElementById("containairpdf");
+  var tableauForage = document.getElementById("tabeauforage");
+  var tableauAdduction = document.getElementById("tabeauadduction");
+  var condition = document.getElementById("condition");
+  var telecharger = document.getElementById("telecharger");
 
-  if (zoneForage) {
-    // Si zoneforage n'est pas vide, afficher les éléments de forage
-    containairpdfElement.style.display = "block";
-    tabeauForageElement.style.display = "block";
-    telechargerElement.style.display = "block";
-    conditionElement.style.display = "block";
-    tabeauAdductionElement.style.display = "none"; // Masquer les éléments d'adduction
+  containairPdf.style.display = "none";
+  tableauForage.style.display = "none";
+  tableauAdduction.style.display = "none";
+  condition.style.display = "none";
+  telecharger.style.display = "none";
 
-  } else if (numbreHectar) {
-    // Si numbrehectar n'est pas vide, afficher les éléments d'adduction
-    containairpdfElement.style.display = "block";
-    tabeauAdductionElement.style.display = "block";
-    telechargerElement.style.display = "block";
-    tabeauForageElement.style.display = "none"; // Masquer les éléments de forage
-
-  }else {
-    // Si aucun des champs n'est rempli, masquer tous les éléments
-  containairpdfElement.style.display = "none";
-  tabeauForageElement.style.display = "none";
-  tabeauAdductionElement.style.display = "none";
-  telechargerElement.style.display = "none";
-  conditionElement.style.display = "none";
+  if (selectType === "serviceforage" && zoneForage !== "") { 
+    containairPdf.style.display = "block";
+    tableauForage.style.display = "block";
+    condition.style.display = "block";
+    telecharger.style.display = "block";
+  } else if (selectType === "serviceadduction" && numbreHectar !== "") {
+    containairPdf.style.display = "block";
+    tableauAdduction.style.display = "block";
+    telecharger.style.display = "block";
   }
 }
-
-// Ajouter un écouteur d'événement pour déclencher la fonction lorsque le champ change
-document.getElementById("zoneforage").addEventListener("input", showElementsForZone);
-document.getElementById("numbrehectar").addEventListener("input", showElementsForZone);
+// Attachez les événements de changement aux champs pertinents
+document.getElementById("selecttype").addEventListener("change", checkSelection);
+document.getElementById("zoneforage").addEventListener("change", checkSelection);
+document.getElementById("numbrehectar").addEventListener("change", checkSelection);
 
 
 
