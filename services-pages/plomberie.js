@@ -577,7 +577,7 @@ calculerSommeCuiAvecChauf();
 function calculerEtAfficherMontant() {
   var numbre = parseFloat(document.getElementById("numbre").value);
 
-  // Effectuer la multiplication par 
+  // POUR TOILETTE ET CUISINE (AVEC ET SANS CHAUFFAGE)::::::::
   var resultatmoeuvresToilSans = numbre * 30000;
   var resultatmoeuvresToilAvec = numbre * 75000;
   var resultatmoeuvresCuiSans = numbre * 20000;
