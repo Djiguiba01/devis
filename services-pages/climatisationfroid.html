@@ -189,7 +189,7 @@
   <hr class="hr2" >
   
   <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
-    <h1>Facture Pro-format N°04.03.07.23</h1>
+    <h1>Facture Pro-format <span id="numfacture">N°04</span>.<span id="datefacture">03.07.23</span></h1>
     </div>
     
   
@@ -338,6 +338,54 @@ function recupererNumero() {
 document.getElementById("numero").addEventListener("input", recupererNumero);
 // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
 recupererNumero();
+
+
+
+// :::::::: NUMERO FACTURE PRO-FORMAT::::::::::::::::::
+ // Fonction pour obtenir ou initialiser le compteur
+ function numeroFacture() {
+        // Utilise le stockage local pour conserver le compteur
+        let counter = parseInt(localStorage.getItem("invoiceCounter"), 10);
+        if (isNaN(counter) || counter < 1 || counter > 30) {
+            // Si le compteur n'est pas défini ou n'est pas dans la plage 1-20, initialise à 1
+            counter = 1;
+        } else {
+            // Incrémente le compteur
+            counter = (counter % 20) + 1;
+        }
+
+        // Enregistre la valeur mise à jour du compteur
+        localStorage.setItem("invoiceCounter", counter.toString());
+
+        return counter;
+    }
+
+    // Fonction pour mettre à jour la facture
+    function dateJourFacture() {
+        // Obtient la date du jour au format JJ.MM.AA
+        const today = new Date();
+        const day = String(today.getDate()).padStart(2, '0');
+        const month = String(today.getMonth() + 1).padStart(2, '0');
+        const year = String(today.getFullYear()).slice(-2);
+        const formattedDate = `${day}.${month}.${year}`;
+
+        // Obtient le numéro de facture croissant
+        const numFacture = numeroFacture();
+
+        // Met à jour les éléments <span> avec les IDs "datefacture" et "numfacture"
+        const dateSpan = document.getElementById('datefacture');
+        const numSpan = document.getElementById('numfacture');
+
+        if (dateSpan) {
+            dateSpan.textContent = formattedDate;
+        }
+
+        if (numSpan) {
+            numSpan.textContent = `N°${String(numFacture).padStart(2, '0')}`;
+        }
+    }
+    // Appelle la fonction pour mettre à jour la facture
+    dateJourFacture();
 
 // :::::::::::::RECUPERATION CHAMPS SERVICE::::::::::
 // function afficherServiceClimatisation() {
