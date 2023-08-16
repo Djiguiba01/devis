@@ -67,7 +67,7 @@
 
 
                         <div class="input-field">
-                          <select required id="selectfosse"  onchange="scrollToSection(this);">
+                          <select required id="selectfosse"  onchange="scrollToSection(this); SelectedTypeFosse();" >
                               <option disabled selected>Type fosse septique</option>
                               <option>Biofil</option>
                               </select>
@@ -77,7 +77,7 @@
                        <!-- ::::::::::CHAMPS BIOFIL:::::::::: -->
                        <div id="champbiofil" style=" width: 100%;">
                        <div class="input-field">
-                        <select required  id="selectzone" onchange="checkFosseAndScroll(this);">
+                        <select required id="selectzone" onchange="checkFosseAndScroll(this); SelectedZone();">
                             <option disabled selected>Zones</option>
                             <option value="standartsection" id="standartselect">Standart</option>
                             <option  value="graviersection" id="gravierselect">Gravier</option>
@@ -437,11 +437,11 @@
       
       <!-- :: -->
       <ul class="coordonees" >
-        <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
-        <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
-        <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-        <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
-        <li id="zone"><div class="coordtext">Zone : </div> </li>
+        <li id="nomprenom2"><div class="coordtext">Doit: </div> </li>
+        <li id="villequart2"><div class="coordtext">Ville/Quartier: </div> </li>
+        <li id="telephone2"><div class="coordtext">Téléphone: </div> </li>
+        <li id="typefosseGravier"><div class="coordtext">Type fosse : </div> </li>
+        <li id="zone2"><div class="coordtext">Zone : </div> </li>
         </ul>
     
       <!-- :::::::TABEAU QUI AFFICHE DANS TOUT ::::::::::::-->
@@ -647,11 +647,11 @@
       
       <!-- :: -->
       <ul class="coordonees" >
-        <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
-        <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
-        <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-        <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
-        <li id="zone"><div class="coordtext">Zone : </div> </li>
+        <li id="nomprenom3"><div class="coordtext">Doit: </div> </li>
+        <li id="villequart3"><div class="coordtext">Ville/Quartier: </div> </li>
+        <li id="telephone3"><div class="coordtext">Téléphone: </div> </li>
+        <li id="typefosseRocheuse"><div class="coordtext">Type fosse : </div> </li>
+        <li id="zone3"><div class="coordtext">Zone : </div> </li>
         </ul>
     
       <!-- :::::::TABEAU QUI AFFICHE DANS TOUT ::::::::::::-->
@@ -907,38 +907,102 @@ function afficherDateDuJour() {
 
 
 // :::::RECUPERATION NOM-PRENOM::::::::::
-function recupererNomPrenom() {
-  var nom = document.getElementById("nom").value;
-  var prenom = document.getElementById("prenom").value;
-  var nomprenomElement = document.getElementById("nomprenom");
-  nomprenomElement.innerHTML = "Doit : " + nom + " " + prenom;
+function NomPrenom() {
+  const nomInput = document.getElementById("nom");
+  const prenomInput = document.getElementById("prenom");
+  const nomPrenomElements = [
+    document.getElementById("nomprenom"),
+    document.getElementById("nomprenom2"),
+    document.getElementById("nomprenom3")
+  ];
+
+  const nom = nomInput.value;
+  const prenom = prenomInput.value;
+
+  nomPrenomElements.forEach(element => {
+    element.textContent = `Doit: ${nom} ${prenom}`;
+  });
 }
-// Appeler la fonction lorsque les champs de saisie changent
-document.getElementById("nom").addEventListener("input", recupererNomPrenom);
-document.getElementById("prenom").addEventListener("input", recupererNomPrenom);
-// Appeler la fonction une fois au chargement de la page pour afficher les valeurs initiales
-recupererNomPrenom();
+// Attach the update function to the input events
+document.getElementById("nom").addEventListener("input", NomPrenom);
+document.getElementById("prenom").addEventListener("input", NomPrenom);
+
+
 
 // :::::::::::RECUPERATION CHAMPS VILLE SAISI::::::::::
 function recupererVille() {
-  var ville = document.getElementById("ville").value;
-  var villequartElement = document.getElementById("villequart");
-  villequartElement.innerHTML = "Ville/Quartier : " + ville;
+  const villeInput = document.getElementById("ville");
+  // const prenomInput = document.getElementById("prenom");
+  const villeElements = [
+    document.getElementById("villequart"),
+    document.getElementById("villequart2"),
+    document.getElementById("villequart3")
+  ];
+
+  const ville = villeInput.value;
+  // const prenom = prenomInput.value;
+
+  villeElements.forEach(element => {
+    element.textContent = `Ville/Quartier: ${ville}`;
+  });
 }
+// Attach the update function to the input events
 document.getElementById("ville").addEventListener("input", recupererVille);
-recupererVille();
+
 
 
 // :::::::::::RECUPERATION CHAMPS NUMERO SAISI::::::::::
 function recupererNumero() {
-  var numero = document.getElementById("numero").value;
-  var telephoneElement = document.getElementById("telephone");
-  telephoneElement.innerHTML = "Téléphone : " + numero;
+  const numeroInput = document.getElementById("numero");
+  // const prenomInput = document.getElementById("prenom");
+  const numeroElements = [
+    document.getElementById("telephone"),
+    document.getElementById("telephone2"),
+    document.getElementById("telephone3")
+  ];
+
+  const numero = numeroInput.value;
+  // const prenom = prenomInput.value;
+
+  numeroElements.forEach(element => {
+    element.textContent = `Ville/Quartier: ${numero}`;
+  });
 }
-// Appeler la fonction lorsque le champ de saisie du numéro de téléphone change
+// Attach the update function to the input events
 document.getElementById("numero").addEventListener("input", recupererNumero);
-// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale du numéro de téléphone
-recupererNumero();
+
+
+// :::::::::::RECUPERATION CHAMPS SELECT TYPE FOSSE::::::::::
+function SelectedTypeFosse() {
+    // Get the selected option from the selectzone dropdown
+    var selectZone = document.getElementById("selectfosse");
+    var selectedZone = selectZone.options[selectZone.selectedIndex].text;
+
+    // Display the selected zone information in different sections
+    document.getElementById("typefosse").textContent = `Type fosse : ${selectedZone} `;
+    document.getElementById("typefosseGravier").textContent = `Type fosse : ${selectedZone} `
+    document.getElementById("typefosseRocheuse").textContent = `Type fosse : ${selectedZone} `
+}
+
+
+// // :::::::::::RECUPERATION CHAMPS SELECT ZONE::::::::::
+function SelectedZone() {
+    // Get the selected option from the selectzone dropdown
+    var selectZone = document.getElementById("selectzone");
+    var selectedZone = selectZone.options[selectZone.selectedIndex].text;
+
+    // Display the selected zone information in different sections
+    document.getElementById("zone").textContent = `Zone: ${selectedZone} `;
+    document.getElementById("zone2").textContent = `Zone: ${selectedZone} `
+    document.getElementById("zone3").textContent = `Zone: ${selectedZone} `
+}
+
+
+
+
+
+
+
 
 
 // :::::::: NUMERO FACTURE PRO-FORMAT::::::::::::::::::
@@ -987,53 +1051,54 @@ recupererNumero();
     // Appelle la fonction pour mettre à jour la facture
     dateJourFacture();
 
-
-// :::::::::::RECUPERATION CHAMPS SELECT TYPE FOSSE::::::::::
-function afficherTypeFosseSelectionne() {
-  // Récupérer la valeur sélectionnée du champ "selectfosse"
-  var selectElement = document.getElementById("selectfosse");
-  var typeFosseSelectionne = selectElement.value;
-
-  // Vérifier si l'option sélectionnée est activée (non désactivée)
-  var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
-  if (!optionSelectionnee.disabled) {
-    // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "typefosse"
-    var typeFosseElement = document.getElementById("typefosse");
-    typeFosseElement.textContent = "Type fosse : " + typeFosseSelectionne;
-  } else {
-    // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
-    var typeFosseElement = document.getElementById("typefosse");
-    typeFosseElement.textContent = "Type fosse : ";
-  }
-}
-// Appeler la fonction lorsque la sélection du champ change
-document.getElementById("selectfosse").addEventListener("change", afficherTypeFosseSelectionne);
-// Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
-afficherTypeFosseSelectionne();
-
-
 // :::::::::::RECUPERATION CHAMPS SELECT ZONE::::::::::
-function afficherZoneSelectionnee() {
-    // Récupérer la valeur sélectionnée du champ "selectzone"
-    var selectElement = document.getElementById("selectzone");
-    var zoneSelectionnee = selectElement.value;
+// function afficherZoneSelectionnee() {
+//     // Récupérer la valeur sélectionnée du champ "selectzone"
+//     var selectElement = document.getElementById("selectzone");
+//     var zoneSelectionnee = selectElement.value;
 
-    // Vérifier si l'option sélectionnée est activée (non désactivée)
-    var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
-    if (!optionSelectionnee.disabled) {
-      // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "zone"
-      var zoneElement = document.getElementById("zone");
-      zoneElement.textContent = "Zone : " + zoneSelectionnee;
-    } else {
-      // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
-      var zoneElement = document.getElementById("zone");
-      zoneElement.textContent = "Zone : ";
-    }
-  }
-  // Appeler la fonction lorsque la sélection du champ change
-  document.getElementById("selectzone").addEventListener("change", afficherZoneSelectionnee);
-  // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
-  afficherZoneSelectionnee();
+//     // Vérifier si l'option sélectionnée est activée (non désactivée)
+//     var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
+//     if (!optionSelectionnee.disabled) {
+//       // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "zone"
+//       var zoneElement = document.getElementById("zone");
+//       zoneElement.textContent = "Zone : " + zoneSelectionnee;
+//     } else {
+//       // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
+//       var zoneElement = document.getElementById("zone");
+//       zoneElement.textContent = "Zone : ";
+//     }
+//   }
+//   // Appeler la fonction lorsque la sélection du champ change
+//   document.getElementById("selectzone").addEventListener("change", afficherZoneSelectionnee);
+//   // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
+//   afficherZoneSelectionnee();
+
+
+
+// // :::::::::::RECUPERATION CHAMPS SELECT ZONE::::::::::
+
+// function afficherZoneSelectionnee() {
+//     // Récupérer la valeur sélectionnée du champ "selectzone"
+//     var selectElement = document.getElementById("selectzone");
+//     var zoneSelectionnee = selectElement.value;
+
+//     // Vérifier si l'option sélectionnée est activée (non désactivée)
+//     var optionSelectionnee = selectElement.options[selectElement.selectedIndex];
+//     if (!optionSelectionnee.disabled) {
+//       // Afficher la valeur sélectionnée entre les balises <li> ayant l'ID "zone"
+//       var zoneElement = document.getElementById("zone");
+//       zoneElement.textContent = "Zone : " + zoneSelectionnee;
+//     } else {
+//       // Si l'option sélectionnée est désactivée, réinitialiser le texte entre les balises <li>
+//       var zoneElement = document.getElementById("zone");
+//       zoneElement.textContent = "Zone : ";
+//     }
+//   }
+//   // Appeler la fonction lorsque la sélection du champ change
+//   document.getElementById("selectzone").addEventListener("change", afficherZoneSelectionnee);
+//   // Appeler la fonction une fois au chargement de la page pour afficher la valeur initiale
+//   afficherZoneSelectionnee();
 
 //   :::::FFFICHE BUTTON EN FONCTION DE SELECT ZONE::::::
 // function afficherButtonEnFonctionDeSelection() {
