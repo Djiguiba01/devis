@@ -32,7 +32,7 @@
     <div class="container">
         <div class="enteteform" style="display: flex; justify-content: space-between; ">
           <div class="dd">
-            <header>Dévis Fosse Septique</header>
+            <header>Dévis Fosse Septique 2</header>
           </div>
 
               <img src="image-services/logo1.png" alt="Logo 1" class="logo-left"
@@ -67,7 +67,7 @@
 
 
                         <div class="input-field">
-                          <select required id="selectfosse"  onchange="scrollToSection(this);">
+                          <select required id="selectfosse">
                               <option disabled selected>Type fosse septique</option>
                               <option>Biofil</option>
                               </select>
@@ -77,11 +77,11 @@
                        <!-- ::::::::::CHAMPS BIOFIL:::::::::: -->
                        <div id="champbiofil" style=" width: 100%;">
                        <div class="input-field">
-                        <select required  id="selectzone" onchange="checkFosseAndScroll(this);">
+                        <select required  id="selectzone">
                             <option disabled selected>Zones</option>
-                            <option value="standartsection" id="standartselect">Standart</option>
-                            <option  value="graviersection" id="gravierselect">Gravier</option>
-                            <option  value="rocheusesection" id="rocheuseselect">Rocheuse</option>
+                            <option id="standartselect">Standart</option>
+                            <option id="gravierselect">Gravier</option>
+                            <option id="rocheuseselect">Rocheuse</option>
 
                         </select>
                     </div>
@@ -89,65 +89,6 @@
                       <input type="number" placeholder="surface" id="champsurface">
                   </div> -->
                   </div>
-
-                  <script>
-                    function scrollToSection(selectElement) {
-                        var selectedValue = selectElement.value;
-                        var targetSection = document.getElementById(selectedValue);
-                        
-                        if (targetSection) {
-                            targetSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }
-                    
-                    function checkFosseAndScroll(selectElement) {
-                        var selectFosse = document.getElementById("selectfosse");
-                        var selectedFosseOption = selectFosse.options[selectFosse.selectedIndex].text;
-                        
-                        if (selectedFosseOption === "Type fosse septique") {
-                            alert("Veuillez sélectionner le type de fosse septique.");
-                            // Réinitialiser la sélection du menu déroulant id="selectzone"
-                            document.getElementById("selectzone").selectedIndex = 0; document.getElementById("selectzone").selectedIndex = 0;
-
-                            return;
-                        }
-                        
-                        var selectedValue = selectElement.value;
-                        var targetSection = document.getElementById(selectedValue);
-                        
-                        if (targetSection) {
-                            targetSection.scrollIntoView({ behavior: 'smooth' });
-                        }
-                        
-                        // Afficher les sections et téléchargements correspondants
-                        if (selectedValue === "standartsection") {
-                            document.getElementById("standartsection").style.display = "block";
-                            document.getElementById("telechargerStandart").style.display = "block";
-                        } else {
-                            document.getElementById("standartsection").style.display = "none";
-                            document.getElementById("telechargerStandart").style.display = "none";
-                        }
-                        
-                        if (selectedValue === "graviersection") {
-                            document.getElementById("graviersection").style.display = "block";
-                            document.getElementById("telechargerGravier").style.display = "block";
-                        } else {
-                            document.getElementById("graviersection").style.display = "none";
-                            document.getElementById("telechargerGravier").style.display = "none";
-                        }
-                        
-                        if (selectedValue === "rocheusesection") {
-                            document.getElementById("rocheusesection").style.display = "block";
-                            document.getElementById("telechargerRocheuse").style.display = "block";
-                        } else {
-                            document.getElementById("rocheusesection").style.display = "none";
-                            document.getElementById("telechargerRocheuse").style.display = "none";
-                        }
-                    }
-                </script>
-                
-                
-                
 
                         
                     </div>
@@ -189,328 +130,7 @@
        
     </div>
 </div>
-
-
 <!--FORM::::::::::::::::::::::  -->
-<div id="graviersection" style="display: none; padding-bottom: 8%;">
-  <h2>Gravier Section</h2>
-</div>
-
-<div id="rocheusesection" style="display: none; padding-bottom: 8%;">
-  <h2>Rocheuse Section</h2>
-</div>
-
-<!-- :::::::::::TABLEAU STANDART:::::::::::::::::: -->
-<div id="standartsection" style="display: none; padding-bottom: 8%;">
-  <div id="containairpdf" style=" padding-bottom: 10px;">
-    
-  
-  <!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
-  
-  <div class="standartPage1">	
-    <!-- :::::::::ENTETE::::::::::::: -->
-    <div class="entete">
-      <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
-      <div class="entete-text">
-      <h1>IKA PLOMBIER SARL</h1>
-      <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
-      <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
-      <p>Email: ctraore@ikaplombier.com</p>
-      <p>Tel: 74 24 00 74</p>
-      </div>
-      <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
-    </div>
-    <!-- :::::::::ENTETE::::::::::::: -->
-    
-    <!-- ::::::::::::::: -->
-    <hr class="hr1" >
-    <hr class="hr2" >
-    
-    <div class="content-item" style="text-align: center; height: 40px; margin-top: 2%; margin-left: auto; margin-right: auto; width: 95%; ">
-      <h1>Facture Pro-format <span id="numfacture">N°04</span>.<span id="datefacture">03.07.23</span></h1>
-      </div>
-      
-    
-    <!-- :: -->
-    <ul class="coordonees" >
-      <li id="nomprenom"><div class="coordtext">Doit: </div> </li>
-      <li id="villequart"><div class="coordtext">Ville/Quartier: </div> </li>
-      <li id="telephone"><div class="coordtext">Téléphone: </div> </li>
-      <li id="typefosse"><div class="coordtext">Type fosse : </div> </li>
-      <li id="zone"><div class="coordtext">Zone : </div> </li>
-      </ul>
-  
-    <!-- :::::::TABEAU QUI AFFICHE DANS TOUT ::::::::::::-->
-    <div id="AffichedansToutableau"  style="">
-    <table class="tableau">
-      <tr id="header">
-        <th>N°</th>
-        <th>Désignation</th>
-        <th>Quantité</th>
-        <th>Prix Unitaire</th>
-        <th id="colonnetoit">Montant</th>
-      </tr>
-      <tr>
-        <td>1</td>
-        <td>Bio digester  </td>
-        <td  id="ufosse1">20 kg </td>
-        <td id="qfosse1">2 000 </td>
-        <td id="mfosse1">40 000 </td>
-      </tr>
-      <tr>
-        <td>2 </td>
-        <td>Tuyau PVC 110 </td>
-        <td id="ufosse2"> 1 U </td>
-        <td id="qfosse2"> 11 000 </td>
-        <td id="mfosse2"> 11 000 </td>
-      </tr>
-      
-      <tr>
-        <td>3 </td>
-        <td>Té 63 </td>
-        <td id="ufosse3"> 1 U </td>
-        <td id="qfosse3"> 1 000 </td>
-        <td id="mfosse3"> 1 000</td>
-      </tr>
-      <tr>
-        <td>4 </td>
-        <td>Roche poreuse</td>
-        <td id="ufosse4"> 14 m3 </td>
-        <td id="qfosse4"> - </td>
-        <td id="mfosse4"> 90 000 </td>
-      </tr>
-      <tr>
-        <td>5 </td>
-        <td>Ciment </td>
-        <td id="ufosse5"> 4 Sacs </td>
-        <td id="qfosse5"> 6 000 </td>
-        <td id="mfosse5"> 24 000 </td>
-      </tr>
-      <tr>
-        <td>6 </td>
-        <td>Brique pleine 15  </td>
-        <td id="ufosse6"> 60 U </td>
-        <td id="qfosse6"> 400 </td>
-        <td id="mfosse6"> 24 000 </td>
-      </tr>
-      <tr>
-        <td>7 </td>
-        <td>Fibre </td>
-        <td id="ufosse7"> 10 kg </td>
-        <td id="qfosse7"> 2 000 </td>
-        <td id="mfosse7"> 20 000 </td>
-      </tr>
-      <tr>
-        <td>8 </td>
-        <td>Charbon </td>
-        <td id="ufosse8"> 2 sacs </td>
-        <td id="qfosse8"> 5 000 </td>
-        <td id="mfosse8"> 10 000 </td>
-      </tr>
-      <tr>
-        <td>9 </td>
-        <td>Granuleux </td>
-        <td id="ufosse9"> 7 m3 </td>
-        <td id="qfosse9"> - </td>
-        <td id="mfosse9"> 40 000 </td>
-      </tr>
-      <tr>
-        <td>10 </td>
-        <td>Sable </td>
-        <td id="ufosse10"> 4 m3 </td>
-        <td id="qfosse10"> - </td>
-        <td id="mfosse10"> 30 000 </td>
-      </tr>
-      
-    </table>
-  
-  </div>
-  </div>
-  
-  
-  
-  <!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
-  <div  class="standartPage2"  style=" margin-top: 1%;">
-  
-    <!-- :::::::::TABLEAU STANDART::::::::::: -->
-    <div class="tabeaustandart">
-      <!-- :::::::::ENTETE::::::::::::: -->
-   <div class="entete">
-     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
-     <div class="entete-text">
-     <h1>IKA PLOMBIER SARL</h1>
-     <p>RCCM : MA BKO.2016.B9400, NIF : 086139811A</p>
-     <p>Halles de Bamako, Bloc Adrar des Ibogas, Magasin 481-482</p>
-     <p>Email: ctraore@ikaplombier.com</p>
-     <p>Tel: 74 24 00 74</p>
-     </div>
-     <img src="image-services/logo1.png" alt="Logo 2" class="logo-right">
-   </div>
-   <!-- :::::::::ENTETE::::::::::::: -->
-   
-   <!-- ::::::::::::::: -->
-   <hr class="hr1" >
-   <hr class="hr2" >
-  
-     <table class="tableau" >
-       <tr>
-         <td>11 </td>
-         <td>Fer 12 </td>
-         <td id="ufosse11"> 4 b </td>
-         <td id="qfosse11"> 2 500 </td>
-         <td id="mfosse11"> 10 000 </td>
-       </tr>
-       <tr>
-         <td>12 </td>
-         <td>Tuyau PVC 110 </td>
-         <td id="ufosse12"> 1 U </td>
-         <td id="qfosse12"> 11 000 </td>
-         <td id="mfosse12"> 11 000 </td>
-       </tr>
-       <tr>
-         <td>13 </td>
-         <td>Sika </td>
-         <td id="ufosse12"> 2 sacs </td>
-         <td id="qfosse12"> 5 000 </td>
-         <td id="mfosse12"> 10 000 </td>
-       </tr>
-       <tr>
-         <td>14 </td>
-         <td colspan="3"  style="text-align: center;">Fouille </td>
-         <td id="mfosse12"> 79 000 </td>
-       </tr>
-       <tr>
-         <td>15 </td>
-         <td colspan="3" style="text-align: center;">Main D'oeuvres </td>
-         <td id="moeuvres">100 000 </td>
-       </tr> 
-       <tr style="background-color: #5f7acb;">
-         <td colspan="4" id="total" style="text-align: center; font-weight: bold;">Total </td>
-         <td id="montant1"> 500 000 </td>
-       </tr>
-     </table>
-   </div>
-  
-  
-  
-    
-    <!-- :: -->
-    <ul class="arretfacture" style=" margin-top: 6%; font-weight: bold; font-size: 18px; width: 83%; margin-left: auto;margin-right: auto;">
-      <li>Arrêté la Facture pro-forma à la somme de <span class="montantaffichage"></span>
-        francs CFA.
-        </li>
-      </ul>
-      <div class="enbas" style=" display: flex; justify-content: space-between; margin-top: 7%; width: 91%; margin-left: auto; margin-right: auto;">
-        <div class="accord" style=" font-weight: bold;">Pour accord</div>
-      <p class="datejour" style="text-align: right; font-weight: bold;"> </p> 
-    </div>
-  </div>
-     
-  </div>
-</div>
-  
-  
-    <!-- :::::::::::::BUTTON TELECHARGEMENT STANDART::::::::::: -->
-    <button id="telechargerStandart" style="display: none;">
-      <span class="btnText">Télécharger PDF1</span>
-      <i class="fa-solid fa-download"></i>
-    </button>
-
-    <!-- :::::::::::::BUTTON TELECHARGEMENT GRAVIER::::::::::: -->
-    <button id="telechargerGravier" style="display: none;">
-      <span class="btnText">Télécharger PDF2</span>
-      <i class="fa-solid fa-download"></i>
-    </button>
-
-    <!-- :::::::::::::BUTTON TELECHARGEMENT ROCHEUSE::::::::::: -->
-    <button id="telechargerRocheuse" style="display: none;">
-      <span class="btnText">Télécharger PDF3</span>
-      <i class="fa-solid fa-download"></i>
-    </button>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 <!-- :::::::::::TABLEAU:::::::::::::::::: -->
@@ -520,7 +140,7 @@
 
 <!-- :::::::::::::::::::::T1::::::::::::::::::::::::::: -->
 
-<div class="standartPage1">	
+<div class="chateauPage1">	
   <!-- :::::::::ENTETE::::::::::::: -->
   <div class="entete">
     <img src="image-services/logo1.png" alt="Logo 1" class="logo-left">
@@ -643,7 +263,7 @@
 
 
 <!-- ::::::::::::::::::::T2:::::::::::::::::::: -->
-<div  class="standartPage2"  style=" margin-top: 1%;">
+<div  class="chateauPage2"  style=" margin-top: 1%;">
 
   <!-- :::::::::TABLEAU STANDART::::::::::: -->
   <div class="tabeaustandart">
@@ -1031,86 +651,85 @@ function afficherButtonEnFonctionDeSelection() {
 
 
 
-// // :::::: AFFICHER LES CONTENUES EN FONCTION BUTTON CLIQUE::::::
-//  // Fonction pour afficher le contenu en fonction du bouton cliqué
-//  function afficherContenuEnFonctionDuBouton(boutonId) {
-//     // Récupérer la valeur sélectionnée du champ "selectfosse"
-//     var selectFosseElement = document.getElementById("selectfosse");
-//     var selectFosseValue = selectFosseElement.value;
+// :::::: AFFICHER LES CONTENUES EN FONCTION BUTTON CLIQUE::::::
+ // Fonction pour afficher le contenu en fonction du bouton cliqué
+ function afficherContenuEnFonctionDuBouton(boutonId) {
+    // Récupérer la valeur sélectionnée du champ "selectfosse"
+    var selectFosseElement = document.getElementById("selectfosse");
+    var selectFosseValue = selectFosseElement.value;
 
-//     // Vérifier si le champ "selectfosse" est vide
-//     if (selectFosseValue === "" || selectFosseValue === "Type fosse septique") {
-//       alert("Veuillez sélectionner un type de fosse avant de continuer.");
-//       return;
-//     }
+    // Vérifier si le champ "selectfosse" est vide
+    if (selectFosseValue === "" || selectFosseValue === "Type fosse septique") {
+      alert("Veuillez sélectionner un type de fosse avant de continuer.");
+      return;
+    }
 
-//     // Cacher tous les contenus
-//     var contenairs = document.querySelectorAll(".AffichedansToutableau, .tabeaugravier, .tabeaurocheuse");
-//     contenairs.forEach(function (contenair) {
-//       contenair.style.display = "none";
-//     });
+    // Cacher tous les contenus
+    var contenairs = document.querySelectorAll(".AffichedansToutableau, .tabeaugravier, .tabeaurocheuse");
+    contenairs.forEach(function (contenair) {
+      contenair.style.display = "none";
+    });
 
-//     // Afficher le contenu correspondant au bouton cliqué
-//     if (boutonId === "buttonstandart") {
-//       document.getElementById("containairpdf").style.display = "block";
-//       document.getElementById("AffichedansToutableau").style.display = "block";
-//       document.querySelector(".tabeaustandart").style.display = "block";
-//       document.querySelector(".tabeaugravier").style.display = "none";
-//       document.querySelector(".tabeaurocheuse").style.display = "none";
-//     } else if (boutonId === "buttongravier") {
-//       document.getElementById("containairpdf").style.display = "block";
-//       document.getElementById("AffichedansToutableau").style.display = "block";
-//       document.querySelector(".tabeaustandart").style.display = "none";
-//       document.querySelector(".tabeaugravier").style.display = "block";
-//       document.querySelector(".tabeaurocheuse").style.display = "none";
-//     } else if (boutonId === "buttonrocheuse") {
-//       document.getElementById("containairpdf").style.display = "block";
-//       document.getElementById("AffichedansToutableau").style.display = "block";
-//       document.querySelector(".tabeaustandart").style.display = "none";
-//       document.querySelector(".tabeaugravier").style.display = "none";
-//       document.querySelector(".tabeaurocheuse").style.display = "block";
-//     }
+    // Afficher le contenu correspondant au bouton cliqué
+    if (boutonId === "buttonstandart") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("AffichedansToutableau").style.display = "block";
+      document.querySelector(".tabeaustandart").style.display = "block";
+      document.querySelector(".tabeaugravier").style.display = "none";
+      document.querySelector(".tabeaurocheuse").style.display = "none";
+    } else if (boutonId === "buttongravier") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("AffichedansToutableau").style.display = "block";
+      document.querySelector(".tabeaustandart").style.display = "none";
+      document.querySelector(".tabeaugravier").style.display = "block";
+      document.querySelector(".tabeaurocheuse").style.display = "none";
+    } else if (boutonId === "buttonrocheuse") {
+      document.getElementById("containairpdf").style.display = "block";
+      document.getElementById("AffichedansToutableau").style.display = "block";
+      document.querySelector(".tabeaustandart").style.display = "none";
+      document.querySelector(".tabeaugravier").style.display = "none";
+      document.querySelector(".tabeaurocheuse").style.display = "block";
+    }
 
-//     // Afficher l'élément avec l'ID "telecharger"
-//     var telechargerElement = document.getElementById("telecharger");
-//     telechargerElement.style.display = "block";
-//   }
+    // Afficher l'élément avec l'ID "telecharger"
+    var telechargerElement = document.getElementById("telecharger");
+    telechargerElement.style.display = "block";
+  }
 
-//   // Appeler la fonction lorsqu'un bouton est cliqué
-//   document.getElementById("buttonstandart").addEventListener("click", function () {
-//     afficherContenuEnFonctionDuBouton("buttonstandart");
-//   });
+  // Appeler la fonction lorsqu'un bouton est cliqué
+  document.getElementById("buttonstandart").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttonstandart");
+  });
 
-//   document.getElementById("buttongravier").addEventListener("click", function () {
-//     afficherContenuEnFonctionDuBouton("buttongravier");
-//   });
+  document.getElementById("buttongravier").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttongravier");
+  });
 
-//   document.getElementById("buttonrocheuse").addEventListener("click", function () {
-//     afficherContenuEnFonctionDuBouton("buttonrocheuse");
-//   });
-
-
+  document.getElementById("buttonrocheuse").addEventListener("click", function () {
+    afficherContenuEnFonctionDuBouton("buttonrocheuse");
+  });
 
 
 
-// //  ::::::::AFFICHAGE LE MONTANT DANS (class="montantaffichage") 
-//   function afficherMontant() {
-//     var selectZone = document.getElementById("selectzone");
-//     var optionSelectionnee = selectZone.options[selectZone.selectedIndex];
 
-//     var montantAffichage = document.querySelector(".montantaffichage");
+//  ::::::::AFFICHAGE LE MONTANT DANS (class="montantaffichage") 
+  function afficherMontant() {
+    var selectZone = document.getElementById("selectzone");
+    var optionSelectionnee = selectZone.options[selectZone.selectedIndex];
 
-//     if (optionSelectionnee.id === "standartselect" && this.id === "buttonstandart") {
-//       montantAffichage.textContent = document.getElementById("montant1").textContent;
-//     } else if (optionSelectionnee.id === "gravierselect" && this.id === "buttongravier") {
-//       montantAffichage.textContent = document.getElementById("montant2").textContent;
-//     } else if (optionSelectionnee.id === "rocheuseselect" && this.id === "buttonrocheuse") {
-//       montantAffichage.textContent = document.getElementById("montant3").textContent;
-//     }
-//   }
-//   document.getElementById("buttonstandart").addEventListener("click", afficherMontant);
-//   document.getElementById("buttongravier").addEventListener("click", afficherMontant);
-//   document.getElementById("buttonrocheuse").addEventListener("click", afficherMontant);
+    var montantAffichage = document.querySelector(".montantaffichage");
+
+    if (optionSelectionnee.id === "standartselect" && this.id === "buttonstandart") {
+      montantAffichage.textContent = document.getElementById("montant1").textContent;
+    } else if (optionSelectionnee.id === "gravierselect" && this.id === "buttongravier") {
+      montantAffichage.textContent = document.getElementById("montant2").textContent;
+    } else if (optionSelectionnee.id === "rocheuseselect" && this.id === "buttonrocheuse") {
+      montantAffichage.textContent = document.getElementById("montant3").textContent;
+    }
+  }
+  document.getElementById("buttonstandart").addEventListener("click", afficherMontant);
+  document.getElementById("buttongravier").addEventListener("click", afficherMontant);
+  document.getElementById("buttonrocheuse").addEventListener("click", afficherMontant);
 
 
 
@@ -1119,14 +738,14 @@ function afficherButtonEnFonctionDeSelection() {
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
 function telechargerPDFDeuxPages() {
-  const element1 = document.querySelector(".standartPage1");
-  const element2 = document.querySelector(".standartPage2");
+  const element1 = document.querySelector(".chateauPage1");
+  const element2 = document.querySelector(".chateauPage2");
 
-  // Appliquer le padding-top et padding-bottom à standartPage1
+  // Appliquer le padding-top et padding-bottom à chateauPage1
   element1.style.paddingTop = "1%";
   element1.style.paddingBottom = "4%";
 
-  // Appliquer le padding-top et padding-bottom à standartPage2
+  // Appliquer le padding-top et padding-bottom à chateauPage2
   element2.style.paddingTop = "1%";
   element2.style.paddingBottom = "8%";
 
@@ -1170,7 +789,7 @@ function telechargerPDFDeuxPages() {
   });
 }
 // Ajouter un écouteur d'événement pour le bouton "telecharger2"
-document.getElementById("telechargerStandart").addEventListener("click", function () {
+document.getElementById("telecharger").addEventListener("click", function () {
   telechargerPDFDeuxPages();
 });
 
