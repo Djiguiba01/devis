@@ -1118,61 +1118,61 @@ function afficherZoneSelectionnee() {
 
 // ::::::TELECHARGEMENT::::::::::::::::
 // :::::::PDF TELECHARGEMENT/////////
-function telechargerPDFDeuxPages() {
-  const element1 = document.querySelector(".standartPage1");
-  const element2 = document.querySelector(".standartPage2");
+window.html2canvas = html2canvas;
+window.jsPDF = window.jspdf.jsPDF;
 
-  // Appliquer le padding-top et padding-bottom à standartPage1
-  element1.style.paddingTop = "1%";
-  element1.style.paddingBottom = "4%";
+function downloadPDF() {
+  var pdf = new jsPDF("p", "mm", "a4", true);
+  var width = pdf.internal.pageSize.getWidth();
+  var height = pdf.internal.pageSize.getHeight();
 
-  // Appliquer le padding-top et padding-bottom à standartPage2
-  element2.style.paddingTop = "1%";
-  element2.style.paddingBottom = "8%";
+  // Contenu de la page 1
+  var page1 = document.querySelector(".standartPage1");
+  // Appliquez les styles au contenu de la page 1
+  page1.style.paddingTop = "1%";
+  page1.style.paddingBottom = "4%";
 
-  html2canvas(element1, {
+  html2canvas(page1, {
     scale: 2,
     scrollX: 0,
     scrollY: 0,
-    windowWidth: document.documentElement.offsetWidth,
-    windowHeight: document.documentElement.offsetHeight,
-    useCORS: true,
-  }).then(function (canvas1) {
-    html2canvas(element2, {
+    windowWidth: width,
+    windowHeight: height,
+    useCORS: true
+  }).then(function (canvas) {
+    var imgData = canvas.toDataURL("image/png", 1.0);
+    pdf.addImage(imgData, "PNG", 0, 0, width, height);
+
+    // Ajouter une nouvelle page
+    pdf.addPage();
+
+    // Contenu de la page 2
+    var page2 = document.querySelector(".standartPage2");
+    // Appliquez les styles au contenu de la page 2
+    page2.style.paddingTop = "1%";
+    page2.style.paddingBottom = "8%";
+
+    html2canvas(page2, {
       scale: 2,
       scrollX: 0,
       scrollY: 0,
-      windowWidth: document.documentElement.offsetWidth,
-      windowHeight: document.documentElement.offsetHeight,
-      useCORS: true,
-    }).then(function (canvas2) {
-      // Réinitialiser le padding à zéro après la conversion en image
-      element1.style.paddingTop = "0";
-      element1.style.paddingBottom = "0";
-      element2.style.paddingTop = "0";
-      element2.style.paddingBottom = "0";
+      windowWidth: width,
+      windowHeight: height,
+      useCORS: true
+    }).then(function (canvas) {
+      var imgData = canvas.toDataURL("image/png", 1.0);
+      pdf.addImage(imgData, "PNG", 0, 0, width, height);
 
-      // Créer un document PDF avec deux pages
-      const pdf = new jsPDF("p", "mm", "a4", true);
-      const width = pdf.internal.pageSize.getWidth();
-      const height = pdf.internal.pageSize.getHeight();
-
-      // Ajouter la première page au PDF
-      pdf.addImage(canvas1.toDataURL("image/png", 1.0), "PNG", 0, 0, width, height);
-      pdf.addPage(); // Ajouter une nouvelle page
-
-      // Ajouter la deuxième page au PDF
-      pdf.addImage(canvas2.toDataURL("image/png", 1.0), "PNG", 0, 0, width, height);
-
-      // Télécharger le PDF
-      pdf.save("plomberie.pdf");
+      // Enregistrer le PDF
+      pdf.save("standart.pdf");
     });
   });
 }
-// Ajouter un écouteur d'événement pour le bouton "telecharger2"
+
 document.getElementById("telechargerStandart").addEventListener("click", function () {
-  telechargerPDFDeuxPages();
+  downloadPDF();
 });
+
 
 
 
