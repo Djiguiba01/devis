@@ -125,21 +125,42 @@
     </section>
     <!-- Fi Pied de page::::::::::::::::::::: -->
 
-    <button id="install-button">qqqqqqqqqqqq</button>
+
+    <div id="install-popup">
+        <p>Ajoutez cette application à votre écran d'accueil pour une meilleure expérience !</p>
+        <button id="close-popup">Fermer</button>
+      </div>
+      
+      <script>
+        const popup = document.getElementById('install-popup');
+        const closeButton = document.getElementById('close-popup');
+        
+        // Affiche le popup
+        setTimeout(() => {
+          popup.style.display = 'block';
+        }, 10000); // Affiche après 10 secondes
+        
+        // Ferme le popup lorsque le bouton de fermeture est cliqué
+        closeButton.addEventListener('click', () => {
+          popup.style.display = 'none';
+        });
+      </script>
+      
 
     <style>
-        #install-button {
+       #install-popup {
   /* display: none; */
-  background-color: #007bff;
-  /* width: 10%;
-  height: 5%; */
-  color: white;
-  margin-left: 45%;
-  padding: 10px 20px;
-  border: none;
+  position: fixed;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: #fff;
+  padding: 10px;
+  border: 1px solid #ccc;
   border-radius: 5px;
-  cursor: pointer;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
 }
+
 
     </style>
     <!-- :::::::::::::::::::::::::::: -->
